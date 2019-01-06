@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RootNamespace>Tcm.Interface.Api</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.0" />
+    <PackageReference Include="Scrutor" Version="3.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Framework.Core\Framework.Core.csproj" />
+    <ProjectReference Include="..\Framework.Domain\Framework.Domain.csproj" />
+    <ProjectReference Include="..\Framework.Log.MongoDb\Framework.Log.MongoDb.csproj" />
+    <ProjectReference Include="..\Framework.Persistence.Ef\Framework.Persistence.Ef.csproj" />
+    <ProjectReference Include="..\Tcm.Application\Tcm.Application.csproj" />
+    <ProjectReference Include="..\Tcm.Domain\Tcm.Domain.csproj" />
+    <ProjectReference Include="..\Tcm.Persistence.Ef\Tcm.Persistence.Ef.csproj" />
+  </ItemGroup>
+
+</Project>

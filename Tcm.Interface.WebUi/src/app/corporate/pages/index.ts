@@ -1,0 +1,1 @@
+export {CorporateAddComponent} from './add/corporate-add.component'
