@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { UserManager, UserManagerSettings, User } from 'oidc-client';
-import {UserInfo} from './../../user/models/User'
+import {UserInfo} from 'src/app/user/models/User'
 import { UserService } from './../../user/services/user.service';
 
 
@@ -42,6 +42,12 @@ export class AuthService  {
       return this.saveUser(this.getClaims());
 
     });
+  }
+
+
+   getRole(){
+
+   return this.user.profile.role;
   }
 
 

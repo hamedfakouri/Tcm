@@ -12,10 +12,12 @@ import { CorporateServiceModule } from './corporate/services';
 import { UserService } from './user/services';
 import { UserModule } from './user/user.module';
 import { CoreModule } from './core/core.module';
+import {UtilityService} from './shared/services';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule ,
@@ -28,13 +30,12 @@ import { CoreModule } from './core/core.module';
     CorporateServiceModule,
     UserModule,
     CoreModule
-  ]
-  
-,
+  ] ,
   providers: [
     CoreServiceModule,
     AuthServiceModule,
-   { provide: APP_INITIALIZER, useFactory: get_settings, deps: [AuthService,UserService], multi: true }
+    UtilityService,
+   { provide: APP_INITIALIZER, useFactory: get_settings, deps: [AuthService,UserService], multi: true },
   ],
   bootstrap: [AppComponent],
 })

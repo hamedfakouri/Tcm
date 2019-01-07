@@ -1,0 +1,15 @@
+<div class="form-group">
+  <label class="col-sm-4 control-label" for="textTextbox">{{label}}</label>
+  <div class="col-sm-8" [ngClass]="{'has-error': hasError}">
+      <ng-content></ng-content>
+     
+      <div style="height: 18px;" >
+          <ng-container *ngIf='!hasError'>
+              <span class="text-muted"> {{info}}</span>
+          </ng-container>
+          <ng-container *ngIf='hasError'>
+              <span class="text-danger"> {{value | getError : input:label}}</span>
+          </ng-container>
+      </div>
+  </div>
+</div>

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {  Response } from '@angular/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, } from 'rxjs';
+import {ajax} from 'rxjs/ajax';
 import { map, catchError, tap } from 'rxjs/operators';
 
 
@@ -27,15 +28,11 @@ export class HttpService <T> {
 
   getAll(): Observable<Array<T>> {
   
-
-    
-   
     return this.http.get<Array<T>>(this.endpoint);
   }
   
   get(id): Observable<T> {
-    return this.http.get<T>(this.endpoint +  id).pipe(
-      map(this.extractData));
+    return this.http.get<T>(this.endpoint +  id);
   }
   
   add (T): Observable<T> {

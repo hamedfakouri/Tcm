@@ -1,3 +1,5 @@
+
+import {tap} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import {
   HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse
@@ -5,7 +7,7 @@ import {
 
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/do';
+
 
 
 
@@ -40,7 +42,7 @@ export class AuthInterceptor implements HttpInterceptor {
     // send cloned request with header to the next handler.
     //return next.handle(authReq);
 
-    return next.handle(authReq).do((event: HttpEvent<any>) => {
+    return next.handle(authReq).pipe(tap((event: HttpEvent<any>) => {
       if (event instanceof HttpResponse) {
 
         alert("dastari ok");
@@ -57,7 +59,7 @@ export class AuthInterceptor implements HttpInterceptor {
               //this.auth.collectFailedRequest(request);
           }
       }
-  });
+  }));
   }
 
 

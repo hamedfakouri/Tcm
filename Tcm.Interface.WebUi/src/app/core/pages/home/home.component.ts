@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CorporateService } from 'src/app/corporate/services';
+
 import { AuthService } from 'src/app/authentication/services';
+import { CorporateService } from 'src/app/corporate/services';
+
 
 @Component({
   selector: 'page-home',
@@ -8,7 +10,7 @@ import { AuthService } from 'src/app/authentication/services';
 })
 export class HomeComponent implements OnInit {
   ngOnInit(): void {
-    throw new Error("Method not implemented.");
+  
   }
 
   
@@ -20,9 +22,12 @@ export class HomeComponent implements OnInit {
  getCars():any{
 
     //this.httpService.getAll().subscribe();
-    this.httpService.add(Object).subscribe();
-    //this.httpService.get(41).subscribe(res=> this.car = res);
 
+    this.httpService.add(Object).subscribe(function(res){
+      console.log(res);
+    });
+
+    //this.httpService.get(41).subscribe(res=> this.car = res);
     //this.httpService.update(41,this.car).subscribe();
 
 

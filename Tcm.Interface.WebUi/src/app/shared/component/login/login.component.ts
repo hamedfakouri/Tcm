@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './../../../authentication/services/auth.service'
+import { AuthService } from 'src/app/authentication/services';
+
+
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
 
@@ -16,13 +17,17 @@ export class LoginComponent implements OnInit {
     if(this.authService.isLoggedIn()){
       this.authenticated= true;
     }
-
-
   }
 
   login():void{
 this.authService.startAuthentication();
   }
+
+  isAdmin():boolean{
+
+    return false;
+  }
+  
 
   logout():void{
     this.authService.signOut();

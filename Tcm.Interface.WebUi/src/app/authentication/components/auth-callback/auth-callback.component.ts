@@ -14,6 +14,7 @@ export class AuthCallbackComponent implements OnInit {
 
     ngOnInit() {
      this.authService.completeAuthentication();
+     
      this.router.navigate([this.authService.getPostBackRedirect()]);
 
   }
