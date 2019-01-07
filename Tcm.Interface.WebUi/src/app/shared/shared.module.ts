@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { SharedRoutingModule } from './shared-routing.module';
-import { FooterComponent } from './component/footer/footer.component';
-import { HeaderComponent } from './component/header/header.component';
-import { LoginComponent } from './component/login/login.component';
+import { FooterComponent,HeaderComponent,LoginComponent,FormInputComponent } from './component';
+import { InputErrorDirective } from './directive/input-error.directive';
+import { GetErrorPipe } from './pipe';
 
 
 @NgModule({
@@ -12,12 +11,19 @@ import { LoginComponent } from './component/login/login.component';
     CommonModule,
     SharedRoutingModule
   ],
-  declarations: [FooterComponent, HeaderComponent, LoginComponent]
+  declarations: [
+    FooterComponent,
+     HeaderComponent,
+      LoginComponent,
+       InputErrorDirective,
+        FormInputComponent,GetErrorPipe]
   ,exports:[
-    FooterComponent,HeaderComponent
+    FooterComponent,HeaderComponent,InputErrorDirective,FormInputComponent
   ],
   providers:[]
 })
+
+
 export class SharedModule { 
   constructor(){
     console.log("--------------------------------SharedModule-------------------------------")

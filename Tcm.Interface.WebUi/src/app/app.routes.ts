@@ -22,6 +22,11 @@ const appRoutes: Routes = [
     }
     ,
     {
+      path:'corporate',
+      loadChildren:'./corporate/corporate.module#CorporateModule'
+    }
+    ,
+    {
       path:'logout',
       component :LogoutComponent
     }

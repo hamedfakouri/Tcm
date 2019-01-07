@@ -1,14 +1,15 @@
-import { NgModule, forwardRef } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {AuthService,AuthGuardService,AuthInterceptor,AuthInterceptorProviderService,AuthResolve} from './index'
-import { HttpService } from 'src/app/core/services/http.service';
-import { UserService } from 'src/app/user/services/user.service';
+import {AuthService,AuthInterceptor,AuthInterceptorProviderService,AuthResolve,AuthGuardService} from './index'
+import { HttpService } from '../../core/services';
+import { UserService } from 'src/app/user/services';
+
+
+
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [],
   providers:[HttpService,AuthService,AuthGuardService,AuthInterceptor,AuthInterceptorProviderService,AuthResolve,UserService
   ]

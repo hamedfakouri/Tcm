@@ -1,3 +1,12 @@
-<p>
-  corporate-add works!
-</p>
+<form  #CorporateAddForm="ngForm" (ngSubmit)="AddFormSubmit()">
+  
+
+  
+  <form-input label="نام">
+  <input InputError class="form-control text-ltr" minlength="4"    [(ngModel)]="model.Name" type="text" id="Name" name="Name" #Name="ngModel"
+      required />
+</form-input>
+
+
+  <button type="submit" class="btn btn-success" [disabled]="!CorporateAddForm.form.valid">Submit</button>
+</form>
