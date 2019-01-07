@@ -2,7 +2,7 @@
 
 namespace Tcm.Persistence.Ef.Migrations
 {
-    public partial class initialDb : Migration
+    public partial class initDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -220,7 +220,7 @@ namespace Tcm.Persistence.Ef.Migrations
                 name: "Schools",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false),
+                    Id = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     CityId = table.Column<int>(nullable: false),
                     Region = table.Column<string>(nullable: true),
@@ -275,7 +275,7 @@ namespace Tcm.Persistence.Ef.Migrations
                     Id = table.Column<long>(nullable: false),
                     Phone = table.Column<string>(nullable: true),
                     PhoneType = table.Column<int>(nullable: false),
-                    SchoolId = table.Column<long>(nullable: true)
+                    SchoolId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -292,11 +292,11 @@ namespace Tcm.Persistence.Ef.Migrations
                 name: "SchoolEducationSubCourses",
                 columns: table => new
                 {
-                    SchoolId = table.Column<long>(nullable: false),
+                    SchoolId = table.Column<int>(nullable: false),
                     EducationSubCourseId = table.Column<short>(nullable: false),
                     MajorId = table.Column<short>(nullable: false),
                     Id = table.Column<long>(nullable: false),
-                    ClassCount = table.Column<int>(nullable: false)
+                    ClassCount = table.Column<short>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -328,9 +328,10 @@ namespace Tcm.Persistence.Ef.Migrations
                     Id = table.Column<long>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     SchoolEducationSubCourseId = table.Column<long>(nullable: false),
+                    Year = table.Column<short>(nullable: false),
                     SchoolEducationSubCourseEducationSubCourseId = table.Column<short>(nullable: false),
                     SchoolEducationSubCourseMajorId = table.Column<short>(nullable: false),
-                    SchoolEducationSubCourseSchoolId = table.Column<long>(nullable: false)
+                    SchoolEducationSubCourseSchoolId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -349,8 +350,7 @@ namespace Tcm.Persistence.Ef.Migrations
                 {
                     StudentId = table.Column<long>(nullable: false),
                     ClassRoomId = table.Column<long>(nullable: false),
-                    Id = table.Column<long>(nullable: false),
-                    Year = table.Column<short>(nullable: false)
+                    Id = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {

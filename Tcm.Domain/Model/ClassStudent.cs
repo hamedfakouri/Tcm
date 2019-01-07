@@ -8,7 +8,6 @@ namespace Tcm.Domain.Model
         public Student Student { get; set; }
         public long ClassRoomId { get; set; }
         public ClassRoom ClassRoom{ get; set; }
-        public short Year { get; set; }
     }
     
 }

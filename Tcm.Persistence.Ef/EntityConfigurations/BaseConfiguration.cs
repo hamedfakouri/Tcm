@@ -58,7 +58,7 @@ namespace Tcm.Persistence.Ef.EntityConfigurations
         }
     }
 
-    public class SchoolConfiguration : BaseConfiguration<School, long>
+    public class SchoolConfiguration : BaseConfiguration<School, int>
     {
         public override void Configure(EntityTypeBuilder<School> builder)
         {

@@ -8,7 +8,7 @@ namespace Tcm.Domain.Model
         public string Phone { get; set; }
         public PhoneType PhoneType { get; set; }
         
-        public long? SchoolId { get; set; }
+        public int? SchoolId { get; set; }
         public School School { get; set; }
     }
     

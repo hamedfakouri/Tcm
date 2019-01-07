@@ -39,7 +39,7 @@ namespace Tcm.Domain.Interfaces
     public interface IProvinceRepository : IRepository<Province,short>
     {
     }
-    public interface ISchoolRepository : IRepository<School,long>
+    public interface ISchoolRepository : IRepository<School,int>
     {
     }
     public interface ISchoolEducationSubCourseRepository : IRepository<SchoolEducationSubCourse,long>

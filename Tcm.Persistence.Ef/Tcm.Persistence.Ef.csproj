@@ -5,6 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190105234802_initialDb.cs" />
+    <Compile Remove="Migrations\20190107155959_DataBaseinit.cs" />
+    <Compile Remove="Migrations\20190107164407_dbinit.cs" />
+    <Compile Remove="Migrations\20190107165040_initDB.cs" />
+    <Compile Remove="Migrations\20190107165645_initDB.cs" />
+    <Compile Remove="Migrations\20190107165822_initDB.cs" />
+    <Compile Remove="Migrations\20190107170103_initDB.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="appsettings.Development.json" />
   </ItemGroup>
 

@@ -10,8 +10,8 @@ using Tcm.Persistence.Ef;
 namespace Tcm.Persistence.Ef.Migrations
 {
     [DbContext(typeof(TcmContext))]
-    [Migration("20190105234802_initialDb")]
-    partial class initialDb
+    [Migration("20190107170542_initDB")]
+    partial class initDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,7 +67,9 @@ namespace Tcm.Persistence.Ef.Migrations
 
                     b.Property<short>("SchoolEducationSubCourseMajorId");
 
-                    b.Property<long>("SchoolEducationSubCourseSchoolId");
+                    b.Property<int>("SchoolEducationSubCourseSchoolId");
+
+                    b.Property<short>("Year");
 
                     b.HasKey("Id");
 
@@ -83,8 +85,6 @@ namespace Tcm.Persistence.Ef.Migrations
                     b.Property<long>("StudentId");
 
                     b.Property<long>("Id");
-
-                    b.Property<short>("Year");
 
                     b.HasKey("ClassRoomId", "StudentId");
 
@@ -170,7 +170,7 @@ namespace Tcm.Persistence.Ef.Migrations
 
                     b.Property<int>("PhoneType");
 
-                    b.Property<long?>("SchoolId");
+                    b.Property<int?>("SchoolId");
 
                     b.HasKey("Id");
 
@@ -195,7 +195,7 @@ namespace Tcm.Persistence.Ef.Migrations
 
             modelBuilder.Entity("Tcm.Domain.Model.School", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:HiLoSequenceName", "Schoolsequence")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
@@ -253,9 +253,9 @@ namespace Tcm.Persistence.Ef.Migrations
 
                     b.Property<short>("MajorId");
 
-                    b.Property<long>("SchoolId");
+                    b.Property<int>("SchoolId");
 
-                    b.Property<int>("ClassCount");
+                    b.Property<short>("ClassCount");
 
                     b.Property<long>("Id");
 

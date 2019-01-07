@@ -33,12 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tcm.Interface.WebUi", "Tcm.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tcm.Interface.Api", "Tcm.Interface.Api\Tcm.Interface.Api.csproj", "{06063903-7DBB-4E40-A839-DA0ED9456628}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C881C9D5-2BA0-4034-905C-D0C6C675668B}"
-	ProjectSection(SolutionItems) = preProject
-		Performance1.psess = Performance1.psess
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tcm.Application.Contract", "Tcm.Application.Contract\Tcm.Application.Contract.csproj", "{398E8843-1E7B-4441-B18D-A6F8890C4702}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tcm.Application.Contract", "Tcm.Application.Contract\Tcm.Application.Contract.csproj", "{398E8843-1E7B-4441-B18D-A6F8890C4702}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -70,7 +70,7 @@ namespace Tcm.Persistence.Ef.Repositories
         {
         }
     }
-    public class SchoolRepository : BaseRepository<School,long>, ISchoolRepository
+    public class SchoolRepository : BaseRepository<School,int>, ISchoolRepository
     {
         public SchoolRepository(TcmContext tcmContext) : base(tcmContext)
         {

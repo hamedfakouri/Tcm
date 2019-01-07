@@ -7,8 +7,8 @@ namespace Tcm.Domain.Model
     {
         public string Name { get; set; }
         public long SchoolEducationSubCourseId { get; set; }
+        public short Year { get; set; }
         public SchoolEducationSubCourse SchoolEducationSubCourse { get; set; }
         public List<ClassStudent> ClassStudents { get; set; }
     }
-    
 }

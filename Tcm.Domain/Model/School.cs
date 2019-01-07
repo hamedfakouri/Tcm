@@ -3,7 +3,7 @@ using Framework.Persistence.Ef;
 
 namespace Tcm.Domain.Model
 {
-    public class School : EntityBase<long>
+    public class School : EntityBase<int>
     {
         public string Name { get; set; }
 
