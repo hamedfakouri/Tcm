@@ -18,8 +18,6 @@ export class AuthGuardService implements CanActivate {
 
       }
 
-      this.authService.savePostBackRedirect(state.url);
-      this.authService.startAuthentication();
       return false;
   }
 }
