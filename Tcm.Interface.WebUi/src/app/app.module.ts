@@ -2,18 +2,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
-import { AppRouteModule } from './app.routes';
-import { AuthService } from './authentication/services/auth.service'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
-import { CoreServiceModule } from './core/services';
 import { AuthServiceModule } from './authentication/services/auth-service.module';
 import { CorporateServiceModule } from './corporate/services';
-import { UserService } from './user/services';
 import { UserModule } from './user/user.module';
-import { CoreModule } from './core/core.module';
 import { UtilityService } from './shared/services';
 import { JwtModule } from '@auth0/angular-jwt';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CoreModule } from './core/core.module';
+import { ThemeModule } from './theme/theme.module';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { routes } from './app-routing.module';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -22,18 +24,21 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
+    DashboardComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
-    AppRouteModule,
+    RouterModule.forRoot(routes),
     HttpClientModule,
     RouterModule,
+    CoreModule,
     SharedModule,
-    CoreServiceModule,
     AuthServiceModule,
     CorporateServiceModule,
     UserModule,
-    CoreModule,
+    NgbModule.forRoot(),
+    ThemeModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -43,7 +48,6 @@ export function tokenGetter() {
     })
   ],
   providers: [
-    CoreServiceModule,
     AuthServiceModule,
     UtilityService,
     //{ provide: APP_INITIALIZER, useFactory: get_settings, deps: [AuthService, UserService], multi: true },
@@ -51,17 +55,3 @@ export function tokenGetter() {
   bootstrap: [AppComponent],
 })
 export class AppModule { }
-
-
-// export function get_settings(authService: AuthService, userService: UserService) {
-
-
-//   if (window.location.href.startsWith("http://localhost:4300/auth-callback")) {
-//     return () => authService.completeAuthentication();
-
-//   }
-//   else {
-//     return () => authService.getUser();
-//   }
-//   return () => true;
-// }

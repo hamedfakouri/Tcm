@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedRoutingModule } from './shared-routing.module';
-import { FooterComponent,HeaderComponent,LoginComponent,FormInputComponent } from './component';
+import { FormInputComponent } from './component';
 import { InputErrorDirective } from './directive/input-error.directive';
 import { GetErrorPipe } from './pipe';
 
@@ -12,13 +12,10 @@ import { GetErrorPipe } from './pipe';
     SharedRoutingModule
   ],
   declarations: [
-    FooterComponent,
-     HeaderComponent,
-      LoginComponent,
        InputErrorDirective,
         FormInputComponent,GetErrorPipe]
   ,exports:[
-    FooterComponent,HeaderComponent,InputErrorDirective,FormInputComponent
+    InputErrorDirective,FormInputComponent
   ],
   providers:[]
 })

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {AuthService,AuthInterceptor,AuthInterceptorProviderService,AuthResolve,AuthGuardService} from './index'
-import { HttpService } from '../../core/services';
+import { HttpService } from './../../core/services/http.service';
 import { UserService } from 'src/app/user/services';
 
 
