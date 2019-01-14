@@ -1,32 +1,119 @@
 ﻿using Framework.Log.MongoDb;
 using Framework.Log.MongoDb.Interfaces;
 using Framework.Persistence.Ef;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
+using System.Net.Http;
+using System.Security.Claims;
+using Tcm.Domain.IdentityModel;
 using Tcm.Domain.Interfaces;
 using Tcm.Interface.Api.MiddleWares;
 using Tcm.Persistence.Ef;
 using Tcm.Persistence.Ef.Repositories;
+using static Tcm.Persistence.Ef.Identity.AspIdentityServices;
 
 namespace Tcm.Interface.Api
 {
     public class Startup
     {
 
-        private IConfiguration _configuration;
-
         public Startup(IConfiguration configuration)
         {
-            _configuration = configuration;
+            Configuration = configuration;
         }
+
+        public IConfiguration Configuration { get; }
+
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+
+
+            services.AddDbContext<TcmContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentity<ApplicationUser, Role>(identityOptions =>
+            {
+                // ...
+            }).AddUserStore<ApplicationUserStore>()
+              .AddUserManager<ApplicationUserManager>()
+              .AddRoleStore<ApplicationRoleStore>()
+              .AddRoleManager<ApplicationRoleManager>()
+              .AddSignInManager<ApplicationSignInManager>()
+              // You **cannot** use .AddEntityFrameworkStores() when you customize everything
+              //.AddEntityFrameworkStores<ApplicationDbContext, int>()
+              .AddDefaultTokenProviders();
+
+
+
+            services.AddScoped<UserStore<ApplicationUser, Role, TcmContext, int, UserClaim, UserRole, UserLogin, UserToken, RoleClaim>, ApplicationUserStore>();
+            services.AddScoped<UserManager<ApplicationUser>, ApplicationUserManager>();
+            services.AddScoped<RoleManager<Role>, ApplicationRoleManager>();
+            services.AddScoped<SignInManager<ApplicationUser>, ApplicationSignInManager>();
+            services.AddScoped<RoleStore<Role, TcmContext, int, UserRole, RoleClaim>, ApplicationRoleStore>();
+         
+
+
+            services.AddMvc();
+
+
+
+
+            services.AddCors();
+        }
+
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+
+            app.UseCors(
+options => options.AllowAnyOrigin()
+);
+
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+                app.UseDatabaseErrorPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
+
+            app.UseStaticFiles();
+
+            app.UseAuthentication(); // not needed, since UseIdentityServer adds the authentication middleware ** important
+
+
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
+
+
+        private IConfiguration _configuration;
+
+       
 
         protected void IocSetting(IServiceCollection services)
         {
@@ -60,26 +147,7 @@ namespace Tcm.Interface.Api
 
         }
          
-        public void ConfigureServices(IServiceCollection services)
-        {
-
-            IocSetting(services);
-
-            MvcSetting(services);
-
-            AuthenticationSetting(services);
-
-
-            //services.AddAuthorization(options =>
-            //{
-            //  options.AddPolicy("userRole", policy =>
-            //  {
-            //    policy.AddAuthenticationSchemes("Bearer");
-            //    policy.RequireClaim(ClaimTypes.Role, "member");
-            //  });
-            //});
-
-        }
+       
 
         private void AuthenticationSetting(IServiceCollection services)
         {
@@ -116,38 +184,6 @@ namespace Tcm.Interface.Api
             });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-
-            app.UseStaticFiles();
-
-            app.UseExceptionHandler();
-
-            app.UseLogRequestMidleware();
-
-            app.UseAuthentication();
-
-
-            //app.UseAuthentication()
-            //    .Use(async (ctx, next) =>
-            //    {
-            //        var customHeader = ctx.Request.Headers["Authorization"].ToString();
-            //        var user = ctx.User.Identity.IsAuthenticated;
-            //        await next.Invoke();
-            //    });
-
-            app.UseUnitOfworkMiddleware();
-
-            app.UseMvcWithDefaultRoute();
-
-            app.UseMvc();
-
-        }
+       
     }
 }
