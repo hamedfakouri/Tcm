@@ -1,14 +1,24 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Tcm.Domain.IdentityModel;
 using Tcm.Domain.Model;
-using Tcm.Persistence.Ef.EntityConfigurations;
 
 namespace Tcm.Persistence.Ef
 {
-    public class TcmContext : DbContext
+    public class TcmContext : IdentityDbContext<ApplicationUser, IdentityRole<int>, int>
     {
+
+        public new DbSet<UserClaim> UserClaims { get; set; }
+        public new DbSet<RoleClaim> RoleClaims { get; set; }
+        public new DbSet<UserRole> UserRoles { get; set; }
+
+        public new DbSet<UserLogin> UserLogins { get; set; }
+
+        public new DbSet<UserToken> UserTokens { get; set; }
+        public new DbSet<Role> Roles { get; set; }
+
+
 
         public DbSet<User> Users { get; set; }
 
