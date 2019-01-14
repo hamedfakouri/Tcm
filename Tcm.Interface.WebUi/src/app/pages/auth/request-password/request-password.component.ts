@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'app-request-password',
+  templateUrl: './request-password.component.html',
+  styleUrls: ['./request-password.component.css']
 })
-export class RegisterComponent {
-
+export class RequestPasswordComponent  {
   redirectDelay: number = 0;
   showMessages: any = {};
   strategy: string = '';
@@ -19,10 +18,12 @@ export class RegisterComponent {
 
   constructor() {
 
+  }
+
+  requestPass(): void {
+  }
+
+  getConfigValue(key: string): any {
     
   }
-
-  register(): void {
-  }
-
 }

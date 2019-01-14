@@ -40,6 +40,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'ثبت نام',
         link: '/Auth/Register',
+      },
+      {
+        title: 'درخواست رمز',
+        link: '/Auth/RequestPassword',
       }
     ],
   }

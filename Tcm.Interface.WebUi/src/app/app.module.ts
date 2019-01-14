@@ -18,6 +18,7 @@ import { routes } from './app-routing.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/Auth/login/login.component';
 import { RegisterComponent } from './pages/Auth/register/register.component';
+import { RequestPasswordComponent } from './pages/auth/request-password/request-password.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -28,7 +29,8 @@ export function tokenGetter() {
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    RequestPasswordComponent
   ],
   imports: [
     BrowserAnimationsModule,
