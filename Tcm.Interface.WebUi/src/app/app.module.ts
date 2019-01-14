@@ -16,6 +16,8 @@ import { CoreModule } from './core/core.module';
 import { ThemeModule } from './theme/theme.module';
 import { routes } from './app-routing.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { LoginComponent } from './pages/Auth/login/login.component';
+import { RegisterComponent } from './pages/Auth/register/register.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -24,7 +26,9 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserAnimationsModule,
