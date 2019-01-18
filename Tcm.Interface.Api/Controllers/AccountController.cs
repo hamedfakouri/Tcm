@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
+using Tcm.Application.Contract.ApplicationUsers;
 using Tcm.Domain.IdentityModel;
 using Tcm.Persistence.Ef;
 
@@ -23,15 +28,14 @@ namespace Tcm.Interface.Api.Controllers
         private readonly TcmContext _applicationDbContext;
         private readonly RoleManager<Role> roleManager;
 
-
+        private readonly IConfiguration _configuration;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-
-
-
-            TcmContext applicationDbContext, RoleManager<Role> roleManager)
+            TcmContext applicationDbContext,
+            RoleManager<Role> roleManager,
+            IConfiguration configuration)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -39,6 +43,14 @@ namespace Tcm.Interface.Api.Controllers
 
             _applicationDbContext = applicationDbContext;
             this.roleManager = roleManager;
+            _configuration = configuration;
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IEnumerable<string> Get()
+        {
+            return new string[] { "value1", "value2" };
         }
 
         [Authorize(Roles = "Admin")]
@@ -84,8 +96,8 @@ namespace Tcm.Interface.Api.Controllers
         }
 
         [AllowAnonymous]
-        [Route("create")]
-        public async Task<IActionResult> CreateUser(ApplicationUser createUserModel)
+        [Route("register")]
+        public async Task<IActionResult> CreateUser([FromBody]ApplicationUserDto createUserModel)
         {
 
             if (!ModelState.IsValid)
@@ -96,20 +108,19 @@ namespace Tcm.Interface.Api.Controllers
             var user = new ApplicationUser()
             {
                 UserName = createUserModel.Email,
-                Email = createUserModel.Email,
-              
+                Email = createUserModel.Email,                              
             };
 
 
-            IdentityResult addUserResult = await _userManager.CreateAsync(user);
+            IdentityResult addUserResult = await _userManager.CreateAsync(user,createUserModel.Password);
 
             if (!addUserResult.Succeeded)
             {
-                return Ok();
+                return BadRequest();
             }
 
 
-            return Ok(user);
+            return Ok();
 
         }
 
@@ -136,6 +147,21 @@ namespace Tcm.Interface.Api.Controllers
             }
         }
 
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("login")]
+        public  IActionResult Login([FromBody]LoginDto model)
+        {
+            var result =  _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+
+            if (result.Result.Succeeded)
+            {
+                var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
+                return  Ok(GenerateJwtToken(model.Email, appUser));
+            }
+
+            return NotFound();
+        }
         [Authorize]
         [Route("ChangePassword")]
         public async Task<IActionResult> ChangePassword(ChangePasswordBindingModel model)
@@ -284,6 +310,30 @@ namespace Tcm.Interface.Api.Controllers
             //}
 
             return Ok();
+        }
+
+        private string GenerateJwtToken(string email, ApplicationUser user)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtKey"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var expires = DateTime.Now.AddDays(Convert.ToDouble(_configuration["JwtExpireDays"]));
+
+            var token = new JwtSecurityToken(
+                _configuration["JwtIssuer"],
+                _configuration["JwtIssuer"],
+                claims,
+                expires: expires,
+                signingCredentials: creds
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
     }

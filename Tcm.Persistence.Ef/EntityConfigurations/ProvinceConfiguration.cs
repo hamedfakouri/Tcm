@@ -7,11 +7,11 @@ using Tcm.Domain.Model;
 
 namespace Tcm.Persistence.Ef.EntityConfigurations
 {
-    public class ProvinceConfiguration:IEntityTypeConfiguration<Province>
+    public class ProvinceConfiguration:BaseConfiguration<Province,short>
     {
         public void Configure(EntityTypeBuilder<Province> builder)
         {
-            builder.Property(x => x.Id).ForSqlServerUseSequenceHiLo("ProvinceSequence").IsRequired();
+            base.Configure(builder);
 
             
         }

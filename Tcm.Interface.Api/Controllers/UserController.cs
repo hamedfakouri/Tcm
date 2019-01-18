@@ -8,7 +8,7 @@ namespace Tcm.Interface.Api.Controllers
 {
     [Produces("application/json")]
     [Route("api/users")]
-    [Authorize(Roles = "member")]
+    //[Authorize(Roles = "member")]
 
     public class UserController : Controller
     {
