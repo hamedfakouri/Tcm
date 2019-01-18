@@ -16,6 +16,6 @@ import { UserService } from 'src/app/user/services';
 })
 export class AuthServiceModule {
   constructor(){
-    console.log("------------------------AuthServiceModule-------------")
+    
   }
  }

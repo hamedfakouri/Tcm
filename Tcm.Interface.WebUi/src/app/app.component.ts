@@ -17,6 +17,7 @@ export class AppComponent {
         private directionService: NbLayoutDirectionService) {
           
     this.themeService.changeTheme('corporate');
+    //this.themeService.changeTheme('default');
     this.directionService.setDirection(this.directions.RTL);
 
   }

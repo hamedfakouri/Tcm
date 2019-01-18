@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PaginationModule } from 'ngx-bootstrap';
 
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/Auth/login/login.component';
 import { RegisterComponent } from './pages/Auth/register/register.component';
 import { RequestPasswordComponent } from './pages/auth/request-password/request-password.component';
+import { EducationCourseComponent } from './pages/baseInfo/educationCourse/educationCourse.component';
+import { AlertifyService } from './shared/services/alertify.service';
+import { EducationcourseService } from './pages/baseInfo/educationCourse/services/educationcourse.service';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -30,7 +34,8 @@ export function tokenGetter() {
     DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    RequestPasswordComponent
+    RequestPasswordComponent,
+    EducationCourseComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -45,6 +50,7 @@ export function tokenGetter() {
     UserModule,
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
+    PaginationModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -56,6 +62,8 @@ export function tokenGetter() {
   providers: [
     AuthServiceModule,
     UtilityService,
+    AlertifyService,
+    EducationcourseService
     //{ provide: APP_INITIALIZER, useFactory: get_settings, deps: [AuthService, UserService], multi: true },
   ],
   bootstrap: [AppComponent],

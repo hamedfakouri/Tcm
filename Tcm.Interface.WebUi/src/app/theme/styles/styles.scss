@@ -15,6 +15,11 @@
 
 @import './bootstrap-rtl';
 
+@font-face {
+  font-family: 'samim';
+  src: url(../fonts/Samim.woff)  format('woff');
+}
+
 // install the framework and custom global styles
 @include nb-install() {
 
@@ -36,4 +41,14 @@
 .nb-theme-corporate [_nghost-c0] nb-sidebar.menu-sidebar[_ngcontent-c0] nb-menu > .menu-items > .menu-item:first-child .menu-title::after
 {
   display: none;
+}
+
+
+.btn {
+  cursor: pointer !important;
+}
+
+.btn-group .btn {
+  padding: 7px 9px;
+  font-size: 11px;
 }

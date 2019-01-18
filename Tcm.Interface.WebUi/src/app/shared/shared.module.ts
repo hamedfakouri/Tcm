@@ -23,6 +23,6 @@ import { GetErrorPipe } from './pipe';
 
 export class SharedModule { 
   constructor(){
-    console.log("--------------------------------SharedModule-------------------------------")
+    //console.log("--------------------------------SharedModule-------------------------------")
   }
 }
