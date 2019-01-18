@@ -18,8 +18,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
+using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http;
 using System.Security.Claims;
+using System.Text;
 using Tcm.Domain.IdentityModel;
 using Tcm.Domain.Interfaces;
 using Tcm.Interface.Api.MiddleWares;
@@ -45,11 +48,12 @@ namespace Tcm.Interface.Api
 
 
             services.AddDbContext<TcmContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(Configuration.GetConnectionString("TransportCentralizedManagementConnection")));
 
             services.AddIdentity<ApplicationUser, Role>(identityOptions =>
             {
-                // ...
+                
+
             }).AddUserStore<ApplicationUserStore>()
               .AddUserManager<ApplicationUserManager>()
               .AddRoleStore<ApplicationRoleStore>()
@@ -66,7 +70,34 @@ namespace Tcm.Interface.Api
             services.AddScoped<RoleManager<Role>, ApplicationRoleManager>();
             services.AddScoped<SignInManager<ApplicationUser>, ApplicationSignInManager>();
             services.AddScoped<RoleStore<Role, TcmContext, int, UserRole, RoleClaim>, ApplicationRoleStore>();
-         
+
+
+            AddRepositoriesToServices(services);
+
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims
+            services
+                .AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+                })
+                .AddJwtBearer(cfg =>
+                {
+                    
+                    cfg.RequireHttpsMetadata = false;
+                    cfg.SaveToken = true;
+                    
+                    cfg.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidIssuer = Configuration["JwtIssuer"],
+                        ValidAudience = Configuration["JwtIssuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtKey"])),
+                        ClockSkew = TimeSpan.Zero // remove delay of token when expire
+                    };
+                });
+
 
 
             services.AddMvc();
@@ -113,11 +144,11 @@ options => options.AllowAnyOrigin()
 
         private IConfiguration _configuration;
 
-       
+
 
         protected void IocSetting(IServiceCollection services)
         {
-          
+
             services.AddDbContext<TcmContext>(c =>
                 c.UseSqlServer(_configuration.GetConnectionString("TransportCentralizedManagementConnection")), ServiceLifetime.Scoped, ServiceLifetime.Scoped);
 
@@ -140,14 +171,14 @@ options => options.AllowAnyOrigin()
 
             services.AddScoped<IUnitOfWork, TcmContextUnitOfWork>();
 
-            var mongoSetting = new MongoSetting();
-            _configuration.Bind("MongoSetting", mongoSetting);
+            //var mongoSetting = new MongoSetting();
+            //_configuration.Bind("MongoSetting", mongoSetting);
 
-            services.AddScoped<IApiLogService>(x => new ApiLogService(mongoSetting));
+            //services.AddScoped<IApiLogService>(x => new ApiLogService(mongoSetting));
 
         }
-         
-       
+
+
 
         private void AuthenticationSetting(IServiceCollection services)
         {
@@ -184,6 +215,6 @@ options => options.AllowAnyOrigin()
             });
         }
 
-       
+
     }
 }
