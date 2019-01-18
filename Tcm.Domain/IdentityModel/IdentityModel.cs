@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Tcm.Domain.Model;
 
 namespace Tcm.Domain.IdentityModel
 {
@@ -21,7 +22,13 @@ namespace Tcm.Domain.IdentityModel
 
         public class ApplicationUser : IdentityUser<int>
         {
-            public bool IsAdmin { get; set; }
-        }
+        public bool IsAdmin { get; set; }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public long NationalCode { get; set; }
+
+        public Student Student { get; set; }
+    }
     
 }

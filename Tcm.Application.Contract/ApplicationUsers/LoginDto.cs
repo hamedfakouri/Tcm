@@ -1,4 +1,8 @@
-﻿namespace Tcm.Interface.Api.Controllers
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Tcm.Application.Contract.ApplicationUsers
 {
     public class LoginDto
     {

@@ -160,7 +160,7 @@ namespace Tcm.Interface.Api.Controllers
                 return  Ok(GenerateJwtToken(model.Email, appUser));
             }
 
-            throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
+            return NotFound();
         }
         [Authorize]
         [Route("ChangePassword")]
