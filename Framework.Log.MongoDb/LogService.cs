@@ -18,8 +18,13 @@ namespace Framework.Log.MongoDb
 
         public LogService(MongoSetting mongoSetting)
         {
-            _client = new MongoClient(mongoSetting.serverUrl);
-            _db = _client.GetDatabase(mongoSetting.databaseName);          
+            if (mongoSetting.databaseName != null)
+            {
+                _client = new MongoClient(mongoSetting.serverUrl);
+                _db = _client.GetDatabase(mongoSetting.databaseName);
+
+            }
+                   
             Log = new ApiLog();
         }
 
