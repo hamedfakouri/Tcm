@@ -31,13 +31,13 @@ namespace Tcm.Interface.Api.Controllers
             return Ok(); 
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult Get(short id)
         {
 
-          var educationLevel =  _educationLevelService.Get(id);
+          var educationLevelDto =  _educationLevelService.Get(id);
 
-            return Ok(educationLevel);
+            return Ok(educationLevelDto);
         }
     }
     }

@@ -1,4 +1,5 @@
-﻿using Framework.Log.MongoDb;
+﻿using Framework.Core;
+using Framework.Log.MongoDb;
 using Framework.Log.MongoDb.Interfaces;
 using Framework.Persistence.Ef;
 using Microsoft.AspNetCore.Authentication;
@@ -23,6 +24,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
+using Tcm.Application.Corporates;
 using Tcm.Domain.IdentityModel;
 using Tcm.Domain.Interfaces;
 using Tcm.Interface.Api.MiddleWares;
@@ -132,6 +134,7 @@ options => options.AllowAnyOrigin()
             app.UseAuthentication(); // not needed, since UseIdentityServer adds the authentication middleware ** important
 
 
+            app.UseUnitOfworkMiddleware();
 
             app.UseMvc(routes =>
             {
@@ -169,12 +172,20 @@ options => options.AllowAnyOrigin()
                  .AsImplementedInterfaces()
                  .WithScopedLifetime());
 
+            services.Scan(scan => scan
+                .FromAssemblyOf<CorporateService>()
+
+                 .AddClasses(classes => classes.AssignableTo(typeof(IApplicationService)))
+                .AsImplementedInterfaces()
+                .WithScopedLifetime());
+            
+
             services.AddScoped<IUnitOfWork, TcmContextUnitOfWork>();
 
-            //var mongoSetting = new MongoSetting();
+            var mongoSetting = new MongoSetting();
             //_configuration.Bind("MongoSetting", mongoSetting);
 
-            //services.AddScoped<IApiLogService>(x => new ApiLogService(mongoSetting));
+            services.AddScoped<IApiLogService>(x => new ApiLogService(mongoSetting));
 
         }
 

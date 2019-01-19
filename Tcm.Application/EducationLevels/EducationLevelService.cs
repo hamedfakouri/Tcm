@@ -15,7 +15,7 @@ namespace Tcm.Application.EducationLevels
         {
             _educationLevelRepository = educationLevelRepository;
         }
-        public void Add(EducationLevelDto educationLevelDto)
+        public void Add(EducationLevelAddDto educationLevelDto)
         {
             var educationLevel = new EducationLevel() {
                 Name = educationLevelDto.Name
@@ -26,20 +26,19 @@ namespace Tcm.Application.EducationLevels
 
         }
 
-        public void Add(EducationLevelAddDto educationLevelDto)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public EducationLevelDto Get(short id)
         {
             var educationLevel = _educationLevelRepository.GetById(id);
 
-            var dto = new EducationLevelDto()
+            var dto = new EducationLevelDto();
+
+            if (educationLevel != null)
             {
-                Id = educationLevel.Id,
-                Name = educationLevel.Name
-            };
+                dto.Id = educationLevel.Id;
+                dto.Name = educationLevel.Name;
+            }
 
             return dto;
 
