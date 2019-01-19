@@ -9,15 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  redirectDelay: number = 0;
-  showMessages: any = {};
-  strategy: string = '';
-
-  errors: string[] = [];
-  messages: string[] = [];
-  user: any = {};
-  submitted: boolean = false;
-  rememberMe = false;
+  user= { email: '' , password:'' };
 
   constructor(protected router: Router) {
 
