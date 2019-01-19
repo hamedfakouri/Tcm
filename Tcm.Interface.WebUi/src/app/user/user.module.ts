@@ -13,6 +13,6 @@ import { UserServiceModule } from './services';
 })
 export class UserModule {
   constructor(){
-    console.log("--------------------------------DashboardRouteModule-------------------------------")
+    //console.log("--------------------------------DashboardRouteModule-------------------------------")
   }
  }

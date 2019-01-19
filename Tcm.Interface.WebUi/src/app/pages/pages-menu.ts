@@ -17,7 +17,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'دوره تحصیلی',
-        link: '/Baseinfo/calendar',
+        link: '/BaseInfo/EducationCourse',
       },
       {
         title: 'مقطع تحصیلی',
