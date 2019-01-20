@@ -33,6 +33,15 @@ namespace Tcm.Interface.Api.Controllers
             return Ok(); 
         }
 
+        [HttpPut]
+        public IActionResult Put(short Id,[FromBody]EducationLevelDto value)
+        {
+
+            _educationLevelService.Update(Id,value);
+
+            return Ok();
+        }
+
         [HttpGet]
  
         public IActionResult Get(UserParams userParams)
@@ -51,6 +60,15 @@ namespace Tcm.Interface.Api.Controllers
           var educationLevelDto =  _educationLevelService.Get(id);
 
             return Ok(educationLevelDto);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(short id)
+        {
+
+             _educationLevelService.Delete(id);
+
+            return Ok();
         }
     }
     }
