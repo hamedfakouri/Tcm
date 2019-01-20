@@ -45,7 +45,7 @@ namespace Framework.Persistence.Ef
         }
 
      
-        public IQueryable<TModel> ListAll()
+        public IQueryable<TModel> GetAll()
         {
             var list = _tcmContext.Set<TModel>().AsQueryable();
             return list;
@@ -56,5 +56,10 @@ namespace Framework.Persistence.Ef
             _tcmContext.Set<TModel>().Update(entity);
         }
 
+        public IQueryable<TModel> GetAll(Expression<Func<TModel, bool>> expression)
+        {
+            var list = _tcmContext.Set<TModel>().AsQueryable().Where(expression);
+            return list;
+        }
     }
 }

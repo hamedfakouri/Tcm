@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Framework.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using Tcm.Application.Contract.EducationLevels;
 using Tcm.Domain.Interfaces;
 using Tcm.Domain.Model;
+using Tcm.Interface.Api.Helpers;
 
 namespace Tcm.Interface.Api.Controllers
 {
@@ -29,6 +31,17 @@ namespace Tcm.Interface.Api.Controllers
             _educationLevelService.Add(value);
 
             return Ok(); 
+        }
+
+        [HttpGet]
+ 
+        public IActionResult Get(UserParams userParams)
+        {
+            var items = _educationLevelService.GetAll(userParams);
+            userParams.Count = _educationLevelService.GetAll(x=> true).Count;           
+            Response.AddPagination(userParams);
+
+            return Ok(items);
         }
 
         [HttpGet]
