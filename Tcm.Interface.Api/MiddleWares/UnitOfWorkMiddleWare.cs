@@ -22,7 +22,7 @@ namespace CarDamageAssessment.Web.Api.MiddleWares
       try
       {
          
-        if(httpContext.Request.Method == "POST" || httpContext.Request.Method == "PUT")
+        if(httpContext.Request.Method == "POST" || httpContext.Request.Method == "PUT" || httpContext.Request.Method =="DELETE")
         {
 
           _unitOfWork = unitOfWork;

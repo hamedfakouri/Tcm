@@ -24,7 +24,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
-using Tcm.Application.Corporates;
+using Tcm.Application.EducationLevels;
 using Tcm.Domain.IdentityModel;
 using Tcm.Domain.Interfaces;
 using Tcm.Interface.Api.MiddleWares;
@@ -61,8 +61,6 @@ namespace Tcm.Interface.Api
               .AddRoleStore<ApplicationRoleStore>()
               .AddRoleManager<ApplicationRoleManager>()
               .AddSignInManager<ApplicationSignInManager>()
-              // You **cannot** use .AddEntityFrameworkStores() when you customize everything
-              //.AddEntityFrameworkStores<ApplicationDbContext, int>()
               .AddDefaultTokenProviders();
 
 
@@ -101,12 +99,7 @@ namespace Tcm.Interface.Api
                 });
 
 
-
             services.AddMvc();
-
-
-
-
             services.AddCors();
         }
 
@@ -173,7 +166,7 @@ options => options.AllowAnyOrigin()
                  .WithScopedLifetime());
 
             services.Scan(scan => scan
-                .FromAssemblyOf<CorporateService>()
+                .FromAssemblyOf<EducationLevelService>()
 
                  .AddClasses(classes => classes.AssignableTo(typeof(IApplicationService)))
                 .AsImplementedInterfaces()
