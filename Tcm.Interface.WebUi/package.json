@@ -6,7 +6,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4300  -o --proxy-config  proxy.conf.json --ssl-cert ssl/server.crt --ssl-key ssl/server.key",
+    "start": "ng serve --port 4301  -o --proxy-config  proxy.conf.json --ssl-cert ssl/server.crt --ssl-key ssl/server.key",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
