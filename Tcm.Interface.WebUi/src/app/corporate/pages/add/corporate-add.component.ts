@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Corporate } from '../../models/corporate';
+import { AuthService } from 'src/app/authentication/services';
+import { CorporateService } from '../../services';
 
 @Component({
   selector: 'app-corporate-add',
@@ -7,14 +9,18 @@ import { Corporate } from '../../models/corporate';
 })
 export class CorporateAddComponent implements OnInit {
 
-  constructor() { }
+  constructor(private corporateService:CorporateService) { }
 
-  model = new Corporate('',0);
+  model = new Corporate();
 
   ngOnInit() {
+
+
   }
 
   AddFormSubmit(){
+
+     this.corporateService.add(this.model).subscribe();
 
   }
 }

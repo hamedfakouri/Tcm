@@ -9,4 +9,12 @@ import { CorporateService } from './corporate.service';
   declarations: [],
   providers:[CorporateService]
 })
-export class CorporateServiceModule { }
+export class CorporateServiceModule {
+  /**
+   *
+   */
+  constructor() {
+    console.log("----------------------------CorporateServiceModule-----------------------------")
+    
+  }
+ }

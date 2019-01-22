@@ -53,16 +53,16 @@ namespace Tcm.Interface.Api.Controllers
             return Ok(items);
         }
 
-        [HttpGet]
-        public IActionResult Get(short id)
-        {
+        //[HttpGet ()]
+        //public IActionResult Get(short id)
+        //{
 
-            var schoolTypeDto = _schoolTypeService.Get(id);
+        //    var schoolTypeDto = _schoolTypeService.Get(id);
 
-            return Ok(schoolTypeDto);
-        }
+        //    return Ok(schoolTypeDto);
+        //}
 
-        [HttpGet]
+        [HttpDelete]
         public IActionResult Delete(short id)
         {
 

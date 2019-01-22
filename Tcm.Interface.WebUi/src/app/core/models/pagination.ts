@@ -1,11 +1,15 @@
 export class Pagination {
-    constructor(public currentPage?: number,
+    constructor(public currentPage: number =1 ,
 
-        public itemsPerPage?: number,
+        public itemsPerPage: number =10,
     
-        public  totalItems?: number,
+        public totalItems?: number,
     
-        public totalPages?: number
+        public totalPages?: number,
+
+        public orderBy?:string,
+
+        public orderByType?:string
     ){
 
     }
@@ -15,3 +19,4 @@ export class PaginationResult<T> {
     result: T[];
     pagination: Pagination;
 }
+

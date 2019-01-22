@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using Framework.Core;
+using Framework.Persistence.Ef.Extensions;
 using Tcm.Application.Contract.SchoolTypes;
 using Tcm.Domain.Interfaces;
 using Tcm.Domain.Model;
@@ -44,9 +45,9 @@ namespace Tcm.Application.SchoolTypes
 
         public List<SchoolTypeDto> GetAll(UserParams userParams)
         {
-            var items = _schoolTypeRepository.GetAll().Skip((userParams.PageNumber - 1) * userParams.PageSize).Take(userParams.PageSize).ToList().Mapper();
+            var items = _schoolTypeRepository.GetAll().OrderBy(userParams.OrderBy, userParams.OrderByType).Skip((userParams.PageNumber - 1) * userParams.PageSize).Take(userParams.PageSize).ToList().Mapper();
 
-            return null;
+            return items;
 
         }
 

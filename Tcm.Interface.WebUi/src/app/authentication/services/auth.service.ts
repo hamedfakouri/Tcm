@@ -15,7 +15,7 @@ export class AuthService {
 
   jwtHelper = new JwtHelperService();
   
-  constructor(private userService: UserService) {
+  constructor() {
     // this.manager.getUser().then(user=> this.user = user); 
     localStorage.setItem('token', this.getAuthorizationHeaderValue());
   }

@@ -1,0 +1,63 @@
+
+
+
+
+  <div class="table-responsive" *ngIf="showGrid">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr class="text-center">
+                <th >ردیف</th>
+                <ng-container  *ngFor="let col of dictionary">
+                        <th (click)="sort(col.Name)"  >
+                                {{col.Display}}
+                              </th>
+            
+                </ng-container>
+               
+                  <ng-container *ngIf="editable" >
+                        <th>
+                                ویرایش
+                               </th>
+                   </ng-container>
+                   <ng-container *ngIf="removable" >
+                        <th >
+                                حذف
+                               </th>
+                   </ng-container>
+
+            </tr>
+        </thead>  
+        <tbody >
+            
+
+        <ng-container *ngFor="let item of items ; let i = index;">
+                <tr>                    
+                    <td>{{ ((pagination.currentPage -1 ) * pagination.itemsPerPage) + i + 1 }}</td>
+                    <td *ngFor="let col of dictionary">
+                            {{item[col.Name]}}
+                   </td>
+
+                   <ng-container *ngIf="editable"  >
+                        <td>
+                                <button class="btn btn-sm" (click)="edit(item)" > ویرایش</button>
+                               </td>
+                   </ng-container>
+                   <ng-container *ngIf="removable" >
+                        <td permission [subject]="subject" task="delete">
+                                <button class="btn btn-sm"  (click)="remove(item)" >حذف</button>
+                               </td>
+                   </ng-container>
+                    
+                </tr>
+        </ng-container>
+
+           
+   
+           
+        </tbody>
+    </table>
+ 
+</div>
+<div>
+  <ngb-pagination [collectionSize]="pagination.totalItems" [(page)]="pagination.currentPage"  (pageChange)="pageChanged($event)"></ngb-pagination>
+</div>

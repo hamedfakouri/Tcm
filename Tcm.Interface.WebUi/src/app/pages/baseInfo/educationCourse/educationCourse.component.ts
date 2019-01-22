@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { AlertifyService } from 'src/app/shared/services/alertify.service';
-import { Message } from 'src/app/shared/mocks/message.enum';
+// import { AlertifyService } from 'src/app/shared/services/alertify.service';
+ import { Message } from 'src/app/core/models/message.enum';
 import { EducationcourseService } from './services/educationcourse.service';
 import { Educationcourse } from './models/educationcourse';
 import { Subscription } from 'rxjs';
+import { AlertifyService } from 'src/app/shared/services';
+import { Message } from 'src/app/core/models/message.enum';
 
 @Component({
   selector: 'app-educationCourse',
@@ -68,7 +70,7 @@ export class EducationCourseComponent implements OnInit, OnDestroy {
   confirmDelete(item: Educationcourse) {
 
     this.educationCourseItem = item;
-    this.alertify.deleteConfirm(Message.actionConfirm, this.deleteItem, this.clearForm);
+    //this.alertify.deleteConfirm(Message.actionConfirm, this.deleteItem, this.clearForm);
 
   }
 

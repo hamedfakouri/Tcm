@@ -5,6 +5,7 @@ import { RegisterComponent } from './pages/Auth/register/register.component';
 import { RequestPasswordComponent } from './pages/auth/request-password/request-password.component';
 import { EducationCourseComponent } from './pages/baseInfo/educationCourse/educationCourse.component';
 import { AuthGuardService } from './authentication/services';
+import { CorporateListComponent } from './corporate/pages';
 
 
 export const routes: Routes = [
@@ -15,5 +16,7 @@ export const routes: Routes = [
   { path: '', pathMatch: 'full', component: DashboardComponent, canActivate: [AuthGuardService] },
   { path: 'home', component: DashboardComponent, canActivate: [AuthGuardService] },
   { path: 'BaseInfo/EducationCourse', component: EducationCourseComponent, canActivate: [AuthGuardService] },
+  { path: 'corporate/list', component: CorporateListComponent },
+
 ];
 

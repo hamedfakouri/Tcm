@@ -42,10 +42,11 @@ export class AuthInterceptor implements HttpInterceptor {
     // send cloned request with header to the next handler.
     //return next.handle(authReq);
 
-    return next.handle(authReq).pipe(tap((event: HttpEvent<any>) => {
+    return next.handle(authReq)
+    .pipe(tap((event: HttpEvent<any>) => {
       if (event instanceof HttpResponse) {
 
-        alert("dastari ok");
+        // alert("dastari ok");
 
           // do stuff with response if you want
       }
@@ -55,7 +56,7 @@ export class AuthInterceptor implements HttpInterceptor {
               // redirect to the login route
               // or show a modal
 
-              alert("dastari mahdud");
+              // alert("dastari mahdud");
               //this.auth.collectFailedRequest(request);
           }
       }

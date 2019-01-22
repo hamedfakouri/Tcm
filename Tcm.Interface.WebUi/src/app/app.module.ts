@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { AuthServiceModule } from './authentication/services/auth-service.module';
 import { CorporateServiceModule } from './corporate/services';
 import { UserModule } from './user/user.module';
-import { UtilityService } from './shared/services';
+import { UtilityService, AlertifyService } from './shared/services';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoreModule } from './core/core.module';
@@ -21,8 +21,9 @@ import { LoginComponent } from './pages/Auth/login/login.component';
 import { RegisterComponent } from './pages/Auth/register/register.component';
 import { RequestPasswordComponent } from './pages/auth/request-password/request-password.component';
 import { EducationCourseComponent } from './pages/baseInfo/educationCourse/educationCourse.component';
-import { AlertifyService } from './shared/services/alertify.service';
+// import { AlertifyService } from './shared/services/alertify.service';
 import { EducationcourseService } from './pages/baseInfo/educationCourse/services/educationcourse.service';
+import { CorporateModule } from './corporate/corporate.module';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -48,6 +49,7 @@ export function tokenGetter() {
     AuthServiceModule,
     CorporateServiceModule,
     UserModule,
+    CorporateModule,
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     PaginationModule.forRoot(),

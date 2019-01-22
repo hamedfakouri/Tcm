@@ -1,21 +1,30 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core';
+import{AuthService,AuthInterceptor,AuthInterceptorProviderService,AuthResolve,AuthGuardService} from './index'
+import { PermissionService } from './permission.service';
 
-import {AuthService,AuthInterceptor,AuthInterceptorProviderService,AuthResolve,AuthGuardService} from './index'
-import { HttpService } from 'src/app/shared/services/http.service';
-import { UserService } from 'src/app/user/services';
-
-
+console.log("AuthServiceModule bundled------")
 
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [],
-  providers:[HttpService,AuthService,AuthGuardService,AuthInterceptor,AuthInterceptorProviderService,AuthResolve,UserService
-  ]
+  providers:[AuthService,AuthGuardService,AuthInterceptor,AuthInterceptorProviderService,AuthResolve,PermissionService]
 })
 export class AuthServiceModule {
-  constructor(){
-    
+  constructor (@Optional() @SkipSelf() parentModule: AuthServiceModule) {
+    console.log("---------------------AuthenticationModule------------------------")
+
+    if (parentModule) {
+      throw new Error(
+        'AuthenticationModule is already loaded. Import it in the AppModule only');
+    }
+  }
+
+  static forRoot(): ModuleWithProviders  {
+    return {
+      ngModule: AuthServiceModule,
+      providers: [      
+      ]
+    };
   }
  }
+
+ 

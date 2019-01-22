@@ -4,7 +4,8 @@ import {  Response } from '@angular/http';
 import { Observable, of, } from 'rxjs';
 import {ajax} from 'rxjs/ajax';
 import { map, catchError, tap } from 'rxjs/operators';
-import { PaginationResult } from 'src/app/core/models/pagination';
+import { PaginationResult, Pagination } from 'src/app/core/models/pagination';
+import { SortType } from 'src/app/core/models/sort-type.enum';
 
 
 
@@ -59,33 +60,23 @@ export class HttpService <T> {
   }
 
 
-  GetAllForGrid(page?: number, itemsPerPage?: number, userParams?: any): Observable<PaginationResult<T>> {
+  GetAllForGrid(pagination?:Pagination): Observable<PaginationResult<T>> {
     const paginatedResult: PaginationResult<T> = new PaginationResult<T>();
     let params = new HttpParams();
-    let items = new Array<T>();
 
-    if (page && itemsPerPage) {
-        params = params.append('pageNumber', page.toString());
-        params = params.append('pageSize', itemsPerPage.toString());
+    if (pagination.currentPage && pagination.itemsPerPage) {
+        params = params.append('pageNumber', pagination.currentPage .toString());
+        params = params.append('pageSize', pagination.itemsPerPage.toString());
     }
 
-    // Apply the filtering if provided in the userParams
-    if (userParams) {
-        if (userParams.gender) {
-            params = params.append('gender', userParams.gender);
-        }
-        if (userParams.minAge) {
-            params = params.append('minAge', userParams.minAge);
-        }
-        if (userParams.maxAge) {
-            params = params.append('maxAge', userParams.maxAge);
-        }
-        if (userParams.orderBy) {
-            params = params.append('orderBy', userParams.orderBy);
-        }
-    }
+    if(pagination.orderBy){
+      params = params.append('orderBy',pagination.orderBy);
+      params = params.append('orderByType', pagination.orderByType);
 
-  return   this.http.get<Array<T>>(this.endpoint, {observe: 'response', params}).pipe(map(response=>{
+    }
+    
+
+    return   this.http.get<Array<T>>(this.endpoint, {observe: 'response', params}).pipe(map(response=>{
       paginatedResult.result = response.body;
       if (response.headers.get('pagination')) {
         paginatedResult.pagination = JSON.parse(response.headers.get('pagination'));

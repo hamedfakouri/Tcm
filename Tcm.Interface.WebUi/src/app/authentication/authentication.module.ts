@@ -1,23 +1,32 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Optional, SkipSelf, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AuthenticationRoutingModule } from './authentication-routing.module';
-import { AuthCallbackComponent } from './components/auth-callback/auth-callback.component';
-import { AuthServiceModule } from './services/auth-service.module';
-import { UserServiceModule } from '../user/services/user-service.module';
+console.log("AuthenticationModule bundled-----------------")
 
 @NgModule({
   imports: [
-    CommonModule,
-    AuthenticationRoutingModule,
-    AuthServiceModule,
-    UserServiceModule
+    CommonModule,AuthenticationRoutingModule,  
   ],
-  declarations: [AuthCallbackComponent]
+  declarations: []
 })
-export class AuthenticationModule {
 
-  constructor(){
-    console.log("-----------------------AuthenticationModule---------------------------")
+
+ export class AuthenticationModule {
+  constructor (@Optional() @SkipSelf() parentModule: AuthenticationModule) {
+    console.log("---------------------AuthenticationModule------------------------")
+
+    if (parentModule) {
+      throw new Error(
+        'AuthenticationModule is already loaded. Import it in the AppModule only');
+    }
   }
- }
+
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: AuthenticationModule,
+      providers: [
+       
+      ]
+    };
+  }
+}

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Framework.Persistence.Ef\Framework.Persistence.Ef.csproj" />
     <ProjectReference Include="..\Tcm.Application.Contract\Tcm.Application.Contract.csproj" />
     <ProjectReference Include="..\Tcm.Domain\Tcm.Domain.csproj" />
   </ItemGroup>
