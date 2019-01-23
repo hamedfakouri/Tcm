@@ -11,6 +11,8 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Tcm.Application.Contract.ApplicationUsers;
+using Tcm.Application.Contract.Students;
+using Tcm.Domain.Enum;
 using Tcm.Domain.IdentityModel;
 using Tcm.Persistence.Ef;
 
@@ -24,7 +26,7 @@ namespace Tcm.Interface.Api.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-
+        private readonly IStudentService _studentService;
         private readonly TcmContext _applicationDbContext;
         private readonly RoleManager<Role> roleManager;
 
@@ -35,7 +37,9 @@ namespace Tcm.Interface.Api.Controllers
             SignInManager<ApplicationUser> signInManager,
             TcmContext applicationDbContext,
             RoleManager<Role> roleManager,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IStudentService studentService
+            )
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -44,6 +48,7 @@ namespace Tcm.Interface.Api.Controllers
             _applicationDbContext = applicationDbContext;
             this.roleManager = roleManager;
             _configuration = configuration;
+            _studentService = studentService;
         }
 
         [HttpGet]
@@ -117,6 +122,19 @@ namespace Tcm.Interface.Api.Controllers
             if (!addUserResult.Succeeded)
             {
                 return BadRequest();
+            }
+            else
+            {
+                if (createUserModel.RoleEnum == RoleEnum.student)
+                {
+                    var student = new StudentDto
+                    {
+                        ApplicationUserId = user.Id,
+                        StudentNumber = createUserModel.StudentNumber
+                    };
+
+                        _studentService.Add(student);
+                }
             }
 
 
@@ -336,5 +354,23 @@ namespace Tcm.Interface.Api.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+
+
+        //[Authorize(Roles = "Admin")]
+        [Route("createRole")]
+        [HttpPost]
+        public async Task<IActionResult> CreateRole([FromBody]Role role)
+        {
+
+            IdentityResult addUserResult = await roleManager.CreateAsync(role);
+            if (addUserResult.Succeeded)
+            {
+                return Ok();
+
+            }
+
+            return Ok();
+
+        }
     }
 }
