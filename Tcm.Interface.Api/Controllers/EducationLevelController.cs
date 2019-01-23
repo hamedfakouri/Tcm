@@ -43,7 +43,7 @@ namespace Tcm.Interface.Api.Controllers
         }
 
         [HttpGet]
- 
+  
         public IActionResult Get(UserParams userParams)
         {
             var items = _educationLevelService.GetAll(userParams);
@@ -53,7 +53,7 @@ namespace Tcm.Interface.Api.Controllers
             return Ok(items);
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult Get(short id)
         {
 
