@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <nb-card>
+      <nb-card-header>مقطع تحصیلی</nb-card-header>
+      <nb-card-body>
+
+        <div class="col-md-6 align-top d-inline-block">
+
+          <form #f="ngForm" (ngSubmit)="submitForm()" novalidate>
+            <div class="form-group row">
+              <label for="txtEmail" class="col-sm-3 col-form-label text-left">عنوان:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="txtEmail" [(ngModel)]="educationLevelItem.name" required>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-12 text-left">
+                <button type="submit" class="btn btn-primary" [disabled]='!f.valid'>ذخیره</button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+
+        <div class="col-md-6  d-inline-block">
+
+
+          <ng-container *ngIf="items || items.length !== 0">
+
+            <app-grid [items]="items" editable="true" removable="true" [dictionary]="dictionary" [subject]="subject"
+              [pagination]="pagination" (onSort)="sort($event)" (onRemove)="remove($event)" (onEdit)="edit($event)"
+              (onPageChanged)="pageChanged($event)">
+            </app-grid>
+
+          </ng-container>
+
+          <!-- <table class="table table-striped" *ngIf="educationLevelList.length > 0">
+              <tr>
+                <th></th>
+                <th>عنوان</th>
+              </tr>
+              <tr *ngFor="let item of educationLevelList">
+                <td>
+                  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-success" (click)='getItem(item.Id)' >ویرایش</button>
+                    <button type="button" class="btn btn-danger" (click)='confirmDelete(item)'>حذف</button>
+                  </div>
+                </td>
+                <td>
+                  {{item.name}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class='d-flex justify-content-center' *ngIf="educationLevelList.length>0">
+            <pagination [boundaryLinks]="true" [totalItems]="19" [itemsPerPage]="10" previousText="&lsaquo;" nextText="&rsaquo;"
+              firstText="&laquo;" lastText="&raquo;">
+            </pagination>
+          </div> -->
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

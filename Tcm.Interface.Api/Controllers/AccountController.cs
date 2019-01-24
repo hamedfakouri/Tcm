@@ -152,12 +152,12 @@ namespace Tcm.Interface.Api.Controllers
         [Route("login")]
         public  IActionResult Login([FromBody]LoginDto model)
         {
-            var result =  _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+            var result =  _signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
 
             if (result.Result.Succeeded)
             {
-                var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
-                return  Ok(GenerateJwtToken(model.Email, appUser));
+                var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.UserName);
+                return  Ok(GenerateJwtToken(model.UserName, appUser));
             }
 
             return NotFound();
@@ -318,7 +318,9 @@ namespace Tcm.Interface.Api.Controllers
             {
                 new Claim(JwtRegisteredClaimNames.Sub, email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Surname , user.LastName),
+                new Claim(ClaimTypes.Name , user.FirstName),
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtKey"]));

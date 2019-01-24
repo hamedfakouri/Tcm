@@ -1,22 +1,18 @@
 import { Injectable, OnInit } from '@angular/core';
 // import { UserManager, UserManagerSettings, User } from 'oidc-client';
 import { UserInfo } from 'src/app/user/models/User'
-import { UserService } from './../../user/services/user.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { tokenGetter } from 'src/app/app.module';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class AuthService {
 
-  // private manager: UserManager = new UserManager(getClientSettings());
-  // public user: User = null;
+  loginAccures: Subject<boolean> = new Subject<boolean>();
   public userInfo: UserInfo = new UserInfo();
-  // public postBackRedirect: string;
 
   jwtHelper = new JwtHelperService();
   
   constructor() {
-    // this.manager.getUser().then(user=> this.user = user); 
     localStorage.setItem('token', this.getAuthorizationHeaderValue());
   }
 
@@ -25,7 +21,6 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    // return this.user != null && !this.user.expired;
     return !this.jwtHelper.isTokenExpired(this.getAuthorizationHeaderValue());
   }
 
@@ -43,7 +38,6 @@ export class AuthService {
   
   setAuthorizationHeaderValue(token:string):void{
     localStorage.setItem('token',token);
-    this.decodedToken = this.jwtHelper.decodeToken(token);
   }
 
   getRole() {

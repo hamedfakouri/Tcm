@@ -21,9 +21,10 @@ import { LoginComponent } from './pages/Auth/login/login.component';
 import { RegisterComponent } from './pages/Auth/register/register.component';
 import { RequestPasswordComponent } from './pages/auth/request-password/request-password.component';
 import { EducationCourseComponent } from './pages/baseInfo/educationCourse/educationCourse.component';
-// import { AlertifyService } from './shared/services/alertify.service';
 import { EducationcourseService } from './pages/baseInfo/educationCourse/services/educationcourse.service';
 import { CorporateModule } from './corporate/corporate.module';
+import { EducationLevelComponent } from './pages/baseInfo/educationLevel/educationlevel.component';
+import { EducationLevelService } from './pages/baseInfo/educationLevel/services/educationlevel.service';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -36,7 +37,8 @@ export function tokenGetter() {
     LoginComponent,
     RegisterComponent,
     RequestPasswordComponent,
-    EducationCourseComponent
+    EducationCourseComponent,
+    EducationLevelComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -65,7 +67,8 @@ export function tokenGetter() {
     AuthServiceModule,
     UtilityService,
     AlertifyService,
-    EducationcourseService
+    EducationcourseService,
+    EducationLevelService
     //{ provide: APP_INITIALIZER, useFactory: get_settings, deps: [AuthService, UserService], multi: true },
   ],
   bootstrap: [AppComponent],

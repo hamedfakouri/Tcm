@@ -21,7 +21,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'مقطع تحصیلی',
-        link: '/pages/extra-components/stepper',
+        link: '/BaseInfo/EducationLevel',
       },
       {
         title: 'پایه تحصیلی',
@@ -34,16 +34,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'nb-keypad',
     children: [
       {
-        title: 'ورود',
-        link: '/Auth/Login',
+        title: 'مدیر مدرسه',
+        link: '/User/Manager',
       },
       {
-        title: 'ثبت نام',
-        link: '/Auth/Register',
+        title: 'دانش آموز',
+        link: '/User/Student',
       },
       {
-        title: 'درخواست رمز',
-        link: '/Auth/RequestPassword',
+        title: 'پرسنل مدرسه',
+        link: '/Student/Personnel'        
       }
     ],
   }

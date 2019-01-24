@@ -25,9 +25,7 @@ export class HomeComponent implements OnInit {
     //this.httpService.update(41,this.car).subscribe();
   }
 
-  logOut():any{
-    this.authService.signOut();
-  }
+
   getClaims():any{
    let item= this.authService.getClaims();
    console.log(item);

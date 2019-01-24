@@ -54,7 +54,7 @@ namespace Tcm.Interface.Api
 
             services.AddIdentity<ApplicationUser, Role>(identityOptions =>
             {
-                
+
 
             }).AddUserStore<ApplicationUserStore>()
               .AddUserManager<ApplicationUserManager>()
@@ -85,10 +85,10 @@ namespace Tcm.Interface.Api
                 })
                 .AddJwtBearer(cfg =>
                 {
-                    
+
                     cfg.RequireHttpsMetadata = false;
                     cfg.SaveToken = true;
-                    
+
                     cfg.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidIssuer = Configuration["JwtIssuer"],
@@ -107,8 +107,8 @@ namespace Tcm.Interface.Api
         {
 
             app.UseCors(
-options => options.AllowAnyOrigin()
-);
+                options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+            );
 
 
             if (env.IsDevelopment())
@@ -171,7 +171,7 @@ options => options.AllowAnyOrigin()
                  .AddClasses(classes => classes.AssignableTo(typeof(IApplicationService)))
                 .AsImplementedInterfaces()
                 .WithScopedLifetime());
-            
+
 
             services.AddScoped<IUnitOfWork, TcmContextUnitOfWork>();
 

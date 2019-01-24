@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot,CanActivateChild } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot,CanActivateChild, Router } from '@angular/router';
 
 
 import { AuthService } from './auth.service'
@@ -14,7 +14,7 @@ export class AuthGuardService implements CanActivate , CanActivateChild{
   
 
   private permission:Permission= new Permission();
-  constructor(private authService: AuthService ,private permissionService:PermissionService) { 
+  constructor(private authService: AuthService ,private permissionService:PermissionService,private router: Router) { 
     
   }
   
@@ -25,6 +25,7 @@ export class AuthGuardService implements CanActivate , CanActivateChild{
         return true;
       }      
       
+      this.router.navigate(['Auth/Login']);
        return false;
      
   }

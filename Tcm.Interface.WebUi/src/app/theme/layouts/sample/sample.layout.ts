@@ -32,6 +32,9 @@ export class SampleLayoutComponent implements OnDestroy {
 
     this.isLoggedIn = this.authService.isLoggedIn();
 
+    this.authService.loginAccures.subscribe((isLoggedIn: boolean) => {
+      this.isLoggedIn = isLoggedIn;
+    })
       
     const isBp = this.bpService.getByName('is');
     this.menuService.onItemSelect()

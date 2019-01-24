@@ -6,10 +6,20 @@
 </div>
 
 <div class="header-container">
-  
-    <a class="control-item nb-notifications" style='font-size:2em;margin:0 10px;border-right: 1px solid #3f4550;padding-right:14px;'></a>
-    <a class="control-item nb-email" style='font-size:2em;margin:0 10px;border-right: 1px solid #3f4550;padding-right:14px;'></a>
-    <a class="control-item nb-search" style='font-size:2em;margin:0 10px;border-right: 1px solid #3f4550;padding-right:14px;'></a>
 
-  <!-- <a (click)="toggleSidebar()" href="#" class="navigation"><i class="nb-notification"></i></a> -->
+  <a class="control-item nb-notifications header-item"></a>
+  <a class="control-item nb-email header-item"></a>
+  <a class="control-item nb-search header-item"></a>
+
+  <div class="btn-group header-item" dropdown>
+    <a dropdownToggle class="btn dropdown-toggle userFullName">
+      {{ fullName }} <span class="caret"></span>
+    </a>
+    <div class="dropdown-menu mt-3" style="background-color: #57575d" *dropdownMenu>
+      <a class="dropdown-item"><i class="fa fa-user"></i> ویرایش پروفایل</a>
+      <div class="divider dropdown-divider"></div>
+      <a class="dropdown-item" (click)="signOut()"><i class="fa fa-sign-out-alt"></i> خروج</a>
+    </div>
+  </div>
+
 </div>
