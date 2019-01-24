@@ -206,17 +206,7 @@ namespace Tcm.Interface.Api
 
         private void MvcSetting(IServiceCollection services)
         {
-            services.AddMvc(config =>
-            {
-                var policy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .Build();
-                config.Filters.Add(new AuthorizeFilter(policy));
-            }).AddJsonOptions(options =>
-            {
-                options.SerializerSettings.ContractResolver
-                    = new DefaultContractResolver();
-            });
+            services.AddMvc();
         }
 
 
