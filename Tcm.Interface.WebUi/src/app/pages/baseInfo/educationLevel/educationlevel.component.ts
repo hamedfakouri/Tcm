@@ -39,7 +39,7 @@ export class EducationLevelComponent implements OnInit, OnDestroy {
 
     this.educationLevelService.GetAllForGrid(this.pagination)
       .subscribe((res: PaginationResult<EducationLevel>) => {
-        debugger;
+        
         if (res.result) {
           this.items = res.result
         }
@@ -54,11 +54,11 @@ export class EducationLevelComponent implements OnInit, OnDestroy {
 
 
   submitForm(): void {
-    debugger;
+    
     if (this.form.valid) {
 
       if (this.educationLevelItem.Id == 0) {
-        this.educationLevelService.update(this.educationLevelItem.Id, this.educationLevelItem).subscribe(
+        this.educationLevelService.add(this.educationLevelItem).subscribe(
           () => {
             this.get();
             this.clearForm();
@@ -68,7 +68,7 @@ export class EducationLevelComponent implements OnInit, OnDestroy {
 
       }
       else {
-        this.educationLevelService.add(this.educationLevelItem).subscribe(
+        this.educationLevelService.update(this.educationLevelItem.Id, this.educationLevelItem).subscribe(
           () => {
             this.get();
             this.clearForm();

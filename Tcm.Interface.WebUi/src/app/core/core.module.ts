@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoreRoutingModule } from './core-routing.module';
 import { CoreServiceModule } from './services/core-service.module';
-import {HomeComponent,LoginComponent,ProtectedComponent, FooterComponent, HeaderComponent,SliderComponent, AuthCallbackComponent} from './pages';
+import {HomeComponent,ProtectedComponent, FooterComponent, HeaderComponent,SliderComponent, AuthCallbackComponent} from './pages';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { SharedModule } from '../shared/shared.module';
 import { BreadCrumbComponent } from './components';
@@ -21,11 +21,9 @@ console.log("-----------------------CoreModulebundled-----------------")
   declarations: [
      ProtectedComponent,
      HomeComponent,
-     LoginComponent,
      LogoutComponent,
      FooterComponent,
      HeaderComponent,
-     LoginComponent,
      SliderComponent,
      AuthCallbackComponent,
      BreadCrumbComponent
@@ -33,11 +31,9 @@ console.log("-----------------------CoreModulebundled-----------------")
   exports:[ 
     ProtectedComponent,
     HomeComponent,
-    LoginComponent,
     LogoutComponent,
     FooterComponent,
     HeaderComponent,
-    LoginComponent,
     SliderComponent,
     AuthCallbackComponent,
     BreadCrumbComponent

@@ -17,14 +17,13 @@ import { CoreModule } from './core/core.module';
 import { ThemeModule } from './theme/theme.module';
 import { routes } from './app-routing.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { LoginComponent } from './pages/Auth/login/login.component';
-import { RegisterComponent } from './pages/Auth/register/register.component';
-import { RequestPasswordComponent } from './pages/auth/request-password/request-password.component';
 import { EducationCourseComponent } from './pages/baseInfo/educationCourse/educationCourse.component';
 import { EducationcourseService } from './pages/baseInfo/educationCourse/services/educationcourse.service';
 import { CorporateModule } from './pages/corporate/corporate.module';
 import { EducationLevelComponent } from './pages/baseInfo/educationLevel/educationlevel.component';
 import { EducationLevelService } from './pages/baseInfo/educationLevel/services/educationlevel.service';
+import { LoginComponent } from './pages/Auth/login/login.component';
+
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -34,11 +33,9 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     DashboardComponent,
-    LoginComponent,
-    RegisterComponent,
-    RequestPasswordComponent,
     EducationCourseComponent,
     EducationLevelComponent,
+    LoginComponent
   ],
   imports: [
     BrowserAnimationsModule,
