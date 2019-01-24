@@ -24,7 +24,7 @@ namespace Tcm.Application.Contract.ApplicationUsers
         public string HomeAddress { get; set; }
         public string HomePhone { get; set; }
 
-        public RoleEnum RoleEnum { get; set; }
+        public string RoleName { get; set; }
 
     }
 }

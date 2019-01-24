@@ -24,9 +24,9 @@ namespace Tcm.Domain.IdentityModel
         {
         public bool IsAdmin { get; set; }
 
-        //public string FirstName { get; set; }
-        //public string LastName { get; set; }
-        //public long NationalCode { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public long NationalCode { get; set; }
 
         public Student Student { get; set; }
     }

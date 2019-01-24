@@ -125,21 +125,29 @@ namespace Tcm.Interface.Api.Controllers
             }
             else
             {
-                if (createUserModel.RoleEnum == RoleEnum.student)
+                var rolesToAssign = new List<string>() { createUserModel.RoleName };
+
+                IdentityResult addResult = await _userManager.AddToRolesAsync(user, rolesToAssign);
+
+                if (addResult.Succeeded && rolesToAssign.Contains("student"))
                 {
-                    var student = new StudentDto
-                    {
-                        ApplicationUserId = user.Id,
-                        StudentNumber = createUserModel.StudentNumber
-                    };
+                   
+                        var student = new StudentDto
+                        {
+                            ApplicationUserId = user.Id,
+                            StudentNumber = createUserModel.StudentNumber
+                        };
 
                         _studentService.Add(student);
+                   
                 }
+
+
+               
             }
 
 
             return Ok();
-
         }
 
         [AllowAnonymous]
