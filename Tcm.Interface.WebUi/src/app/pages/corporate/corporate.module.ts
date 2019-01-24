@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CorporateRoutingModule } from './corporate-routing.module';
 import { CorporateServiceModule } from './services/corporate-service.module';
 import { CorporateAddComponent ,CorporateListComponent} from './pages';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 console.log("--------------------------------CorporateModulebundled-----------------")
 

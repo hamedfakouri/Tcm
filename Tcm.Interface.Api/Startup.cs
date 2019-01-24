@@ -110,7 +110,6 @@ namespace Tcm.Interface.Api
                 options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
             );
 
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

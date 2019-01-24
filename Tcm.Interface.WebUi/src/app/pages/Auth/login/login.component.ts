@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from './services/login.service';
 import { AlertifyService } from 'src/app/shared/services';
-import { User } from 'src/app/core/models';
 import { UserForLogin } from './models/userforlogin';
 import { AuthService } from 'src/app/authentication/services';
 import { Subscription } from 'rxjs';

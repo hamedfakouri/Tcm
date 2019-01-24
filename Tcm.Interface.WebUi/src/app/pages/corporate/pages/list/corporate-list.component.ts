@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CorporateService } from 'src/app/corporate/services';
+import { CorporateService } from 'src/app/pages/corporate/services';
 import { Pagination, PaginationResult } from 'src/app/core/models/pagination';
-import { Corporate } from 'src/app/corporate/models';
+import { Corporate } from 'src/app/pages/corporate/models';
 import { Pair, Sort } from 'src/app/core/models';
 import { Router } from '@angular/router';
 

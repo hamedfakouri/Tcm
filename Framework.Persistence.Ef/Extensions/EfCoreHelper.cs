@@ -46,5 +46,12 @@ namespace Framework.Persistence.Ef.Extensions
                 .Invoke(genericMethod, new object[] { query, selector });
             return newQuery;
         }
+
+
+        public static IQueryable<T> Pager<T>(this IQueryable<T> source ,UserParams userParams) 
+        {
+            userParams.Count = source.Count();
+            return source.Skip((userParams.PageNumber - 1) * userParams.PageSize).Take(userParams.PageSize);
+        }
     }
 }

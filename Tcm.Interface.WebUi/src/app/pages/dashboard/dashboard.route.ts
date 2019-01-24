@@ -1,10 +1,8 @@
 import { Routes, RouterModule } from "@angular/router";
 import { DashboardAdminComponent } from "./page";
 import { NgModule } from "@angular/core";
-import { SubjectType } from "../core/models/subject-type.enum";
-import { TaskType } from "../core/models/task-type.enum";
-import { AuthGuardService } from "../authentication/services";
-import { RoleType } from "../core/models/role-type.enum";
+import { SubjectType } from "src/app/core/models/subject-type.enum";
+import { TaskType } from "src/app/core/models/task-type.enum";
 
 const dashboardRoute :  Routes =[
 {

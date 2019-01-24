@@ -8,7 +8,7 @@ import { PaginationModule } from 'ngx-bootstrap';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { AuthServiceModule } from './authentication/services/auth-service.module';
-import { CorporateServiceModule } from './corporate/services';
+import { CorporateServiceModule } from './pages/corporate/services';
 import { UserModule } from './user/user.module';
 import { UtilityService, AlertifyService } from './shared/services';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -22,7 +22,7 @@ import { RegisterComponent } from './pages/Auth/register/register.component';
 import { RequestPasswordComponent } from './pages/auth/request-password/request-password.component';
 import { EducationCourseComponent } from './pages/baseInfo/educationCourse/educationCourse.component';
 import { EducationcourseService } from './pages/baseInfo/educationCourse/services/educationcourse.service';
-import { CorporateModule } from './corporate/corporate.module';
+import { CorporateModule } from './pages/corporate/corporate.module';
 import { EducationLevelComponent } from './pages/baseInfo/educationLevel/educationlevel.component';
 import { EducationLevelService } from './pages/baseInfo/educationLevel/services/educationlevel.service';
 
@@ -38,7 +38,7 @@ export function tokenGetter() {
     RegisterComponent,
     RequestPasswordComponent,
     EducationCourseComponent,
-    EducationLevelComponent
+    EducationLevelComponent,
   ],
   imports: [
     BrowserAnimationsModule,

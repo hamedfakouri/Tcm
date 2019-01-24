@@ -30,7 +30,7 @@ export class EducationLevelComponent implements OnInit, OnDestroy {
   constructor(private alertify: AlertifyService, private educationLevelService: EducationLevelService) { }
 
   ngOnInit() {
-    debugger;
+
     this.dictionary = this.educationLevelService.GetDictionary();
     this.get();
   }

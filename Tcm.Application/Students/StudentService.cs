@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using Framework.Core;
+using Framework.Persistence.Ef;
 using Tcm.Application.Contract.Students;
 using Tcm.Domain.Interfaces;
 using Tcm.Domain.Model;

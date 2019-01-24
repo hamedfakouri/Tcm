@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
-
-
-import { ThemeModule } from '../../theme/theme.module';
-import { DashboardComponent } from './dashboard.component';
+import { CommonModule } from '@angular/common';
+import { DashboardAdminComponent } from './page';
+import { DashboardRouteModule } from './dashboard.route';
+import { SharedModule } from 'src/app/shared/shared.module';
+console.log("--------------------------------DashboardModulebundled--------------------")
 
 @NgModule({
   imports: [
-    ThemeModule,
+    CommonModule,
+    DashboardRouteModule,
+    SharedModule
   ],
-  declarations: [
-    DashboardComponent,
-  ],
+  declarations: [DashboardAdminComponent]
 })
-export class DashboardModule { }
+export class DashboardModule { 
+  constructor(){
+    console.log("--------------------------------DashboardModule-------------------------------")
+  }
+}

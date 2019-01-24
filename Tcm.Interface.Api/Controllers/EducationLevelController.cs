@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Framework.Core;
+using Framework.Persistence.Ef;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -47,7 +47,6 @@ namespace Tcm.Interface.Api.Controllers
         public IActionResult Get(UserParams userParams)
         {
             var items = _educationLevelService.GetAll(userParams);
-            userParams.Count = _educationLevelService.GetAll(x=> true).Count;           
             Response.AddPagination(userParams);
 
             return Ok(items);
@@ -62,7 +61,7 @@ namespace Tcm.Interface.Api.Controllers
             return Ok(educationLevelDto);
         }
 
-        [HttpGet]
+        [HttpDelete]
         public IActionResult Delete(short id)
         {
 

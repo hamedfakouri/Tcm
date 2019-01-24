@@ -1,6 +1,6 @@
 using System;
 
-namespace Framework.Core
+namespace Framework.Persistence.Ef
 {
     public class UserParams
     {

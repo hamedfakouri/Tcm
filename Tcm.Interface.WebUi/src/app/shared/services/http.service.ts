@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import {  Response } from '@angular/http';
 import { Observable, of, } from 'rxjs';
-import {ajax} from 'rxjs/ajax';
 import { map, catchError, tap } from 'rxjs/operators';
 import { PaginationResult, Pagination } from 'src/app/core/models/pagination';
-import { SortType } from 'src/app/core/models/sort-type.enum';
+import { environment } from 'src/environments/environment';
 
 
 
 @Injectable()
 export class HttpService <T> {
- public baseUrl = 'http://localhost:5003'
+  
+  public baseUrl = environment.baseUrl;
   public endpoint:string="";
   readonly httpOptions = {
     headers: new HttpHeaders({

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using Framework.Core;
+using Framework.Persistence.Ef;
+using Framework.Persistence.Ef.Extensions;
 using Tcm.Application.Contract.EducationLevels;
 using Tcm.Domain.Interfaces;
 using Tcm.Domain.Model;
@@ -44,9 +45,7 @@ namespace Tcm.Application.EducationLevels
 
         public List<EducationLevelDto> GetAll(UserParams userParams)
         {
-            var items = _educationLevelRepository.GetAll().Skip((userParams.PageNumber - 1) * userParams.PageSize).Take(userParams.PageSize).ToList().Mapper();
-
-            return null;
+            return _educationLevelRepository.GetAll().Pager(userParams).ToList().Mapper();
 
         }
 
