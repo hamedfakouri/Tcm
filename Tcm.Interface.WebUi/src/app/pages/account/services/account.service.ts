@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { UserForLogin } from '../models/userforlogin';
+import { Login } from '../models/login';
 import { HttpService } from 'src/app/shared/services';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService extends HttpService<UserForLogin>  {
+
+export class AccountService extends HttpService<Login>  {
 
   constructor(private httpClient: HttpClient) {
     super(httpClient);
@@ -15,8 +16,7 @@ export class LoginService extends HttpService<UserForLogin>  {
   }
 
 
-  login(user:UserForLogin) : Observable<any>{
+  login(user:Login) : Observable<any>{
     return this.httpClient.post(this.baseUrl + this.endpoint + "login" , user);
   }
 }
-

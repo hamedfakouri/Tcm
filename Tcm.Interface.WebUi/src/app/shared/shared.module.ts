@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedRoutingModule } from './shared-routing.module';
 import { FormInputComponent } from './components';
 import { InputErrorDirective,PermissionDirective } from './directive';
 import { GetErrorPipe } from './pipe';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { AppGridComponent } from './components/appGrid/app-grid.component';
+import { AppGridComponent,BreadCrumbComponent } from './components';
 
 
 console.log("--------------------------------SharedModulebundled----------------")
@@ -14,7 +13,6 @@ console.log("--------------------------------SharedModulebundled----------------
 @NgModule({
   imports: [
     CommonModule,
-    SharedRoutingModule,
     NgbModule
   ]
   ,
@@ -24,14 +22,17 @@ console.log("--------------------------------SharedModulebundled----------------
     FormInputComponent,
     GetErrorPipe,
     AppGridComponent,
+    BreadCrumbComponent
     ]
   ,
   exports:[
     InputErrorDirective,
     PermissionDirective,
     FormInputComponent,
+    BreadCrumbComponent,
+
     AppGridComponent,
-    NgbModule
+    NgbModule,
   ],
   providers:[NgbModule]
 })

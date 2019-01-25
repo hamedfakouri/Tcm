@@ -1,10 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from './services/login.service';
 import { AlertifyService } from 'src/app/shared/services';
-import { UserForLogin } from './models/userforlogin';
 import { AuthService } from 'src/app/authentication/services';
 import { Subscription } from 'rxjs';
+import { Login } from '../../models/login';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +14,9 @@ import { Subscription } from 'rxjs';
 
 export class LoginComponent implements OnDestroy {
 
-  user: UserForLogin = { userName: '', password: '' };
+  user: Login = { userName: '', password: '' };
   subscription: Subscription;
-  constructor(protected router: Router, private loginService: LoginService,
+  constructor(protected router: Router, private loginService: AccountService,
     private alertify: AlertifyService, private authService: AuthService) {
 
   }

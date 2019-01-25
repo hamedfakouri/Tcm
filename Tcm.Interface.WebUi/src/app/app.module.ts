@@ -8,8 +8,6 @@ import { PaginationModule } from 'ngx-bootstrap';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { AuthServiceModule } from './authentication/services/auth-service.module';
-import { CorporateServiceModule } from './pages/corporate/services';
-import { UserModule } from './user/user.module';
 import { UtilityService, AlertifyService } from './shared/services';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -17,11 +15,7 @@ import { CoreModule } from './core/core.module';
 import { ThemeModule } from './theme/theme.module';
 import { routes } from './app-routing.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { EducationCourseComponent } from './pages/baseInfo/educationCourse/educationCourse.component';
-import { EducationcourseService } from './pages/baseInfo/educationCourse/services/educationcourse.service';
-import { CorporateModule } from './pages/corporate/corporate.module';
 import { EducationLevelService } from './pages/baseInfo/educationLevel/services/educationlevel.service';
-import { LoginComponent } from './pages/Auth/login/login.component';
 
 
 export function tokenGetter() {
@@ -32,8 +26,7 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     DashboardComponent,
-    EducationCourseComponent,
-    LoginComponent,
+   
   ],
   imports: [
     BrowserAnimationsModule,
@@ -44,9 +37,6 @@ export function tokenGetter() {
     CoreModule,
     SharedModule,
     AuthServiceModule,
-    CorporateServiceModule,
-    UserModule,
-    CorporateModule,
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     PaginationModule.forRoot(),
@@ -62,7 +52,6 @@ export function tokenGetter() {
     AuthServiceModule,
     UtilityService,
     AlertifyService,
-    EducationcourseService,
     EducationLevelService
     //{ provide: APP_INITIALIZER, useFactory: get_settings, deps: [AuthService, UserService], multi: true },
   ],

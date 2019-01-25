@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { EducationLevelComponent } from './pages/list/educationlevel-list.component';
 
 const routes: Routes = [
-  {path:'list',component:EducationLevelComponent}
+  {path:'',component:EducationLevelComponent}
 ];
 
 @NgModule({

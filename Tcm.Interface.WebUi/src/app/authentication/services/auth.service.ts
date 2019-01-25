@@ -1,6 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
 // import { UserManager, UserManagerSettings, User } from 'oidc-client';
-import { UserInfo } from 'src/app/user/models/User'
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Subject } from 'rxjs';
 
@@ -8,7 +7,6 @@ import { Subject } from 'rxjs';
 export class AuthService {
 
   loginAccures: Subject<boolean> = new Subject<boolean>();
-  public userInfo: UserInfo = new UserInfo();
 
   jwtHelper = new JwtHelperService();
   

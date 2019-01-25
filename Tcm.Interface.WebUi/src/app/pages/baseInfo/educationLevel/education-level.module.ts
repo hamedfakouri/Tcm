@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {EducationLevelComponent} from './pages/list/educationlevel-list.component';
 import { EducationLevelRoutingModule } from './education-level-routing.module';
-import { ThemeModule } from 'src/app/theme/theme.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
@@ -10,7 +9,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     EducationLevelRoutingModule,
-    ThemeModule,
     SharedModule
     
   ]

@@ -8,8 +8,13 @@ const dashboardRoute :  Routes =[
 {
     path:'admin',
     component : DashboardAdminComponent,
-    data: {title:' ادمین', permission:{ subject: SubjectType.corporate , task:TaskType.add} } 
-}
+    data: {title:' ادمین', permission:{ subject: SubjectType.corporate , task:TaskType.add} }},
+    {
+      path:'',
+      component : DashboardAdminComponent,
+       
+    } 
+
 ]
 
   

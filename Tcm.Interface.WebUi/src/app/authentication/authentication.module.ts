@@ -1,13 +1,11 @@
 import { NgModule, Optional, SkipSelf, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthenticationRoutingModule } from './authentication-routing.module';
-import { ThemeModule } from '../theme/theme.module';
 console.log("AuthenticationModule bundled-----------------")
 
 @NgModule({
   imports: [
-    CommonModule,AuthenticationRoutingModule,  
-    ThemeModule
+    CommonModule,  
+    
   ],
   declarations: []
 })

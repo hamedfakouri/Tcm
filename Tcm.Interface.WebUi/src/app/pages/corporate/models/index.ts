@@ -1,1 +1,0 @@
-export {Corporate} from './corporate';
