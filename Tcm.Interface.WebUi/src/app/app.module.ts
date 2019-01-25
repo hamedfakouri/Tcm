@@ -20,7 +20,6 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { EducationCourseComponent } from './pages/baseInfo/educationCourse/educationCourse.component';
 import { EducationcourseService } from './pages/baseInfo/educationCourse/services/educationcourse.service';
 import { CorporateModule } from './pages/corporate/corporate.module';
-import { EducationLevelComponent } from './pages/baseInfo/educationLevel/educationlevel.component';
 import { EducationLevelService } from './pages/baseInfo/educationLevel/services/educationlevel.service';
 import { LoginComponent } from './pages/Auth/login/login.component';
 
@@ -34,8 +33,7 @@ export function tokenGetter() {
     AppComponent,
     DashboardComponent,
     EducationCourseComponent,
-    EducationLevelComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserAnimationsModule,

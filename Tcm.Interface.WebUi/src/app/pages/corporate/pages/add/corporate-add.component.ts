@@ -13,14 +13,14 @@ export class CorporateAddComponent implements OnInit {
 
   model = new Corporate();
 
-  ngOnInit() {
+    ngOnInit() {
 
 
   }
 
   AddFormSubmit(){
 
-     this.corporateService.add(this.model).subscribe();
+this.corporateService.add(this.model).subscribe();
 
   }
 }
