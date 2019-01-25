@@ -1,9 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
-
 
 body{
     margin: 0px;
-   
 }
 
 .carousel-item {
@@ -18,4 +15,16 @@ body{
   
   .portfolio-item {
     margin-bottom: 30px;
+  }
+
+  .table{
+    font-size: 13px;
+  }
+  
+  .table tr td , .table tr th{
+    vertical-align: middle !important;
+  }
+
+  .tcmgrid button{
+    padding: 8px 10px !important;
   }
