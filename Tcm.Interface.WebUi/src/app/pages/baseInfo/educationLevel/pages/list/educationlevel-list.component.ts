@@ -21,7 +21,7 @@ export class EducationLevelComponent implements OnInit, OnDestroy {
 
   //subscriptions: Subscription[] = [];
 
-  educationLevelItem: EducationLevel = { Id: 0, name: '' };
+  educationLevelItem: EducationLevel = { Id: 0, Name: '' };
   @ViewChild('f') form: any;
 
   public pagination = new Pagination(1, 10);
@@ -42,7 +42,7 @@ export class EducationLevelComponent implements OnInit, OnDestroy {
 
     this.educationLevelService.GetAllForGrid(this.pagination)
       .subscribe((res: PaginationResult<EducationLevel>) => {
-        
+
         if (res.result) {
           this.items = res.result
         }
@@ -55,9 +55,8 @@ export class EducationLevelComponent implements OnInit, OnDestroy {
       });
   }
 
-
   submitForm(): void {
-    
+
     if (this.form.valid) {
 
       if (this.educationLevelItem.Id == 0) {
@@ -85,39 +84,33 @@ export class EducationLevelComponent implements OnInit, OnDestroy {
 
   pageChanged(event: any): void {
     this.pagination.currentPage = event;
-    console.log(this.pagination.currentPage);
+
     this.get();
   }
 
 
   edit(item: EducationLevel) {
-    
+
     this.educationLevelService.get(item.Id).subscribe(
-      (item: EducationLevel) => {
-        this.educationLevelItem = item;
+      (res: EducationLevel) => {
+        this.educationLevelItem = res;
       }
     );
   }
 
   remove(item: EducationLevel) {
 
-    this.educationLevelItem = item;
-    this.alertify.deleteConfirm(Message.actionConfirm, this.deleteItem, this.clearForm);
-
-  }
-
-  deleteItem() {
-
-    this.educationLevelService.delete(this.educationLevelItem).subscribe(
+    this.educationLevelService.delete(item.Id).subscribe(
       () => {
         this.get();
-        this.clearForm();
         this.alertify.success(Message.deleteSuccess);
       },
       err => {
         this.alertify.error(err);
       }
     );
+    //this.alertify.deleteConfirm(Message.actionConfirm, this.deleteItem,this.educationLevelItem, this.clearForm);
+
   }
 
   sort(event: Pagination) {
@@ -127,7 +120,7 @@ export class EducationLevelComponent implements OnInit, OnDestroy {
 
   clearForm() {
     this.educationLevelItem.Id = 0;
-    this.educationLevelItem.name = '';
+    this.educationLevelItem.Name = '';
   }
 
   ngOnDestroy(): void {

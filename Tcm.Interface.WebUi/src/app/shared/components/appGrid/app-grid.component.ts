@@ -4,6 +4,7 @@ import { Pair, TaskType, SubjectType } from 'src/app/core/models';
 import { Router } from '@angular/router';
 
 import { PermissionService } from 'src/app/authentication/services/permission.service';
+import { Message } from 'src/app/core/models/message.enum';
 
 
 
@@ -32,7 +33,6 @@ export class AppGridComponent implements OnInit {
   constructor(private router: Router, private permissionService: PermissionService) { }
 
   ngOnInit() {
-
     this.showGrid = true;
     let _subject = SubjectType[this.subject];
     if (this.permissionService.HasPermission(_subject, TaskType.edit) && this.editable) {
@@ -68,7 +68,14 @@ export class AppGridComponent implements OnInit {
 
   }
   remove(value: any) {
-    this.onRemove.emit(value);
+
+    if (confirm(Message.actionConfirm)) {
+      
+      this.onRemove.emit(value);
+      if ((this.pagination.currentPage - 1) * (this.pagination.itemsPerPage) == this.pagination.totalItems - 1)
+        this.pagination.currentPage--;
+    }
+
 
   }
 

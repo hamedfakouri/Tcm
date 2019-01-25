@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { EducationLevelService } from 'src/app/pages/baseInfo/educationLevel/services/educationlevel.service';
 declare let alertify: any;
 
 @Injectable({
@@ -31,12 +31,12 @@ export class AlertifyService {
       ;
   }
 
-  deleteConfirm(message: string, callBack: () => any, cancelCallBack?: () => any) {
+  deleteConfirm(message: string, callBack: (item?: any) => any,params?: any, cancelCallBack?: () => any) {
 
-    alertify.confirm(message, function (e) {
+    alertify.confirm(message, function (e,item) {
 
       if (e) {
-        callBack();
+        callBack(params);
       }
       else{
         cancelCallBack();
