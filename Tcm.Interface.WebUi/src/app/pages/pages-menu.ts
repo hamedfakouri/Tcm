@@ -21,7 +21,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'مقطع تحصیلی',
-        link: '/BaseInfo/EducationLevel',
+        link: 'educationLevel/list',
       },
       {
         title: 'پایه تحصیلی',

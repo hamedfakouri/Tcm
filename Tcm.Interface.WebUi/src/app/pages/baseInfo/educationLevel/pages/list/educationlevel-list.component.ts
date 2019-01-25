@@ -2,18 +2,21 @@ import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { Message } from 'src/app/core/models/message.enum';
-import { EducationLevelService } from './services/educationlevel.service';
+
 import { AlertifyService } from 'src/app/shared/services';
-import { EducationLevel } from './models/educationlevel';
+
 import { Pagination, PaginationResult } from 'src/app/core/models/pagination';
 import { Pair } from 'src/app/core/models';
+import { EducationLevel } from '../../models/educationlevel';
+import { EducationLevelService } from '../../services/educationlevel.service';
 
 
 @Component({
   selector: 'app-educationLevel',
-  templateUrl: './educationLevel.component.html',
-  styleUrls: ['./educationLevel.component.css']
+  templateUrl: 'educationlevel-list.component.html',
+  styleUrls: ['educationlevel-list.component.css']
 })
+
 export class EducationLevelComponent implements OnInit, OnDestroy {
 
   //subscriptions: Subscription[] = [];
@@ -88,7 +91,7 @@ export class EducationLevelComponent implements OnInit, OnDestroy {
 
 
   edit(item: EducationLevel) {
-
+    
     this.educationLevelService.get(item.Id).subscribe(
       (item: EducationLevel) => {
         this.educationLevelItem = item;

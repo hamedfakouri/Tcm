@@ -342,11 +342,9 @@ namespace Tcm.Interface.Api.Controllers
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Surname , user.LastName),
-                new Claim(ClaimTypes.Name , user.FirstName),
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),             
+                new Claim(ClaimTypes.Surname , user.LastName??""),
+                new Claim(ClaimTypes.Name , user.FirstName??""),
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtKey"]));
