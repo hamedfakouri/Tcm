@@ -6,7 +6,7 @@ using Framework.Persistence.Ef;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using Tcm.Application.Contract.EducationLevels;
+using Tcm.Application.Contract.EducationCourses;
 using Tcm.Domain.Interfaces;
 using Tcm.Domain.Model;
 using Tcm.Interface.Api.Helpers;
@@ -14,38 +14,39 @@ using Tcm.Interface.Api.Helpers;
 namespace Tcm.Interface.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/EducationLevel")]
-    public class EducationLevelController : Controller
+    [Route("api/EducationCourse")]
+    public class EducationCourseController : Controller
     {
 
-        private IEducationLevelService _educationLevelService;
-        public EducationLevelController(IEducationLevelService educationLevelService)
+        private IEducationCourseService _educationCourseService;
+        public EducationCourseController(IEducationCourseService educationCourseService)
         {
-            _educationLevelService = educationLevelService;
+            _educationCourseService = educationCourseService;
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]EducationLevelAddDto value)
+        public IActionResult Post([FromBody]EducationCourse value)
         {
 
-            _educationLevelService.Add(value);
+            _educationCourseService.Add(value);
 
-            return Ok();
+            return Ok(); 
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(short id, [FromBody]EducationLevelDto value)
+        public IActionResult Put( short id,[FromBody]EducationCourse value)
         {
 
-            _educationLevelService.Update(id, value);
+            _educationCourseService.Update(id,value);
 
             return Ok();
         }
 
         [HttpGet]
+  
         public IActionResult Get(UserParams userParams)
         {
-            var items = _educationLevelService.GetAll(userParams);
+            var items = _educationCourseService.GetAll(userParams);
             Response.AddPagination(userParams);
 
             return Ok(items);
@@ -55,18 +56,18 @@ namespace Tcm.Interface.Api.Controllers
         public IActionResult Get(short id)
         {
 
-            var educationLevelDto = _educationLevelService.Get(id);
+          var educationCourseDto =  _educationCourseService.Get(id);
 
-            return Ok(educationLevelDto);
+            return Ok(educationCourseDto);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(short id)
         {
 
-            _educationLevelService.Delete(id);
+             _educationCourseService.Delete(id);
 
             return Ok();
         }
     }
-}
+    }

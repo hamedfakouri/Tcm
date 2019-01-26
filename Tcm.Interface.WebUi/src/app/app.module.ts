@@ -14,8 +14,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoreModule } from './core/core.module';
 import { ThemeModule } from './theme/theme.module';
 import { routes } from './app-routing.module';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { EducationLevelService } from './pages/baseInfo/educationLevel/services/educationlevel.service';
 
 
 export function tokenGetter() {
@@ -25,8 +23,6 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-   
   ],
   imports: [
     BrowserAnimationsModule,
@@ -52,7 +48,6 @@ export function tokenGetter() {
     AuthServiceModule,
     UtilityService,
     AlertifyService,
-    EducationLevelService
     //{ provide: APP_INITIALIZER, useFactory: get_settings, deps: [AuthService, UserService], multi: true },
   ],
   bootstrap: [AppComponent],

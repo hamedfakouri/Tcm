@@ -36,7 +36,7 @@ namespace Framework.Persistence.Ef
 
         public TModel GetById(Tkey id)
         {
-            return _tcmContext.Set<TModel>().AsQueryable().FirstOrDefault(x => x.Id.Equals(id));
+            return _tcmContext.Set<TModel>().AsQueryable().AsNoTracking().FirstOrDefault(x => x.Id.Equals(id));
         }
 
         public IEnumerable<TModel> Get<T>(Expression<Func<TModel,bool>> expression)

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AuthService } from 'src/app/authentication/services';
 import { TaskType, SubjectType, Permission, RoleType } from 'src/app/core/models';
 
 @Injectable({
@@ -11,25 +10,23 @@ export class PermissionService {
   public userPermissions :Array<Permission>;
   public hasPermission:boolean =false;
   public role :RoleType;
+
   constructor() {
     this.userPermissions = new Array<Permission>();
-
-
   }
 
 
    GetPermissions(value:string){
 
     this.role = RoleType[value];
-    this.userPermissions.push(new Permission(SubjectType.corporate,TaskType.add));
-    // this.userPermissions.push(new Permission(SubjectType.corporate,TaskType.delete));
-    this.userPermissions.push(new Permission(SubjectType.corporate,TaskType.edit));
-    // this.userPermissions.push(new Permission(SubjectType.dashboard,TaskType.update));
+    this.userPermissions.push(new Permission(SubjectType.educationlevel, TaskType.add));
+    this.userPermissions.push(new Permission(SubjectType.educationlevel, TaskType.delete));
+    this.userPermissions.push(new Permission(SubjectType.educationlevel, TaskType.edit));
    }
 
    HasPermission(subject:SubjectType,task:TaskType):boolean{
   
-  
+    this.GetPermissions('Admin');
     let subPermission :boolean =false;
     let taskPermission :boolean =false;
     

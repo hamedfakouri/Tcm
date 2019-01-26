@@ -16,12 +16,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'nb-star',
     children: [
       {
-        title: 'دوره تحصیلی',
-        link: '/BaseInfo/EducationCourse',
+        title: 'مقطع تحصیلی',
+        link: 'EducationLevel',
       },
       {
-        title: 'مقطع تحصیلی',
-        link: 'educationlevel/',
+        title: 'دوره تحصیلی',
+        link: 'EducationCourse',
       },
       {
         title: 'پایه تحصیلی',
@@ -43,7 +43,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'پرسنل مدرسه',
-        link: '/Student/Personnel'        
+        link: '/Student/Personnel'
       }
     ],
   }

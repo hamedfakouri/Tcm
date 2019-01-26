@@ -1,15 +1,15 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthGuardService } from './authentication/services';
 
 
 
 export const routes: Routes = [
-  {path:'educationLevel',loadChildren:'./pages/baseInfo/educationLevel/education-level.module#EducationLevelModule'},
-  {path:'account',loadChildren:'./pages/account/account.module#AccountModule'},
+  
+  {path:'Account/login',loadChildren:'./pages/account/account.module#AccountModule'},
 
-  { path: '', pathMatch: 'full', component: DashboardComponent, canActivate: [AuthGuardService] },
-  { path: 'home', component: DashboardComponent, canActivate: [AuthGuardService] },
+  { path: '', loadChildren: './pages/dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuardService] },
+  { path: 'EducationLevel',  loadChildren: './pages/baseInfo/educationLevel/educationlevel.module#EducationLevelModule' },
+  { path: 'EducationCourse', loadChildren: './pages/baseInfo/educationCourse/educationcourse.module#EducationCourseModule' },
 
 ];
 

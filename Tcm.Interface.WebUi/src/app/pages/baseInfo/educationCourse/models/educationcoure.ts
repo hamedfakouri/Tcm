@@ -1,4 +1,4 @@
-export interface EducationLevel {
+export interface EducationCourse {
     Id: number,
     Name: string
 }

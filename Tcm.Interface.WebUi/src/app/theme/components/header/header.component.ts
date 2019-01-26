@@ -62,7 +62,7 @@ export class HeaderComponent implements OnInit {
     this.authService.loginAccures.next(false);
 
     this.alertifyService.message('به امید دیدار مجدد.');
-    this.router.navigate(['Auth/Login']);
+    this.router.navigate(['Account/login']);
 
   }
 }

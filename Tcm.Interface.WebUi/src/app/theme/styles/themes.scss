@@ -36,7 +36,7 @@ $nb-themes: nb-register-theme((
   progress-bar-background: linear-gradient(90deg, #3edd81 0%, #3bddaf 100%),
 ), default, default);
 
-.nb-theme-corporate nb-menu , .nb-theme-default nb-menu,.btn,.nb-theme-corporate nb-layout .layout nb-layout-header,.nb-theme-corporate h1, .nb-theme-corporate h2, .nb-theme-corporate h3, .nb-theme-corporate h4, .nb-theme-corporate h5, .nb-theme-corporate h6, .nb-theme-corporate .h1, .nb-theme-corporate .h2, .nb-theme-corporate .h3, .nb-theme-corporate .h4, .nb-theme-corporate .h5, .nb-theme-corporate .h6 {
+.nb-theme-corporate nb-menu , .nb-theme-default nb-menu,.btn,.nb-theme-corporate nb-layout .layout nb-layout-header,.nb-theme-corporate h1, .nb-theme-corporate h2, .nb-theme-corporate h3, .nb-theme-corporate h4, .nb-theme-corporate h5, .nb-theme-corporate h6, .nb-theme-corporate .h1, .nb-theme-corporate .h2, .nb-theme-corporate .h3, .nb-theme-corporate .h4, .nb-theme-corporate .h5, .nb-theme-corporate .h6, nb-card-header{
   font-family: 'samim' !important;
 }
 

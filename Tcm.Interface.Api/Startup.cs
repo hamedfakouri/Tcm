@@ -99,7 +99,9 @@ namespace Tcm.Interface.Api
                 });
 
 
-            services.AddMvc();
+            services.AddMvc()
+                .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+
             services.AddCors();
         }
 

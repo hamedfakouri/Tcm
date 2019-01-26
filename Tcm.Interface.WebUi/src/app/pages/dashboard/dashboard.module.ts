@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardAdminComponent } from './page';
 import { DashboardRouteModule } from './dashboard.route';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { DashboardComponent } from './pages/dashboard.component';
 console.log("--------------------------------DashboardModulebundled--------------------")
 
 @NgModule({
@@ -11,7 +11,7 @@ console.log("--------------------------------DashboardModulebundled-------------
     DashboardRouteModule,
     SharedModule
   ],
-  declarations: [DashboardAdminComponent]
+  declarations: [DashboardComponent]
 })
 export class DashboardModule { 
   constructor(){
