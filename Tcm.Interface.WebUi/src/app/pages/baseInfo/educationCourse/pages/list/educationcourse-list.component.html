@@ -8,10 +8,25 @@
         <div class="col-md-6 align-top d-inline-block">
 
           <form #f="ngForm" (ngSubmit)="submitForm()" novalidate>
+
+
             <div class="form-group row">
               <label for="txtEmail" class="col-sm-3 col-form-label text-left">عنوان:</label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" name="txtEmail" [(ngModel)]="educationCourseItem.Name" required>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="txtEmail" class="col-sm-3 col-form-label text-left">مقطع تحصیلی:</label>
+              <div class="col-sm-9">
+
+                <select class="form-control" name="EducationLevelId" [(ngModel)]="educationCourseItem.EducationLevelId">
+                  <option value="0">--- انتخاب کنید ---</option>
+                  <option *ngFor="let item of educationLevelItems" [value]="item.Id" >
+                    {{item.Name}}
+                  </option>
+                </select>
               </div>
             </div>
 

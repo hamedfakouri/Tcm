@@ -78,24 +78,18 @@ namespace Tcm.Application.EducationCourses
             return items;
         }
 
-        //public static List<EducationCourse> Mapper(this List<EducationCourseListDto> educationCourses)
-        //{
-        //    var items = new List<EducationCourse>();
-        //    educationCourses.ForEach(x => items.Add(x.Mapper()));
-        //    return items;
-        //}
-
         public static EducationCourseListDto Mapper(this EducationCourse educationCourse)
         {
             var dto = new EducationCourseListDto();
 
-            if (educationCourse != null)
+            if (educationCourse == null)
                 return dto;
 
             dto.Id = educationCourse.Id;
             dto.EducationLevelId = educationCourse.EducationLevelId;
             dto.Name = educationCourse.Name;
             dto.AllowAssignMajor = educationCourse.AllowAssignMajor;
+            //dto.EducationLevelTitle = educationCourse.EducationLevel.Name;
             return dto;
         }
     }

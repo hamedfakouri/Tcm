@@ -9,6 +9,8 @@ import { Pagination, PaginationResult } from 'src/app/core/models/pagination';
 import { Pair } from 'src/app/core/models';
 import { EducationCourse } from '../../models/educationcoure';
 import { EducationCourseService } from '../../services/educationcourse.service';
+import { EducationLevelService } from '../../../educationLevel/services/educationlevel.service';
+import { EducationLevel } from '../../../educationLevel/models';
 
 
 @Component({
@@ -21,21 +23,35 @@ export class EducationCourseComponent implements OnInit, OnDestroy {
 
   //subscriptions: Subscription[] = [];
 
-  educationCourseItem: EducationCourse = { Id: 0, Name: '' };
+  educationCourseItem: EducationCourse = { Id: 0, Name: '', EducationLevelId: 0 , EducationLevelName: '' };
+  public items: EducationCourse[] = [];
+  public educationLevelItems: EducationLevel[] = [];
   @ViewChild('f') form: any;
 
   public pagination = new Pagination(1, 10);
-  public items: EducationCourse[] = [];
   public subject: string = "educationcourse";
   public dictionary: Array<Pair>;
   userParams: any = {};
 
-  constructor(private alertify: AlertifyService, private educationcourseService: EducationCourseService) { }
+  constructor(private alertify: AlertifyService, private educationcourseService: EducationCourseService, private educationLevelService: EducationLevelService) { }
 
   ngOnInit() {
 
     this.dictionary = this.educationcourseService.GetDictionary();
+    this.getEducationLevelItems();
     this.get();
+
+  }
+
+  getEducationLevelItems() {
+    
+    this.educationLevelService.GetAllForGrid(this.pagination).subscribe((res: PaginationResult<EducationCourse>) => {
+
+      if (res.result) {
+        this.educationLevelItems = res.result
+      }
+    });
+
   }
 
   get() {
@@ -57,6 +73,13 @@ export class EducationCourseComponent implements OnInit, OnDestroy {
 
   submitForm(): void {
 
+    if (this.educationCourseItem.EducationLevelId == 0){
+      this.alertify.error("انتخاب مقطع تحصیلی الزامیست.");
+      return;
+    }
+
+     console.log(this.educationCourseItem);
+    // return;
     if (this.form.valid) {
 
       if (this.educationCourseItem.Id == 0) {
@@ -103,6 +126,7 @@ export class EducationCourseComponent implements OnInit, OnDestroy {
     this.educationcourseService.delete(item.Id).subscribe(
       () => {
         this.get();
+        this.clearForm();
         this.alertify.success(Message.deleteSuccess);
       },
       err => {
@@ -121,6 +145,8 @@ export class EducationCourseComponent implements OnInit, OnDestroy {
   clearForm() {
     this.educationCourseItem.Id = 0;
     this.educationCourseItem.Name = '';
+    this.educationCourseItem.EducationLevelId = 0;
+    this.educationCourseItem.EducationLevelName = '';
   }
 
   ngOnDestroy(): void {

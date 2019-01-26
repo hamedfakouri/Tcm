@@ -1,23 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { routes } from './app-routing.module';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaginationModule } from 'ngx-bootstrap';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ThemeModule } from './theme/theme.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { AuthServiceModule } from './authentication/services/auth-service.module';
 import { UtilityService, AlertifyService } from './shared/services';
 import { JwtModule } from '@auth0/angular-jwt';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoreModule } from './core/core.module';
-import { ThemeModule } from './theme/theme.module';
-import { routes } from './app-routing.module';
+import { EducationLevelService } from './pages/baseInfo/educationLevel/services/educationlevel.service';
+import { EducationCourseService } from './pages/baseInfo/educationCourse/services/educationcourse.service';
 
 
 export function tokenGetter() {
-  return localStorage.getItem('access_token');
+  return localStorage.getItem('token');
 }
 
 @NgModule({
@@ -48,6 +50,8 @@ export function tokenGetter() {
     AuthServiceModule,
     UtilityService,
     AlertifyService,
+    EducationLevelService,
+    EducationCourseService
     //{ provide: APP_INITIALIZER, useFactory: get_settings, deps: [AuthService, UserService], multi: true },
   ],
   bootstrap: [AppComponent],

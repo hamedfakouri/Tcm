@@ -7,14 +7,17 @@ import { EducationCourseService } from './services/educationcourse.service';
 import { EducationCourseRoutingModule } from './educationcourse-routing.module';
 
 @NgModule({
-  declarations: [EducationCourseComponent],
+  declarations: [
+    EducationCourseComponent
+  ],
   imports: [
     CommonModule,
     ThemeModule,
     SharedModule,
-    EducationCourseRoutingModule
+    EducationCourseRoutingModule,
+    
   ],
-  providers: [EducationCourseService]
+  providers: []
 })
 export class EducationCourseModule {
 

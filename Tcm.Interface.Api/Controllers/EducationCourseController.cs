@@ -43,7 +43,6 @@ namespace Tcm.Interface.Api.Controllers
         }
 
         [HttpGet]
-  
         public IActionResult Get(UserParams userParams)
         {
             var items = _educationCourseService.GetAll(userParams);

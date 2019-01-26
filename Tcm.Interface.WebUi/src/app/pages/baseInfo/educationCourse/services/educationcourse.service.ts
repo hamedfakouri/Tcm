@@ -18,8 +18,9 @@ export class EducationCourseService extends HttpService<EducationCourse> {
   public GetDictionary():Array<Pair>{
 
     let items = new Array<Pair>();
-    // items.push(new Pair("Id","شماره"));
+    
     items.push(new Pair("Name","عنوان"));
+    items.push(new Pair("EducationLevelName","مقطع تحصیلی"));
   
 
    return items;

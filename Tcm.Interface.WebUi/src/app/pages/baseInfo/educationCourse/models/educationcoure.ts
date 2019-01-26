@@ -1,4 +1,6 @@
 export interface EducationCourse {
     Id: number,
-    Name: string
+    Name: string,
+    EducationLevelId: number,
+    EducationLevelName: string
 }
