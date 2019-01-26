@@ -9,14 +9,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 @NgModule({
   declarations: [LoginComponent],
   imports: [
-    AccountService,
-
-    CommonModule,
     SharedModule,
-    AccountRoutingModule,
-    
-    
-    
+    AccountRoutingModule
   ]
   
 })

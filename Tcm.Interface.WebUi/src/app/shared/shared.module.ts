@@ -5,6 +5,8 @@ import { InputErrorDirective,PermissionDirective } from './directive';
 import { GetErrorPipe } from './pipe';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppGridComponent,BreadCrumbComponent } from './components';
+import { ThemeModule } from '../theme/theme.module';
+import { SharedServiceModule } from './services/shared-service.module';
 
 
 console.log("--------------------------------SharedModulebundled----------------")
@@ -13,7 +15,8 @@ console.log("--------------------------------SharedModulebundled----------------
 @NgModule({
   imports: [
     CommonModule,
-    NgbModule
+    ThemeModule,
+    SharedServiceModule
   ]
   ,
   declarations: [
@@ -32,7 +35,8 @@ console.log("--------------------------------SharedModulebundled----------------
     BreadCrumbComponent,
 
     AppGridComponent,
-    NgbModule,
+    ThemeModule,
+    SharedServiceModule
   ],
   providers:[NgbModule]
 })
