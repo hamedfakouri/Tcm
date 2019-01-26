@@ -4,5 +4,6 @@ export enum SubjectType {
     agent,
     dashboard,
     educationlevel,
-    educationcourse
+    educationcourse,
+    major   
 }
