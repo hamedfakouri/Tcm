@@ -1,0 +1,1 @@
+export {Major} from './major';

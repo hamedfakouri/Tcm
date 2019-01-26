@@ -27,6 +27,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'پایه تحصیلی',
         link: '/pages/extra-components/list',
       },
+      {
+        title: 'رشته تحصیلی',
+        link: 'Major',
+      },
     ],
   },
   {

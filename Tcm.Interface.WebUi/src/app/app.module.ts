@@ -16,6 +16,8 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { CoreModule } from './core/core.module';
 import { EducationLevelService } from './pages/baseInfo/educationLevel/services/educationlevel.service';
 import { EducationCourseService } from './pages/baseInfo/educationCourse/services/educationcourse.service';
+import { MajorService } from './pages/baseInfo/major/services/major.service';
+import { AuthService } from './authentication/services';
 
 
 export function tokenGetter() {
@@ -47,11 +49,12 @@ export function tokenGetter() {
     })
   ],
   providers: [
-    AuthServiceModule,
+    AuthService,
     UtilityService,
     AlertifyService,
     EducationLevelService,
-    EducationCourseService
+    EducationCourseService,
+    MajorService
     //{ provide: APP_INITIALIZER, useFactory: get_settings, deps: [AuthService, UserService], multi: true },
   ],
   bootstrap: [AppComponent],
