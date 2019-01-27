@@ -44,7 +44,7 @@ import { FooterComponent,HeaderComponent,SearchInputComponent } from './componen
 import { CapitalizePipe,PluralPipe,RoundPipe,TimingPipe,NumberWithCommasPipe,EvaIconsPipe } from './pipes';
 import { SampleLayoutComponent } from './layouts';
 import { CORPORATE_THEME } from './styles/theme.corporate';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule,ModalModule } from 'ngx-bootstrap';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -122,7 +122,7 @@ const NB_THEME_PROVIDERS = [
 ];
 
 @NgModule({
-  imports: [...BASE_MODULES, ...NB_MODULES, BsDropdownModule.forRoot()],
+  imports: [...BASE_MODULES, ...NB_MODULES, BsDropdownModule.forRoot(), ModalModule.forRoot() ],
   exports: [...BASE_MODULES, ...NB_MODULES, ...COMPONENTS, ...PIPES],
   declarations: [...COMPONENTS, ...PIPES],
   entryComponents: [...ENTRY_COMPONENTS],

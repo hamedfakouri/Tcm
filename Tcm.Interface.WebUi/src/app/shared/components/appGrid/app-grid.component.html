@@ -43,7 +43,7 @@
                                         </ng-container>
                                         <ng-container *ngIf="removable">
                                                 <td class="text-center">
-                                                        <button class="btn btn-danger btn-sm" (click)="remove(item)">
+                                                        <button class="btn btn-danger btn-sm" (click)="remove(item,confirmTemplate)">
                                                                 <i class="fa fa-times-circle"></i></button>
                                                 </td>
                                         </ng-container>
@@ -65,3 +65,11 @@
 <div class="grid-empty-row" *ngIf="items.length == 0">
         موردی یافت نشد
 </div>
+
+<ng-template #confirmTemplate>
+        <div class="modal-body text-center">
+                <p>{{ deleteConfirmMessage }} </p>
+                <button type="button" class="btn btn-info ml-4" (click)="confirm()">بلی</button>
+                <button type="button" class="btn btn-primary" (click)="hideModal()">خیر</button>
+        </div>
+</ng-template>
