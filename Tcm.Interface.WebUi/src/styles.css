@@ -24,6 +24,7 @@ body {
 
 .btn {
   cursor: pointer !important;
+  font-size: 13px !important;
 }
 
 .btn-group .btn {
@@ -69,6 +70,7 @@ select {
 
 .form-control {
   padding: 0.25rem 0.75rem !important;
+  font-size: 13px !important;
 }
 
 .ajs-message{
@@ -82,4 +84,8 @@ select {
   text-align: center;
   padding: 8px;
   background-color: #c1c1c1;
+}
+
+nb-card {
+  font-size: 13px !important;
 }
