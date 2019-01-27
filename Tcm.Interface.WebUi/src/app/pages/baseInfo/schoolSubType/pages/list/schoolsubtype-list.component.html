@@ -2,20 +2,37 @@
   <div class="col-md-12">
 
     <nb-card>
-      <nb-card-header>نوع مدرسه</nb-card-header>
+      <nb-card-header>دوره تحصیلی</nb-card-header>
       <nb-card-body>
 
         <div class="col-md-6 align-top d-inline-block">
 
           <form #f="ngForm" (ngSubmit)="submitForm()" novalidate>
+
+
             <div class="form-group row">
-              <label for="name" class="col-sm-3 col-form-label text-left">عنوان:</label>
+              <label for="txtEmail" class="col-sm-3 col-form-label text-left">نوع مدرسه:</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="name" [(ngModel)]="schoolTypeItem.Name" required>
+
+                <select class="form-control" name="EducationLevelId" [(ngModel)]="schoolSubTypeItem.SchoolTypeId">
+                  <option value="0">--- انتخاب کنید ---</option>
+                  <option *ngFor="let item of schoolTypeItems" [value]="item.Id">
+                    {{item.Name}}
+                  </option>
+                </select>
               </div>
             </div>
 
             <div class="form-group row">
+              <label for="name" class="col-sm-3 col-form-label text-left">عنوان:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="name" [(ngModel)]="schoolSubTypeItem.Name" required>
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+
               <div class="col-sm-12 text-left">
                 <button type="submit" class="btn btn-primary" [disabled]='!f.valid'>ذخیره</button>
               </div>

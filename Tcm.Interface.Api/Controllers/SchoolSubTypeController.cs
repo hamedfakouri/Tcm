@@ -26,7 +26,7 @@ namespace Tcm.Interface.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]SchoolSubTypeDto value)
+        public IActionResult Post([FromBody]SchoolSubType value)
         {
 
             _schoolSubTypeService.Add(value);
@@ -34,27 +34,25 @@ namespace Tcm.Interface.Api.Controllers
             return Ok();
         }
 
-        [HttpPut]
-        public IActionResult Put(short Id, [FromBody]SchoolSubTypeDto value)
+        [HttpPut("{id}")]
+        public IActionResult Put(short id, [FromBody]SchoolSubType value)
         {
 
-            _schoolSubTypeService.Update(Id, value);
+            _schoolSubTypeService.Update(id, value);
 
             return Ok();
         }
 
         [HttpGet]
-
         public IActionResult Get(UserParams userParams)
         {
             var items = _schoolSubTypeService.GetAll(userParams);
-            userParams.Count = _schoolSubTypeService.GetAll(x => true).Count;
             Response.AddPagination(userParams);
 
             return Ok(items);
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult Get(short id)
         {
 
@@ -63,7 +61,7 @@ namespace Tcm.Interface.Api.Controllers
             return Ok(schoolSubTypeDto);
         }
 
-        [HttpGet]
+        [HttpDelete("{id}")]
         public IActionResult Delete(short id)
         {
 

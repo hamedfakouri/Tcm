@@ -7,5 +7,6 @@ export enum SubjectType {
     educationcourse,
     educationsubcourse,
     major,
-    schooltype   
+    schooltype,
+    schoolsubtype,
 }

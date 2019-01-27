@@ -35,6 +35,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'نوع مدرسه',
         link: 'SchoolType',
       },
+      {
+        title: 'دسته بندی مدارس',
+        link: 'SchoolSubType',
+      },
     ],
   },
   {

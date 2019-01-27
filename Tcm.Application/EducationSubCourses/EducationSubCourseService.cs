@@ -65,6 +65,7 @@ namespace Tcm.Application.EducationSubCourses
             if (EducationSubCourse != null)
             {
                 EducationSubCourse.Name = model.Name;
+                EducationSubCourse.EducationCourseId = model.EducationCourseId;
 
                 _EducationSubCourseRepository.Update(EducationSubCourse);
             }

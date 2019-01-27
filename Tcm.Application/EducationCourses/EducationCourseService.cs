@@ -64,6 +64,7 @@ namespace Tcm.Application.EducationCourses
             if (educationCourse != null)
             {
                 educationCourse.Name = model.Name;
+                educationCourse.EducationLevelId = model.EducationLevelId;
 
                 _educationCourseRepository.Update(educationCourse);
             }

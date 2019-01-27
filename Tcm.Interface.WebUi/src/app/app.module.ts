@@ -20,6 +20,7 @@ import { MajorService } from './pages/baseInfo/major/services/major.service';
 import { AuthService } from './authentication/services';
 import { EducationSubCourseService } from './pages/baseInfo/educationSubCourse/services/educationsubcourse.service';
 import { SchoolTypeService } from './pages/baseInfo/schoolType/services/schooltype.service';
+import { SchoolSubTypeService } from './pages/baseInfo/schoolSubType/services/schoolsubtype.service';
 
 
 export function tokenGetter() {
@@ -58,7 +59,8 @@ export function tokenGetter() {
     EducationCourseService,
     MajorService,
     EducationSubCourseService,
-    SchoolTypeService
+    SchoolTypeService,
+    SchoolSubTypeService
     //{ provide: APP_INITIALIZER, useFactory: get_settings, deps: [AuthService, UserService], multi: true },
   ],
   bootstrap: [AppComponent],

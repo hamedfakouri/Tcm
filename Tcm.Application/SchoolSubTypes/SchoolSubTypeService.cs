@@ -5,10 +5,12 @@ using System.Linq.Expressions;
 using System.Text;
 using Framework.Core;
 using Framework.Persistence.Ef;
+using Framework.Persistence.Ef.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Tcm.Application.Contract.SchoolTypes;
 using Tcm.Domain.Interfaces;
 using Tcm.Domain.Model;
+
 
 namespace Tcm.Application.SchoolSubTypes
 {
@@ -20,36 +22,35 @@ namespace Tcm.Application.SchoolSubTypes
         {
             _schoolSubTypeRepository = schoolSubTypeRepository;
         }
-        public void Add(SchoolSubTypeDto schoolSubTypeDto)
+        public void Add(SchoolSubType schoolSubType)
         {
-            var schoolSubType = new SchoolSubType() {
-                Name = schoolSubTypeDto.Name,
-                SchoolTypeId = schoolSubTypeDto.SchoolTypeId
+            var item = new SchoolSubType()
+            {
+                Name = schoolSubType.Name,
+                SchoolTypeId = schoolSubType.SchoolTypeId
             };
 
-            _schoolSubTypeRepository.Add(schoolSubType);
-           
+            _schoolSubTypeRepository.Add(item);
+
         }
 
         public void Delete(short Id)
         {
             var schoolSubType = Get(Id);
-            if(schoolSubType!=null)
-            _schoolSubTypeRepository.Delete(schoolSubType.Mapper());
+            if (schoolSubType != null)
+                _schoolSubTypeRepository.Delete(schoolSubType);
         }
 
-        public SchoolSubTypeDto Get(short id)
+        public SchoolSubType Get(short id)
         {
-            return _schoolSubTypeRepository.GetById(id).Mapper();
+            return _schoolSubTypeRepository.GetById(id);
 
 
         }
 
         public List<SchoolSubTypeDto> GetAll(UserParams userParams)
         {
-            var items = _schoolSubTypeRepository.GetAll().Skip((userParams.PageNumber - 1) * userParams.PageSize).Take(userParams.PageSize).ToList().Mapper();
-
-            return null;
+            return _schoolSubTypeRepository.GetAll().Include(t => t.SchoolType).Pager(userParams).ToList().Mapper();
 
         }
 
@@ -58,13 +59,14 @@ namespace Tcm.Application.SchoolSubTypes
             return _schoolSubTypeRepository.GetAll(expression).ToList();
         }
 
-        public void Update(short Id, SchoolSubTypeDto model)
+        public void Update(short Id, SchoolSubType model)
         {
             var schoolSubType = _schoolSubTypeRepository.GetById(Id);
-           
+
             if (schoolSubType != null)
             {
                 schoolSubType.Name = model.Name;
+                schoolSubType.SchoolTypeId = model.SchoolTypeId;
 
                 _schoolSubTypeRepository.Update(schoolSubType);
             }
@@ -91,34 +93,13 @@ namespace Tcm.Application.SchoolSubTypes
                 dto.Id = schoolSubType.Id;
                 dto.Name = schoolSubType.Name;
                 dto.SchoolTypeId = schoolSubType.SchoolType.Id;
-                dto.SchoolTypeName = schoolSubType.Name;
+                dto.SchoolTypeName = schoolSubType.SchoolType.Name;
 
-            }          
+            }
 
             return dto;
         }
-        public static List<SchoolSubType> Mapper(this List<SchoolSubTypeDto> dtos)
-        {
-            var items = new List<SchoolSubType>();
-            dtos.ForEach(x => items.Add(x.Mapper()));
-            return items;
-        }
-
-        public static SchoolSubType Mapper(this SchoolSubTypeDto dto)
-        {
-
-
-            var model = new SchoolSubType();
-
-            if (dto != null)
-            {
-                model.Id = dto.Id;
-                model.Name = dto.Name;
-                model.SchoolTypeId = dto.SchoolTypeId;
-            }
-
-            return model;
-        }
+       
     }
-    
+
 }

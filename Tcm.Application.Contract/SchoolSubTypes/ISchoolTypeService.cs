@@ -12,9 +12,9 @@ namespace Tcm.Application.Contract.SchoolTypes
 
     public interface ISchoolSubTypeService:IApplicationService
     {
-        void Add(SchoolSubTypeDto schoolSubTypeDto);
+        void Add(SchoolSubType schoolSubType);
 
-        SchoolSubTypeDto Get(short Id); 
+        SchoolSubType Get(short Id); 
 
         List<SchoolSubTypeDto> GetAll(UserParams userParams);
 
@@ -22,7 +22,7 @@ namespace Tcm.Application.Contract.SchoolTypes
 
         void Delete(short Id);
 
-        void Update(short Id, SchoolSubTypeDto schoolSubType);
+        void Update(short Id, SchoolSubType schoolSubType);
 
 
 
