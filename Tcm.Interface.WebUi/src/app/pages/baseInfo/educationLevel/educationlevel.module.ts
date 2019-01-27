@@ -19,9 +19,7 @@ import { EducationLevelService } from './services/educationlevel.service';
   providers: []
 })
 export class EducationLevelModule {
-  /**
-   *
-   */
+
   constructor() {
     console.log("-------------------educationLevelModule-------------------")
     

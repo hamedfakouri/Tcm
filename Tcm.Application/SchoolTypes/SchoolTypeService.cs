@@ -20,33 +20,32 @@ namespace Tcm.Application.SchoolTypes
         {
             _schoolTypeRepository = schoolTypeRepository;
         }
-        public void Add(SchoolTypeDto schoolTypeDto)
+        public void Add(SchoolType SchoolType)
         {
-            var schoolType = new SchoolType() {
-                Name = schoolTypeDto.Name
+            var schoolType = new SchoolType()
+            {
+                Name = SchoolType.Name
             };
 
             _schoolTypeRepository.Add(schoolType);
-           
+
         }
 
         public void Delete(short Id)
         {
             var schoolType = Get(Id);
-            if(schoolType!=null)
-            _schoolTypeRepository.Delete(schoolType.Mapper());
+            if (schoolType != null)
+                _schoolTypeRepository.Delete(schoolType);
         }
 
-        public SchoolTypeDto Get(short id)
+        public SchoolType Get(short id)
         {
-           return  _schoolTypeRepository.GetById(id).Mapper();
-
-           
+            return _schoolTypeRepository.GetById(id);
         }
 
-        public List<SchoolTypeDto> GetAll(UserParams userParams)
+        public List<SchoolType> GetAll(UserParams userParams)
         {
-            var items = _schoolTypeRepository.GetAll().OrderBy(userParams.OrderBy, userParams.OrderByType).Skip((userParams.PageNumber - 1) * userParams.PageSize).Take(userParams.PageSize).ToList().Mapper();
+            var items = _schoolTypeRepository.GetAll().OrderBy(userParams.OrderBy, userParams.OrderByType).Skip((userParams.PageNumber - 1) * userParams.PageSize).Take(userParams.PageSize).ToList();
 
             return items;
 
@@ -57,10 +56,10 @@ namespace Tcm.Application.SchoolTypes
             return _schoolTypeRepository.GetAll(expression).ToList();
         }
 
-        public void Update(short Id, SchoolTypeDto model)
+        public void Update(short Id, SchoolType model)
         {
             var schoolType = _schoolTypeRepository.GetById(Id);
-           
+
             if (schoolType != null)
             {
                 schoolType.Name = model.Name;
@@ -72,48 +71,7 @@ namespace Tcm.Application.SchoolTypes
 
     public static class SchoolTypeMapper
     {
-        public static List<SchoolTypeDto> Mapper(this List<SchoolType> schoolTypes)
-        {
-            var items = new List<SchoolTypeDto>();
-            schoolTypes.ForEach(x => items.Add(x.Mapper()));
-            return items;
-        }
-
-        public static SchoolTypeDto Mapper(this SchoolType schoolType)
-        {
-
-
-            var dto = new SchoolTypeDto();
-
-            if (schoolType != null)
-            {
-                dto.Id = schoolType.Id;
-                dto.Name = schoolType.Name;
-            }          
-
-            return dto;
-        }
-        public static List<SchoolType> Mapper(this List<SchoolTypeDto> schoolTypes)
-        {
-            var items = new List<SchoolType>();
-            schoolTypes.ForEach(x => items.Add(x.Mapper()));
-            return items;
-        }
-
-        public static SchoolType Mapper(this SchoolTypeDto schoolType)
-        {
-
-
-            var dto = new SchoolType();
-
-            if (schoolType != null)
-            {
-                dto.Id = schoolType.Id;
-                dto.Name = schoolType.Name;
-            }
-
-            return dto;
-        }
+      
     }
-    
+
 }

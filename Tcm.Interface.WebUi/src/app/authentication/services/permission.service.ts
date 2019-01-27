@@ -35,6 +35,10 @@ export class PermissionService {
     this.userPermissions.push(new Permission(SubjectType.major, TaskType.add));
     this.userPermissions.push(new Permission(SubjectType.major, TaskType.delete));
     this.userPermissions.push(new Permission(SubjectType.major, TaskType.edit));
+
+    this.userPermissions.push(new Permission(SubjectType.schooltype, TaskType.add));
+    this.userPermissions.push(new Permission(SubjectType.schooltype, TaskType.delete));
+    this.userPermissions.push(new Permission(SubjectType.schooltype, TaskType.edit));
    }
 
    HasPermission(subject:SubjectType,task:TaskType):boolean{

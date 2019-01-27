@@ -11,6 +11,7 @@ export const routes: Routes = [
   { path: 'EducationCourse', loadChildren: './pages/baseInfo/educationCourse/educationcourse.module#EducationCourseModule' },
   { path: 'EducationSubCourse', loadChildren: './pages/baseInfo/educationSubCourse/educationsubcourse.module#EducationSubCourseModule' },
   { path: 'Major', loadChildren: './pages/baseInfo/major/major.module#MajorModule' },
+  { path: 'SchoolType', loadChildren: './pages/baseInfo/schoolType/schooltype.module#SchoolTypeModule' },
 
 ];
 

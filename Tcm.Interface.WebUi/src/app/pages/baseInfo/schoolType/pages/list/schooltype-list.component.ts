@@ -7,41 +7,41 @@ import { AlertifyService } from 'src/app/shared/services';
 
 import { Pagination, PaginationResult } from 'src/app/core/models/pagination';
 import { Pair } from 'src/app/core/models';
-import { EducationLevel } from '../../models/educationlevel';
-import { EducationLevelService } from '../../services/educationlevel.service';
+import { SchoolType } from '../../models/schooltype';
+import { SchoolTypeService } from '../../services/schooltype.service';
 
 
 @Component({
-  selector: 'app-educationLevel',
-  templateUrl: 'educationlevel-list.component.html',
-  styleUrls: ['educationlevel-list.component.css']
+  selector: 'app-schoolType',
+  templateUrl: 'schoolType-list.component.html',
+  styleUrls: ['schooltype-list.component.css']
 })
 
-export class EducationLevelComponent implements OnInit, OnDestroy {
+export class SchoolTypeComponent implements OnInit, OnDestroy {
 
   //subscriptions: Subscription[] = [];
 
-  educationLevelItem: EducationLevel = { Id: 0, Name: '' };
+  schoolTypeItem: SchoolType = { Id: 0, Name: '' };
   @ViewChild('f') form: any;
 
   public pagination = new Pagination(1, 10);
-  public items: EducationLevel[] = [];
-  public subject: string = "educationlevel";
+  public items: SchoolType[] = [];
+  public subject: string = "schooltype";
   public dictionary: Array<Pair>;
   userParams: any = {};
 
-  constructor(private alertify: AlertifyService, private educationLevelService: EducationLevelService) { }
+  constructor(private alertify: AlertifyService, private schoolTypeService: SchoolTypeService) { }
 
   ngOnInit() {
 
-    this.dictionary = this.educationLevelService.GetDictionary();
+    this.dictionary = this.schoolTypeService.GetDictionary();
     this.get();
   }
 
   get() {
 
-    this.educationLevelService.GetAllForGrid(this.pagination)
-      .subscribe((res: PaginationResult<EducationLevel>) => {
+    this.schoolTypeService.GetAllForGrid(this.pagination)
+      .subscribe((res: PaginationResult<SchoolType>) => {
 
         if (res.result) {
           this.items = res.result
@@ -60,8 +60,8 @@ export class EducationLevelComponent implements OnInit, OnDestroy {
 
     if (this.form.valid) {
 
-      if (this.educationLevelItem.Id == 0) {
-        this.educationLevelService.add(this.educationLevelItem).subscribe(
+      if (this.schoolTypeItem.Id == 0) {
+        this.schoolTypeService.add(this.schoolTypeItem).subscribe(
           () => {
             this.get();
             this.clearForm();
@@ -71,7 +71,7 @@ export class EducationLevelComponent implements OnInit, OnDestroy {
 
       }
       else {
-        this.educationLevelService.update(this.educationLevelItem.Id, this.educationLevelItem).subscribe(
+        this.schoolTypeService.update(this.schoolTypeItem.Id, this.schoolTypeItem).subscribe(
           () => {
             this.get();
             this.clearForm();
@@ -90,18 +90,18 @@ export class EducationLevelComponent implements OnInit, OnDestroy {
   }
 
 
-  edit(item: EducationLevel) {
+  edit(item: SchoolType) {
 
-    this.educationLevelService.get(item.Id).subscribe(
-      (item: EducationLevel) => {
-        this.educationLevelItem = item;
+    this.schoolTypeService.get(item.Id).subscribe(
+      (item: SchoolType) => {
+        this.schoolTypeItem = item;
       }
     );
   }
 
-  remove(item: EducationLevel) {
+  remove(item: SchoolType) {
 
-    this.educationLevelService.delete(item.Id).subscribe(
+    this.schoolTypeService.delete(item.Id).subscribe(
       () => {
         this.get();
         this.clearForm();
@@ -112,15 +112,15 @@ export class EducationLevelComponent implements OnInit, OnDestroy {
       }
     );
   }
-
+  
   sort(event: Pagination) {
     let sort = event;
     this.get();
   }
 
   clearForm() {
-    this.educationLevelItem.Id = 0;
-    this.educationLevelItem.Name = '';
+    this.schoolTypeItem.Id = 0;
+    this.schoolTypeItem.Name = '';
   }
 
   ngOnDestroy(): void {

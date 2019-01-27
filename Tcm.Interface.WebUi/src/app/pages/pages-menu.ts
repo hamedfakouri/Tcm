@@ -31,6 +31,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'رشته تحصیلی',
         link: 'Major',
       },
+      {
+        title: 'نوع مدرسه',
+        link: 'SchoolType',
+      },
     ],
   },
   {
