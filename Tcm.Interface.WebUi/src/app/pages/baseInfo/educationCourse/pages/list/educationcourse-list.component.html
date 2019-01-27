@@ -11,19 +11,12 @@
 
 
             <div class="form-group row">
-              <label for="txtEmail" class="col-sm-3 col-form-label text-left">عنوان:</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="txtEmail" [(ngModel)]="educationCourseItem.Name" required>
-              </div>
-            </div>
-
-            <div class="form-group row">
               <label for="txtEmail" class="col-sm-3 col-form-label text-left">مقطع تحصیلی:</label>
               <div class="col-sm-9">
 
                 <select class="form-control" name="EducationLevelId" [(ngModel)]="educationCourseItem.EducationLevelId">
                   <option value="0">--- انتخاب کنید ---</option>
-                  <option *ngFor="let item of educationLevelItems" [value]="item.Id" >
+                  <option *ngFor="let item of educationLevelItems" [value]="item.Id">
                     {{item.Name}}
                   </option>
                 </select>
@@ -31,7 +24,22 @@
             </div>
 
             <div class="form-group row">
-              <div class="col-sm-12 text-left">
+              <label for="name" class="col-sm-3 col-form-label text-left">عنوان:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="name" [(ngModel)]="educationCourseItem.Name" required>
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+
+              <div class="col-sm-6">
+
+                <label><input type="checkbox" id='rememberme' name="allowAssignMajor" [value]="educationCourseItem.AllowAssignMajor" [(ngModel)]="educationCourseItem.AllowAssignMajor" />
+                  اجازه ثبت رشته</label>
+              </div>
+
+              <div class="col-sm-6 text-left">
                 <button type="submit" class="btn btn-primary" [disabled]='!f.valid'>ذخیره</button>
               </div>
             </div>

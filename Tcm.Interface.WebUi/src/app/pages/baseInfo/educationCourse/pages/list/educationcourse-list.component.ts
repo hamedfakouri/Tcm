@@ -23,7 +23,7 @@ export class EducationCourseComponent implements OnInit, OnDestroy {
 
   //subscriptions: Subscription[] = [];
 
-  educationCourseItem: EducationCourse = { Id: 0, Name: '', EducationLevelId: 0 , EducationLevelName: '' };
+  educationCourseItem: EducationCourse = { Id: 0, Name: '', EducationLevelId: 0 , EducationLevelName: '',AllowAssignMajor: false };
   public items: EducationCourse[] = [];
   public educationLevelItems: EducationLevel[] = [];
   @ViewChild('f') form: any;
@@ -73,6 +73,7 @@ export class EducationCourseComponent implements OnInit, OnDestroy {
 
   submitForm(): void {
 
+    debugger;
     if (this.educationCourseItem.EducationLevelId == 0){
       this.alertify.error("انتخاب مقطع تحصیلی الزامیست.");
       return;
@@ -147,6 +148,7 @@ export class EducationCourseComponent implements OnInit, OnDestroy {
     this.educationCourseItem.Name = '';
     this.educationCourseItem.EducationLevelId = 0;
     this.educationCourseItem.EducationLevelName = '';
+    this.educationCourseItem.AllowAssignMajor = false;
   }
 
   ngOnDestroy(): void {

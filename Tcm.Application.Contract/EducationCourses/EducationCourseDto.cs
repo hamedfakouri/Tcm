@@ -10,7 +10,7 @@ namespace Tcm.Application.Contract.EducationCourses
         public short EducationLevelId { get; set; }
         public string Name { get; set; }
         public bool AllowAssignMajor { get; set; }
-        public string EducationLevelTitle { get; set; }
+        public string EducationLevelName { get; set; }
     }
 
 }

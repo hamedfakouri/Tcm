@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using Framework.Persistence.Ef;
 using Framework.Persistence.Ef.Extensions;
+using Microsoft.EntityFrameworkCore;
 using Tcm.Application.Contract.EducationCourses;
 using Tcm.Domain.Interfaces;
 using Tcm.Domain.Model;
@@ -48,7 +49,7 @@ namespace Tcm.Application.EducationCourses
 
         public List<EducationCourseListDto> GetAll(UserParams userParams)
         {
-            return _educationCourseRepository.GetAll().Pager(userParams).ToList().Mapper();
+            return _educationCourseRepository.GetAll().Include(t => t.EducationLevel).Pager(userParams).ToList().Mapper();
         }
 
         public List<EducationCourse> GetAll(Expression<Func<EducationCourse, bool>> expression)
@@ -89,7 +90,7 @@ namespace Tcm.Application.EducationCourses
             dto.EducationLevelId = educationCourse.EducationLevelId;
             dto.Name = educationCourse.Name;
             dto.AllowAssignMajor = educationCourse.AllowAssignMajor;
-            //dto.EducationLevelTitle = educationCourse.EducationLevel.Name;
+            dto.EducationLevelName = educationCourse.EducationLevel.Name;
             return dto;
         }
     }
