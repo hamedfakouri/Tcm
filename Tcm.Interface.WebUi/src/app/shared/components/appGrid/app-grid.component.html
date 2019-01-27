@@ -1,4 +1,4 @@
-<div class="table-responsive" *ngIf="showGrid">
+<div class="table-responsive" *ngIf="showGrid && items.length > 0">
         <table class="table table-bordered table-hover customgrid">
                 <thead>
                         <tr class="text-center">
@@ -58,6 +58,10 @@
         </table>
 
 </div>
-<div>
+<div *ngIf="items.length > 0">
         <ngb-pagination [collectionSize]="pagination.totalItems" [(page)]="pagination.currentPage" (pageChange)="pageChanged($event)"></ngb-pagination>
+</div>
+
+<div class="grid-empty-row" *ngIf="items.length == 0">
+        موردی یافت نشد
 </div>

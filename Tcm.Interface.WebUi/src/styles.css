@@ -74,3 +74,12 @@ select {
 .ajs-message{
   font-size: 16px;
 }
+
+.grid-empty-row{
+  width: 100%;
+  font-style: italic;
+  border: 1px dotted gray;
+  text-align: center;
+  padding: 8px;
+  background-color: #c1c1c1;
+}
