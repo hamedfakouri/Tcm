@@ -28,6 +28,10 @@ export class PermissionService {
     this.userPermissions.push(new Permission(SubjectType.educationcourse, TaskType.delete));
     this.userPermissions.push(new Permission(SubjectType.educationcourse, TaskType.edit));
 
+    this.userPermissions.push(new Permission(SubjectType.educationsubcourse, TaskType.add));
+    this.userPermissions.push(new Permission(SubjectType.educationsubcourse, TaskType.delete));
+    this.userPermissions.push(new Permission(SubjectType.educationsubcourse, TaskType.edit));
+
     this.userPermissions.push(new Permission(SubjectType.major, TaskType.add));
     this.userPermissions.push(new Permission(SubjectType.major, TaskType.delete));
     this.userPermissions.push(new Permission(SubjectType.major, TaskType.edit));

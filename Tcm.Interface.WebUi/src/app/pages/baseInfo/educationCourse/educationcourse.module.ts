@@ -22,7 +22,7 @@ import { EducationCourseRoutingModule } from './educationcourse-routing.module';
 export class EducationCourseModule {
 
   constructor() {
-    console.log("-------------------educationLevelModule-------------------")
+    console.log("-------------------educationCourseModule-------------------")
 
   }
 }

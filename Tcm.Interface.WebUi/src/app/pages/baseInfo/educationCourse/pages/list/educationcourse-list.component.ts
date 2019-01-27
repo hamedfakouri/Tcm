@@ -7,10 +7,10 @@ import { AlertifyService } from 'src/app/shared/services';
 
 import { Pagination, PaginationResult } from 'src/app/core/models/pagination';
 import { Pair } from 'src/app/core/models';
-import { EducationCourse } from '../../models/educationcoure';
 import { EducationCourseService } from '../../services/educationcourse.service';
 import { EducationLevelService } from '../../../educationLevel/services/educationlevel.service';
 import { EducationLevel } from '../../../educationLevel/models';
+import { EducationCourse } from '../../models/educationcourse';
 
 
 @Component({
@@ -73,7 +73,6 @@ export class EducationCourseComponent implements OnInit, OnDestroy {
 
   submitForm(): void {
 
-    debugger;
     if (this.educationCourseItem.EducationLevelId == 0){
       this.alertify.error("انتخاب مقطع تحصیلی الزامیست.");
       return;

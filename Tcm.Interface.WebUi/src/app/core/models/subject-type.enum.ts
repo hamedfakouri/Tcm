@@ -5,5 +5,6 @@ export enum SubjectType {
     dashboard,
     educationlevel,
     educationcourse,
+    educationsubcourse,
     major   
 }
