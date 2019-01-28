@@ -14,7 +14,6 @@ namespace Tcm.Application.Contract.Majors
         void Add(Major Major);
 
         Major Get(short Id);
- 
 
         List<Major> GetAll(UserParams userParams);
 

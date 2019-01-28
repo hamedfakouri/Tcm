@@ -58,12 +58,7 @@ namespace Tcm.Persistence.Ef.Repositories
         {
         }
     }
-    public class PhoneNumberRepository : BaseRepository<PhoneNumber,long>, IPhoneNumberRepository
-    {
-        public PhoneNumberRepository(TcmContext tcmContext) : base(tcmContext)
-        {
-        }
-    }
+   
     public class ProvinceRepository : BaseRepository<Province,short>, IProvinceRepository
     {
         public ProvinceRepository(TcmContext tcmContext) : base(tcmContext)
@@ -101,6 +96,12 @@ namespace Tcm.Persistence.Ef.Repositories
         }
     }
 
+    public class RegionRepository : BaseRepository<Region, int>, IRegionRepository
+    {
+        public RegionRepository(TcmContext tcmContext) : base(tcmContext)
+        {
+        }
+    }
 
 
 

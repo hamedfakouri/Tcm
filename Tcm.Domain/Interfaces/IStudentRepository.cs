@@ -33,9 +33,7 @@ namespace Tcm.Domain.Interfaces
     {
     }
 
-    public interface IPhoneNumberRepository : IRepository<PhoneNumber,long >
-    {
-    }
+   
     public interface IProvinceRepository : IRepository<Province,short>
     {
     }
@@ -54,6 +52,10 @@ namespace Tcm.Domain.Interfaces
     }
 
     public interface ICityRepository : IRepository<City, int>
+    {
+    }
+
+    public interface IRegionRepository : IRepository<Region, int>
     {
     }
 

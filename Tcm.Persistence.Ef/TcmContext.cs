@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using Tcm.Domain.IdentityModel;
 using Tcm.Domain.Model;
 
@@ -24,13 +25,14 @@ namespace Tcm.Persistence.Ef
         public DbSet<Province> Provinces { get; set; }
 
         public DbSet<City> Cities { get; set; }
+
+        public DbSet<Region> Regions { get; set; }
         public DbSet<EducationCourse> EducationCourses { get; set; }
         public DbSet<ClassRoom> ClassRooms { get; set; }
         public DbSet<ClassStudent> ClassStudents { get; set; }
         public DbSet<EducationLevel> EducationLevels { get; set; }
         public DbSet<EducationSubCourse> EducationSubCourses { get; set; }
         public DbSet<Major> Majors { get; set; }
-        public DbSet<PhoneNumber> PhoneNumbers { get; set; }
         public DbSet<School> Schools { get; set; }
         public DbSet<SchoolEducationSubCourse> SchoolEducationSubCourses { get; set; }
         public DbSet<SchoolSubType> SchoolSubTypes { get; set; }
@@ -56,7 +58,20 @@ namespace Tcm.Persistence.Ef
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(TcmContext).Assembly);
 
+
+            var cascadeFKs = modelBuilder.Model.GetEntityTypes()
+              .SelectMany(t => t.GetForeignKeys())
+              .Where(fk => !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Cascade);
+
+            foreach (var fk in cascadeFKs)
+                fk.DeleteBehavior = DeleteBehavior.Restrict;
+
+           
+
+
             base.OnModelCreating(modelBuilder);
+
+
         }
     }
 }
