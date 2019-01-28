@@ -43,15 +43,10 @@
 
         <div class="col-md-6  d-inline-block">
 
-
-          <ng-container *ngIf="items && items.length !== 0">
-
             <app-grid [items]="items" [editable]="true" [removable]="true" [dictionary]="dictionary" [subject]="subject"
               [pagination]="pagination" (onSort)="sort($event)" (onRemove)="remove($event)" (onEdit)="edit($event)"
               (onPageChanged)="pageChanged($event)">
             </app-grid>
-
-          </ng-container>
 
         </div>
       </nb-card-body>
