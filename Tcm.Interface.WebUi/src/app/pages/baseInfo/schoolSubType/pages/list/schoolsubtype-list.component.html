@@ -16,7 +16,7 @@
 
                 <select class="form-control" name="EducationLevelId" [(ngModel)]="schoolSubTypeItem.SchoolTypeId">
                   <option value="0">--- انتخاب کنید ---</option>
-                  <option *ngFor="let item of schoolTypeItems" [value]="item.Id">
+                  <option *ngFor="let item of schoolTypeItems | async" [value]="item.Id">
                     {{item.Name}}
                   </option>
                 </select>

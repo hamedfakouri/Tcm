@@ -69,19 +69,11 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
   }
 
   getschoolTypeItems() {
-    this.schoolTypeItems = this.schoolTypeService.GetAllForGrid(this.pagination).pipe(
-      map((res: PaginationResult<SchoolType>) => {
-        return res.result;
-      })
-    );
+    this.schoolTypeItems = this.schoolTypeService.getAll();
   }
 
   getEducationLeveltems() {
-    this.educationLevelItems = this.educationLevelService.GetAllForGrid(this.pagination).pipe(
-      map((res: PaginationResult<SchoolType>) => {
-        return res.result;
-      })
-    );
+    this.educationLevelItems = this.educationLevelService.getAll();
   }
 
   getSchoolSubType(typeId: number) {
