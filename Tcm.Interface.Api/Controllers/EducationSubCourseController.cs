@@ -60,6 +60,16 @@ namespace Tcm.Interface.Api.Controllers
             return Ok(EducationSubCourseDto);
         }
 
+
+        [HttpGet("educationCourse/{educationCourseId}")]
+        public IActionResult GetByEducationCourseId(short educationCourseId)
+        {
+            var items = _EducationSubCourseService.GetAll(x => x.EducationCourseId == educationCourseId);
+
+            return Ok(items);
+        }
+
+
         [HttpDelete("{id}")]
         public IActionResult Delete(short id)
         {

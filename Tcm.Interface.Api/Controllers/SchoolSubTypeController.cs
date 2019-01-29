@@ -43,6 +43,14 @@ namespace Tcm.Interface.Api.Controllers
             return Ok();
         }
 
+        [HttpGet("schoolType/{schoolTypeId}")]
+        public IActionResult GetBySchoolId(short schoolTypeId)
+        {
+            var items = _schoolSubTypeService.GetAll(x=> x.SchoolTypeId == schoolTypeId);
+
+            return Ok(items);
+        }
+
         [HttpGet]
         public IActionResult Get(UserParams userParams)
         {

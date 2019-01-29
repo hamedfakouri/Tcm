@@ -8,7 +8,6 @@ import { InputErrorDirective } from 'src/app/shared/directive';
 export class FormInputComponent implements OnInit {
   @Input() label: string;
   @Input() validations: { [index: string]: string };
-  @Input() info: string;
   @ContentChild(InputErrorDirective) input: InputErrorDirective;
  
   get hasError() {

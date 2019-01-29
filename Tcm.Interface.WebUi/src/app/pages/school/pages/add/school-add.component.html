@@ -1,0 +1,190 @@
+<div class="row">
+
+
+  <nb-card class="col-12">
+    <nb-card-header>مدرسه {{ schoolItem.Name }}</nb-card-header>
+    <nb-card-body>
+
+
+      <form #f="ngForm" (ngSubmit)="submitForm()" novalidate>
+
+        <div class="form-row">
+          <form-input label="نام واحد آموزشی" class="col-6">
+            <input InputError class="form-control" [(ngModel)]="schoolItem.Name" name="Name" required />
+          </form-input>
+
+          <form-input label="تاریخ تاسیس" class="col-6 ">
+            <input InputError class="form-control" name="creationDate" ngModel [(ngModel)]="schoolItem.CreationDate"
+              required>
+          </form-input>
+        </div>
+
+
+        <div class="form-row">
+          <form-input label="نام موسس" class="col-6">
+            <input InputError class="form-control" [(ngModel)]="schoolItem.FounderName" name="FounderName"
+              #TotalStudentCount="ngModel" required />
+          </form-input>
+
+          <form-input label="نام مدیر" class="col-6 ">
+            <input InputError class="form-control" name="ManagerName" ngModel [(ngModel)]="schoolItem.ManagerName"
+              required>
+          </form-input>
+        </div>
+
+
+        <div class="form-row">
+          <form-input label="تعداد کل دانش آموزان" class="col-6">
+            <input InputError class="form-control" [(ngModel)]="schoolItem.TotalStudentCount" name="TotalStudentCount"
+              required />
+          </form-input>
+
+          <form-input label="تعداد دانش آموزان ثبت نامی" class="col-6 ">
+            <input InputError class="form-control" name="RegisterStudentCount" [(ngModel)]="schoolItem.RegisterStudentCount"
+              required>
+          </form-input>
+        </div>
+
+        <div class="form-row">
+          <form-input label="شماره واحد آموزشی" class="col-6">
+            <input InputError class="form-control" [(ngModel)]="schoolItem.SchoolNumber" name="SchoolNumber" required />
+          </form-input>
+
+          <form-input label="آدرس وبلاگ" class="col-6 ">
+            <input InputError class="form-control" name="WebUrl" [(ngModel)]="schoolItem.WebUrl" required>
+          </form-input>
+        </div>
+
+        <div class="form-row">
+          <form-input label="آدرس پستی" class="col-6 ">
+            <input InputError class="form-control" name="PostalAddress" [(ngModel)]="schoolItem.PostalAddress" required>
+          </form-input>
+
+          <form-input label="کد پستی" class="col-6">
+            <input InputError class="form-control" [(ngModel)]="schoolItem.PostalCode" name="PostalCode" required />
+          </form-input>
+
+        </div>
+
+
+        <div class="form-row">
+          <form-input label="شماره تماس" class="col-6 ">
+            <input InputError class="form-control" name="PhoneNumber1" [(ngModel)]="schoolItem.PhoneNumber1" required>
+          </form-input>
+
+          <form-input label="شماره تماس" class="col-6 ">
+            <input InputError class="form-control" name="PhoneNumber2" [(ngModel)]="schoolItem.PhoneNumber2" required>
+          </form-input>
+
+        </div>
+
+        <div class="form-row">
+
+          <div class="form-group col-4">
+            <label>مقطع آموزشی:</label>
+
+            <select class="form-control col-7" name="EducationLevelId" [(ngModel)]="schoolItem.EducationLevelId"
+              (change)="getEducationCourse($event.currentTarget.value)">
+              <option value="0">--- انتخاب کنید ---</option>
+              <option *ngFor="let item of educationLevelItems | async" [value]="item.Id">
+                {{item.Name}}
+              </option>
+            </select>
+
+          </div>
+
+          <div class="form-group col-4">
+            <label>دوره آموزشی:</label>
+
+            <select class="form-control col-7" name="EducationCourseId" [(ngModel)]="schoolItem.EducationCourseId"
+              (change)="getEducationSubCourse($event.currentTarget.value)">
+              <option *ngFor="let item of educationCourseItems | async" [value]="item.Id">
+                {{item.Name}}
+              </option>
+            </select>
+
+          </div>
+
+          <div class="form-group col-4">
+            <label>پایه تحصیلی:</label>
+
+            <select class="form-control col-7" name="EducationSubCourseId" [(ngModel)]="schoolItem.EducationSubCourseId">
+              <option *ngFor="let item of educationSubCourseItems | async" [value]="item.Id">
+                {{item.Name}}
+              </option>
+            </select>
+
+          </div>
+        </div>
+
+        <div class="form-row">
+
+          <div class="form-group col-6">
+            <label>نوع مدرسه:</label>
+
+            <select class="form-control col-5" name="SchoolTypeId" [(ngModel)]="schoolItem.SchoolTypeId" (change)="getSchoolSubType($event.currentTarget.value)">
+              <option value="0">--- انتخاب کنید ---</option>
+              <option *ngFor="let item of schoolTypeItems | async" [value]="item.Id">
+                {{item.Name}}
+              </option>
+            </select>
+
+          </div>
+
+          <div class="form-group col-6">
+            <label>زیر مجموعه مدرسه:</label>
+
+            <select class="form-control col-5" name="SchoolSubTypeId" [(ngModel)]="schoolItem.SchoolSubTypeId">
+              <option *ngFor="let item of schoolSubTypeItems | async" [value]="item.Id">
+                {{item.Name}}
+              </option>
+            </select>
+
+          </div>
+        </div>
+
+        <div class="form-row">
+
+          <div class="form-group col-6">
+
+            <label style="vertical-align: sub">جنسیت: </label>
+
+            <label class="form-check-inline" for="a">
+              <input type="radio" id="a" name="mode" [(ngModel)]="schoolItem.Sex" [value]="false">
+              پسرانه
+            </label>
+
+            <label class="form-check-inline" for="b">
+              <input type="radio" id="b" name="mode" [(ngModel)]="schoolItem.Sex" [value]="true">
+              دخترانه
+            </label>
+
+          </div>
+
+          <div class="form-group col-6">
+            <label style="vertical-align: sub">نوبت: </label>
+
+            <label for="sh0" class="form-check-inline">
+              <input type="checkbox" id='sh0' name="sh0" value="0" [(ngModel)]="schoolItem.ShiftType" />
+              صبح
+            </label>
+
+            <label for="sh1" class="form-check-inline">
+              <input type="checkbox" id='sh1' name="sh1" value="1" [(ngModel)]="schoolItem.ShiftType" />
+              عصر
+            </label>
+          </div>
+
+        </div>
+
+
+
+        <div class="container row mt-2">
+            <!-- [disabled]='!f.valid' -->
+          <button type="submit" class="btn btn-primary">ذخیره</button>
+        </div>
+      </form>
+
+    </nb-card-body>
+  </nb-card>
+</div>

@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <nb-card>
+      <nb-card-header>شناسنامه مدارس</nb-card-header>
+      <nb-card-body>
+
+        <div class="row mb-2 mr-1">
+          <button class="btn btn-primary" [routerLink]="['/School/Add' , 0]" >جدید</button>
+        </div>
+        
+        <app-grid [items]="items" [editable]="true" [removable]="true" [dictionary]="dictionary" [subject]="subject"
+          [pagination]="pagination" (onSort)="sort($event)" (onRemove)="remove($event)" (onEdit)="edit($event)"
+          (onPageChanged)="pageChanged($event)">
+        </app-grid>
+
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

@@ -8,6 +8,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'شناسنامه مدارس',
+    icon: 'nb-home',
+    link: 'School',
+    home: true,
+  },
+  {
     title: 'FEATURES',
     group: true,
   },

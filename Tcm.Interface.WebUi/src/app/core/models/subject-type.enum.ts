@@ -9,4 +9,5 @@ export enum SubjectType {
     major,
     schooltype,
     schoolsubtype,
+    schoollist
 }

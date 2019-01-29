@@ -4,32 +4,29 @@ import { HttpClient } from '@angular/common/http';
 
 import { HttpService } from 'src/app/shared/services/http.service';
 import { Pair } from 'src/app/core/models';
-import { SchoolSubType } from '../models/schoolsubtype';
-import { Observable } from 'rxjs';
+import { School } from '../models/school';
 
 
 @Injectable()
-export class SchoolSubTypeService extends HttpService<SchoolSubType> {
+export class SchoolService extends HttpService<School> {
 
   constructor(private httpClient :HttpClient){
        super(httpClient);
-       this.endpoint = "/api/schoolsubtype/";
+       this.endpoint = "/api/school/";
   }
 
   public GetDictionary():Array<Pair>{
 
     let items = new Array<Pair>();
     
-    items.push(new Pair("Name","عنوان"));
+    items.push(new Pair("Name","نام مرکز"));
+    items.push(new Pair("ProvinceName","استان"));
+    items.push(new Pair("CityName","شهر"));
     items.push(new Pair("SchoolTypeName","نوع مدرسه"));
-  
+    items.push(new Pair("RegisterStudentCount","دانش آموزان ثبت نامی"));
+    items.push(new Pair("TotalStudentCount","مجموع دانش آموزان"));
 
    return items;
-
-  }
-
-  getBySchoolType(Id: number): Observable<SchoolSubType[]>{
-    return this.httpClient.get<SchoolSubType[]>(this.baseUrl + this.endpoint + "schoolType/"+ Id);
 
   }
 

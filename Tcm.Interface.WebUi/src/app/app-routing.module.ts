@@ -13,6 +13,7 @@ export const routes: Routes = [
   { path: 'Major', loadChildren: './pages/baseInfo/major/major.module#MajorModule' },
   { path: 'SchoolType', loadChildren: './pages/baseInfo/schoolType/schooltype.module#SchoolTypeModule' },
   { path: 'SchoolSubType', loadChildren: './pages/baseInfo/schoolSubType/schoolsubtype.module#SchoolSubTypeModule' },
-
+  
+  { path: 'School', loadChildren: './pages/school/school.module#SchoolModule' },
 ];
 

@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { Pair } from 'src/app/core/models';
 import { EducationSubCourse } from '../models/educationsubcourse';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
@@ -26,6 +27,11 @@ export class EducationSubCourseService extends HttpService<EducationSubCourse> {
 
    return items;
 
+  }
+
+  
+  getByEducationCourse(Id: number): Observable<EducationSubCourse[]>{
+    return this.httpClient.get<EducationSubCourse[]>(this.baseUrl + this.endpoint + "educationCourse/"+ Id);
   }
 
 }

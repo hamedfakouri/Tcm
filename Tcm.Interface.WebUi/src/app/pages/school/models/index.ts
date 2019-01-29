@@ -1,0 +1,1 @@
+// export { EducationCourse } from './educationcourse';

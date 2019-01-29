@@ -26,13 +26,31 @@ namespace Tcm.Application.Schools
         {
             var school = new School()
             {
-                Name = School.Name
+                Name = School.Name,
+                CityId = School.CityId,
+                CreationDate = School.CreationDate,
+                FounderName = School.FounderName,
+                ManagerName = School.ManagerName,
+                PhoneNumber1 = School.PhoneNumber1,
+                PhoneNumber2 = School.PhoneNumber2,
+                PostalAddress = School.PostalAddress,
+                PostalCode = School.PostalCode,
+                Region = School.Region,
+                RegisterStudentCount = School.RegisterStudentCount,
+                SchoolNumber = School.SchoolNumber,
+                SchoolSubTypeId = School.SchoolSubTypeId,
+                SchoolTypeId = School.SchoolTypeId,
+                Sex = School.Sex,
+                ShiftType = School.ShiftType,
+                TotalStudentCount = School.TotalStudentCount,
+                WebUrl = School.WebUrl,
+
             };
             _schoolRepository.Add(school);
 
         }
 
-       
+
         public void Delete(int Id)
         {
             var school = Get(Id);
@@ -59,7 +77,7 @@ namespace Tcm.Application.Schools
             return _schoolRepository.GetAll(expression).ToList().Mapper();
         }
 
-       
+
 
         public void Update(int Id, SchoolDto model)
         {
@@ -68,30 +86,44 @@ namespace Tcm.Application.Schools
             if (school != null)
             {
                 school.Name = model.Name;
+                school.CityId = model.CityId;
+                school.CreationDate = model.CreationDate;
+                school.FounderName = model.FounderName;
+                school.ManagerName = model.ManagerName;
+                school.PhoneNumber1 = model.PhoneNumber1;
+                school.PhoneNumber2 = model.PhoneNumber2;
+                school.PostalAddress = model.PostalAddress;
+                school.PostalCode = model.PostalCode;
+                school.Region = model.Region;
+                school.RegisterStudentCount = model.RegisterStudentCount;
+                school.SchoolNumber = model.SchoolNumber;
+                school.SchoolSubTypeId = model.SchoolSubTypeId;
+                school.SchoolTypeId = model.SchoolTypeId;
+                school.Sex = model.Sex;
+                school.ShiftType = model.ShiftType;
+                school.TotalStudentCount = model.TotalStudentCount;
+                school.WebUrl = model.WebUrl;
 
                 _schoolRepository.Update(school);
             }
         }
 
-     
-
-      
     }
 
     public static class SchoolMapper
     {
-     
-            public static List<SchoolDto> Mapper(this List<School> schools)
-            {
-                var items = new List<SchoolDto>();
-                schools.ForEach(x => items.Add(x.Mapper()));
-                return items;
-            }
+        public static List<SchoolDto> Mapper(this List<School> schools)
+        {
+            var items = new List<SchoolDto>();
+            schools.ForEach(x => items.Add(x.Mapper()));
+            return items;
+        }
 
         public static List<SchoolDto> Mapper(this IQueryable<School> schools)
         {
             var items = schools.Select(x => new SchoolDto()
             {
+                Id = x.Id,
                 ProvinceName = x.City.Province.Name,
                 SchoolTypeName = x.SchoolType.Name,
                 CreationDate = x.CreationDate,
@@ -105,10 +137,10 @@ namespace Tcm.Application.Schools
                 RegisterStudentCount = x.TotalStudentCount,
                 TotalStudentCount = x.TotalStudentCount,
                 SchoolNumber = x.SchoolNumber,
-                Sex = x.Sex,                
+                Sex = x.Sex,
                 ShiftType = x.ShiftType,
                 EducationSubCourse = x.SchoolEducationSubCourses.FirstOrDefault().EducationSubCourse,
-                WebUrl =x.WebUrl
+                WebUrl = x.WebUrl
 
             }).ToList();
 
@@ -116,39 +148,70 @@ namespace Tcm.Application.Schools
         }
 
         public static SchoolDto Mapper(this School school)
+        {
+
+
+            var dto = new SchoolDto();
+
+            if (school != null)
             {
-
-
-                var dto = new SchoolDto();
-
-                if (school != null)
-                {
-
-                }
-
-                return dto;
+                dto.Id = school.Id;
+                dto.ProvinceName = school.City?.Province.Name;
+                dto.SchoolTypeName = school.SchoolType?.Name;
+                dto.CreationDate = school.CreationDate;
+                dto.Name = school.Name;
+                dto.FounderName = school.FounderName;
+                dto.ManagerName = school.ManagerName;
+                dto.PostalAddress = school.PostalAddress;
+                dto.PostalCode = school.PostalCode;
+                dto.PhoneNumber1 = school.PhoneNumber1;
+                dto.PhoneNumber2 = school.PhoneNumber2;
+                dto.RegisterStudentCount = school.TotalStudentCount;
+                dto.TotalStudentCount = school.TotalStudentCount;
+                dto.SchoolNumber = school.SchoolNumber;
+                dto.Sex = school.Sex;
+                dto.ShiftType = school.ShiftType;
+                dto.EducationSubCourse = school.SchoolEducationSubCourses?.FirstOrDefault().EducationSubCourse;
+                dto.WebUrl = school.WebUrl;
             }
-            public static List<School> Mapper(this List<SchoolDto> schools)
+
+            return dto;
+        }
+        public static List<School> Mapper(this List<SchoolDto> schools)
+        {
+            var items = new List<School>();
+            schools.ForEach(x => items.Add(x.Mapper()));
+            return items;
+        }
+
+        public static School Mapper(this SchoolDto school)
+        {
+
+
+            var dto = new School();
+
+            if (school != null)
             {
-                var items = new List<School>();
-                schools.ForEach(x => items.Add(x.Mapper()));
-                return items;
+                dto.Id = school.Id;
+                //dto.CreationDate = school.CreationDate;
+                //dto.Name = school.Name;
+                //dto.FounderName = school.FounderName;
+                //dto.ManagerName = school.ManagerName;
+                //dto.PostalAddress = school.PostalAddress;
+                //dto.PostalCode = school.PostalCode;
+                //dto.PhoneNumber1 = school.PhoneNumber1;
+                //dto.PhoneNumber2 = school.PhoneNumber2;
+                //dto.RegisterStudentCount = school.TotalStudentCount;
+                //dto.TotalStudentCount = school.TotalStudentCount;
+                //dto.SchoolNumber = school.SchoolNumber;
+                //dto.Sex = school.Sex;
+                //dto.ShiftType = school.ShiftType;
+                //dto.WebUrl = school.WebUrl;
             }
 
-            public static School Mapper(this SchoolDto school)
-            {
-
-
-                var dto = new School();
-
-                if (school != null)
-                {
-
-                }
-
-                return dto;
-            }
+            return dto;
         }
     }
+}
 
 

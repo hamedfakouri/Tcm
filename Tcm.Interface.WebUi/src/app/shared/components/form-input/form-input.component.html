@@ -1,14 +1,13 @@
-<div class="form-group row justify-content-start">
-  <label class="col-2 col-form-label" for="textTextbox">{{label}}</label>
-  <div class="col-10" [ngClass]="{'has-error': hasError}">
-      <ng-content></ng-content>
+<div class="form-group">
 
-          <ng-container *ngIf='!hasError'>
-              <span class="text-muted"> {{info}}</span>
-          </ng-container>
-          <ng-container *ngIf='hasError'>
-              <span class="text-danger"> {{value | getError : input:label}}</span>
-          </ng-container>
-  
-  </div>
+    <label>{{label}}:</label>
+    
+    <ng-content></ng-content>
+    
+    <div [ngClass]="{'has-error': hasError}">
+        <ng-container *ngIf='hasError'>
+            <span class="text-danger d-inline-block mt-1"> {{value | getError : input:label}}</span>
+        </ng-container>
+
+    </div>
 </div>
