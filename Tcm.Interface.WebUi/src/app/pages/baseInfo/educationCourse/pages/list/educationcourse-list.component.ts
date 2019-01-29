@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 import { Message } from 'src/app/core/models/message.enum';
 
@@ -25,7 +25,7 @@ export class EducationCourseComponent implements OnInit, OnDestroy {
 
   educationCourseItem: EducationCourse = { Id: 0, Name: '', EducationLevelId: 0 , EducationLevelName: '',AllowAssignMajor: false };
   public items: EducationCourse[] = [];
-  public educationLevelItems: EducationLevel[] = [];
+  public educationLevelItems: Observable<EducationLevel[]>;
   @ViewChild('f') form: any;
 
   public pagination = new Pagination(1, 10);
@@ -45,12 +45,7 @@ export class EducationCourseComponent implements OnInit, OnDestroy {
 
   getEducationLevelItems() {
     
-    this.educationLevelService.GetAllForGrid(this.pagination).subscribe((res: PaginationResult<EducationCourse>) => {
-
-      if (res.result) {
-        this.educationLevelItems = res.result
-      }
-    });
+    this.educationLevelItems = this.educationLevelService.getAll();
 
   }
 
@@ -133,7 +128,6 @@ export class EducationCourseComponent implements OnInit, OnDestroy {
         this.alertify.error(err);
       }
     );
-    //this.alertify.deleteConfirm(Message.actionConfirm, this.deleteItem,this.educationCourseItem, this.clearForm);
 
   }
 

@@ -169,3 +169,11 @@ input[type=radio]:active, input[type=radio]:checked:active {
 input[type=radio]:focus {
   outline-color: transparent;
 }
+
+.ng-valid[required], .ng-valid.required  {
+  border-right: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-right: 5px solid #a94442; /* red */
+}
