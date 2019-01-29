@@ -11,18 +11,19 @@ namespace Tcm.Application.Contract.Provinces
 
     public interface IProvinceService:IApplicationService
     {
-        void Add(ProvinceDto Province);
+       
 
-        ProvinceDto Get(short Id);
- 
+      
 
-        List<ProvinceDto> GetAll(UserParams userParams);
+        List<ProvinceDto> GetAll(Expression<Func<Province, bool>> expression);
 
-        List<ProvinceDto> GetAll(Expression<Func<ProvinceDto, bool>> expression);
+        List<CityDto> GetAllCities(short id);
 
-        void Delete(short Id);
+        List<RegionDto> GetAllRegions(int cityId);
 
-        void Update(short Id, ProvinceDto Province);
+
+
+      
 
 
     }

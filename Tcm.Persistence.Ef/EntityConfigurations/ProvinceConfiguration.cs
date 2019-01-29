@@ -12,8 +12,7 @@ namespace Tcm.Persistence.Ef.EntityConfigurations
         public void Configure(EntityTypeBuilder<Province> builder)
         {
             base.Configure(builder);
-
-            
+           
         }
     }
 }

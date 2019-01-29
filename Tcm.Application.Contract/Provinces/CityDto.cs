@@ -4,5 +4,6 @@ namespace Tcm.Application.Contract.Provinces
 {
     public class CityDto :City
     {
+        
     }
 }
