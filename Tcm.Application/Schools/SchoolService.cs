@@ -28,6 +28,7 @@ namespace Tcm.Application.Schools
             {
                 Name = School.Name,
                 CityId = School.CityId,
+                RegionId = School.RegionId,
                 CreationDate = School.CreationDate,
                 FounderName = School.FounderName,
                 ManagerName = School.ManagerName,
@@ -35,7 +36,6 @@ namespace Tcm.Application.Schools
                 PhoneNumber2 = School.PhoneNumber2,
                 PostalAddress = School.PostalAddress,
                 PostalCode = School.PostalCode,
-                Region = School.Region,
                 RegisterStudentCount = School.RegisterStudentCount,
                 SchoolNumber = School.SchoolNumber,
                 SchoolSubTypeId = School.SchoolSubTypeId,
@@ -44,9 +44,14 @@ namespace Tcm.Application.Schools
                 ShiftType = School.ShiftType,
                 TotalStudentCount = School.TotalStudentCount,
                 WebUrl = School.WebUrl,
-
+                EducationCourseId = School.EducationCourseId,
             };
             _schoolRepository.Add(school);
+
+            if(school.Id != 0 && school.SchoolEducationSubCourses != null)
+            {
+                //ToDO: Save School Education Sub Course
+            }
 
         }
 
@@ -60,7 +65,7 @@ namespace Tcm.Application.Schools
 
         public SchoolDto Get(int id)
         {
-            return _schoolRepository.GetById(id).Mapper();
+            return _schoolRepository.GetAll(x=> x.Id == id).Include(x=> x.City).Include(x=> x.EducationCourse).FirstOrDefault().Mapper();
         }
 
         public List<SchoolDto> GetAll(UserParams userParams)
@@ -74,7 +79,7 @@ namespace Tcm.Application.Schools
 
         public List<SchoolDto> GetAll(Expression<Func<School, bool>> expression)
         {
-            return _schoolRepository.GetAll(expression).ToList().Mapper();
+            return _schoolRepository.GetAll(expression).Include(x=> x.City).Include(x => x.EducationCourse).ToList().Mapper();
         }
 
 
@@ -87,6 +92,7 @@ namespace Tcm.Application.Schools
             {
                 school.Name = model.Name;
                 school.CityId = model.CityId;
+                school.RegionId = model.RegionId;
                 school.CreationDate = model.CreationDate;
                 school.FounderName = model.FounderName;
                 school.ManagerName = model.ManagerName;
@@ -94,15 +100,16 @@ namespace Tcm.Application.Schools
                 school.PhoneNumber2 = model.PhoneNumber2;
                 school.PostalAddress = model.PostalAddress;
                 school.PostalCode = model.PostalCode;
-                school.Region = model.Region;
                 school.RegisterStudentCount = model.RegisterStudentCount;
                 school.SchoolNumber = model.SchoolNumber;
-                school.SchoolSubTypeId = model.SchoolSubTypeId;
                 school.SchoolTypeId = model.SchoolTypeId;
+                school.SchoolSubTypeId = model.SchoolSubTypeId;
                 school.Sex = model.Sex;
                 school.ShiftType = model.ShiftType;
                 school.TotalStudentCount = model.TotalStudentCount;
                 school.WebUrl = model.WebUrl;
+                school.EducationCourseId = model.EducationCourseId;
+
 
                 _schoolRepository.Update(school);
             }
@@ -124,10 +131,11 @@ namespace Tcm.Application.Schools
             var items = schools.Select(x => new SchoolDto()
             {
                 Id = x.Id,
+                Name = x.Name,
+                CityName = x.City.Name,
                 ProvinceName = x.City.Province.Name,
                 SchoolTypeName = x.SchoolType.Name,
                 CreationDate = x.CreationDate,
-                Name = x.Name,
                 FounderName = x.FounderName,
                 ManagerName = x.ManagerName,
                 PostalAddress = x.PostalAddress,
@@ -139,7 +147,6 @@ namespace Tcm.Application.Schools
                 SchoolNumber = x.SchoolNumber,
                 Sex = x.Sex,
                 ShiftType = x.ShiftType,
-                EducationSubCourse = x.SchoolEducationSubCourses.FirstOrDefault().EducationSubCourse,
                 WebUrl = x.WebUrl
 
             }).ToList();
@@ -149,30 +156,37 @@ namespace Tcm.Application.Schools
 
         public static SchoolDto Mapper(this School school)
         {
-
-
             var dto = new SchoolDto();
 
             if (school != null)
             {
-                dto.Id = school.Id;
-                dto.ProvinceName = school.City?.Province.Name;
-                dto.SchoolTypeName = school.SchoolType?.Name;
-                dto.CreationDate = school.CreationDate;
-                dto.Name = school.Name;
-                dto.FounderName = school.FounderName;
-                dto.ManagerName = school.ManagerName;
-                dto.PostalAddress = school.PostalAddress;
-                dto.PostalCode = school.PostalCode;
-                dto.PhoneNumber1 = school.PhoneNumber1;
-                dto.PhoneNumber2 = school.PhoneNumber2;
-                dto.RegisterStudentCount = school.TotalStudentCount;
-                dto.TotalStudentCount = school.TotalStudentCount;
-                dto.SchoolNumber = school.SchoolNumber;
-                dto.Sex = school.Sex;
-                dto.ShiftType = school.ShiftType;
-                dto.EducationSubCourse = school.SchoolEducationSubCourses?.FirstOrDefault().EducationSubCourse;
-                dto.WebUrl = school.WebUrl;
+                dto = new SchoolDto()
+                {
+                    Id = school.Id,
+                    CityId = school.CityId,
+                    ProvinceId = school.City?.ProvinceId,
+                    RegionId = school.RegionId,
+                    SchoolTypeId = school.SchoolTypeId,
+                    SchoolSubTypeId = school.SchoolSubTypeId,
+                    CreationDate = school.CreationDate,
+                    Name = school.Name,
+                    FounderName = school.FounderName,
+                    ManagerName = school.ManagerName,
+                    PostalAddress = school.PostalAddress,
+                    PostalCode = school.PostalCode,
+                    PhoneNumber1 = school.PhoneNumber1,
+                    PhoneNumber2 = school.PhoneNumber2,
+                    RegisterStudentCount = school.TotalStudentCount,
+                    TotalStudentCount = school.TotalStudentCount,
+                    SchoolNumber = school.SchoolNumber,
+                    Sex = school.Sex,
+                    ShiftType = school.ShiftType,
+                    schoolEducationSubCourses = school.SchoolEducationSubCourses?.ToList(),
+                    WebUrl = school.WebUrl,
+                    EducationCourseId = school.EducationCourseId,
+                    EducationLevelId = school.EducationCourse.EducationLevelId,
+                    
+                };
             }
 
             return dto;
@@ -193,20 +207,6 @@ namespace Tcm.Application.Schools
             if (school != null)
             {
                 dto.Id = school.Id;
-                //dto.CreationDate = school.CreationDate;
-                //dto.Name = school.Name;
-                //dto.FounderName = school.FounderName;
-                //dto.ManagerName = school.ManagerName;
-                //dto.PostalAddress = school.PostalAddress;
-                //dto.PostalCode = school.PostalCode;
-                //dto.PhoneNumber1 = school.PhoneNumber1;
-                //dto.PhoneNumber2 = school.PhoneNumber2;
-                //dto.RegisterStudentCount = school.TotalStudentCount;
-                //dto.TotalStudentCount = school.TotalStudentCount;
-                //dto.SchoolNumber = school.SchoolNumber;
-                //dto.Sex = school.Sex;
-                //dto.ShiftType = school.ShiftType;
-                //dto.WebUrl = school.WebUrl;
             }
 
             return dto;

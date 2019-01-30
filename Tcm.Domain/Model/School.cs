@@ -8,13 +8,18 @@ namespace Tcm.Domain.Model
         public string Name { get; set; }
         public int CityId { get; set; }
         public City City { get; set; }
-        public string Region { get; set; }
+
+        public int RegionId { get; set; }
+        public Region Region { get; set; }
 
         public short SchoolTypeId { get; set; }
         public SchoolType SchoolType { get; set; }
 
         public short SchoolSubTypeId { get; set; }
         public SchoolSubType SchoolSubType { get; set; }
+
+        public short EducationCourseId { get; set; }
+        public EducationCourse EducationCourse { get; set; }
 
         public List<SchoolEducationSubCourse> SchoolEducationSubCourses { get; set; }
 

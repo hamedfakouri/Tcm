@@ -1,3 +1,5 @@
+import { SchoolEducationSubCourse } from "./SchoolEducationSubCourse";
+
 export interface School {
     Id: number,
     Name: string,
@@ -30,4 +32,5 @@ export interface School {
     PhoneNumber1: string,
     PhoneNumber2: string,
     CreationDate: string,
+    SchoolEducationSubCourse: SchoolEducationSubCourse[];
 }

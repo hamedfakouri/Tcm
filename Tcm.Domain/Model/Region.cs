@@ -12,7 +12,8 @@ namespace Tcm.Domain.Model
 
         public City City { get; set; }
 
-  
+        public List<School> Schools { get; set; }
+
 
     }
 }

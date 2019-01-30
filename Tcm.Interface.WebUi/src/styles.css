@@ -171,9 +171,9 @@ input[type=radio]:focus {
 }
 
 .ng-valid[required], .ng-valid.required  {
-  border-right: 5px solid #42A948; /* green */
+  border-right: 5px solid #42A948 !important; /* green */
 }
 
 .ng-invalid:not(form)  {
-  border-right: 5px solid #a94442; /* red */
+  border-right: 5px solid #a94442 !important; /* red */
 }

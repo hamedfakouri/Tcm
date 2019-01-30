@@ -21,6 +21,10 @@ import { EducationLevel } from 'src/app/pages/baseInfo/educationLevel/models';
 import { EducationLevelService } from 'src/app/pages/baseInfo/educationLevel/services/educationlevel.service';
 import { EducationCourseService } from 'src/app/pages/baseInfo/educationCourse/services/educationcourse.service';
 import { EducationSubCourseService } from 'src/app/pages/baseInfo/educationSubCourse/services/educationsubcourse.service';
+import { ProvinceService } from 'src/app/core/services/province.service';
+import { Province } from 'src/app/core/models/province';
+import { Region } from 'src/app/core/models/region';
+import { City } from 'src/app/core/models/city';
 
 @Component({
   selector: 'app-school-add',
@@ -35,9 +39,9 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
   schoolItem: School = {
     Id: 0, Name: '', EducationLevelId: 0, EducationLevelName: '', EducationCourseId: 0, EducationCourseName: '',
     EducationSubCourseId: 0, EducationSubCourseName: '', ProvinceId: 0, ProvinceName: '', CityId: 0, CityName: '',
-    RegionId: 0, RegionName: '', SchoolTypeId: 0, SchoolTypeName: '', SchoolSubTypeId: 0,
+    RegionId: 0, RegionName: '', SchoolTypeId: 0, SchoolTypeName: '', SchoolSubTypeId: 0, CreationDate: '',
     SchoolSubTypeName: '', Sex: false, ShiftType: 0, TotalStudentCount: '', RegisterStudentCount: '', SchoolNumber: '',
-    FounderName: '', ManagerName: '', PostalAddress: '', PostalCode: '', WebUrl: '', PhoneNumber1: '', PhoneNumber2: '', CreationDate: ''
+    FounderName: '', ManagerName: '', PostalAddress: '', PostalCode: '', WebUrl: '', PhoneNumber1: '', PhoneNumber2: '',SchoolEducationSubCourse: null
   };
 
   public items: School[] = [];
@@ -46,6 +50,9 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
   public educationLevelItems: Observable<EducationLevel[]>;
   public educationCourseItems: Observable<EducationCourse[]>;
   public educationSubCourseItems: Observable<EducationSubCourse[]>;
+  public provinceItems: Observable<Province[]>;
+  public cityItems: Observable<City[]>;
+  public regionItems: Observable<Region[]>;
 
   @ViewChild('f') form: any;
 
@@ -56,16 +63,21 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
   constructor(private alertify: AlertifyService, private schoolService: SchoolService,
     private schoolTypeService: SchoolTypeService, private schoolSubTypeService: SchoolSubTypeService,
     private educationLevelService: EducationLevelService, private educationCourseService: EducationCourseService,
-    private educationSubCourseService: EducationSubCourseService,
+    private educationSubCourseService: EducationSubCourseService, private provinceService: ProvinceService,
     private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
 
     this.getschoolTypeItems();
     this.getEducationLeveltems();
+    this.getProvinceItems();
 
     this.getItem();
 
+  }
+
+  getProvinceItems() {
+    this.provinceItems = this.provinceService.getAll();
   }
 
   getschoolTypeItems() {
@@ -74,6 +86,16 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
 
   getEducationLeveltems() {
     this.educationLevelItems = this.educationLevelService.getAll();
+  }
+
+  getCity(ProvinceId: number) {
+    this.cityItems = this.provinceService.getCitiesByProvince(ProvinceId);
+  }
+
+  getRegion(CityId: number) {
+    if (CityId != 329) return;
+
+    this.regionItems = this.provinceService.getRegionsByCity(CityId);
   }
 
   getSchoolSubType(typeId: number) {
@@ -104,6 +126,22 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
     this.schoolService.get(this.schoolItem.Id).subscribe(
       (res: School) => {
         this.schoolItem = res;
+
+        if (this.schoolItem.ProvinceId != 0) {
+          this.getCity(this.schoolItem.ProvinceId);
+
+          if (this.schoolItem.CityId == 329) {
+            this.getRegion(this.schoolItem.CityId);
+          }
+        }
+
+        if (this.schoolItem.SchoolTypeId != 0) {
+          this.getSchoolSubType(this.schoolItem.SchoolTypeId);
+        }
+
+        if (this.schoolItem.EducationLevelId != 0) {
+          this.getEducationCourse(this.schoolItem.EducationLevelId);
+        }
       }
     );
   }
@@ -132,8 +170,8 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
   }
 
   navigateToSchoolList() {
-    this.router.navigate(['School']);
-    this.alertify.success(Message.saveSuccess);
+    // this.router.navigate(['School']);
+    // this.alertify.success(Message.saveSuccess);
   }
 
   clearForm() {

@@ -13,10 +13,10 @@ namespace Tcm.Application.Contract.SchoolTypes
 
         public int CityId { get; set; }
         public string CityName { get; set; }
-
-        public string Region { get; set; }
-
-
+        public short? ProvinceId { get; set; }
+        public string ProvinceName { get; set; }
+        public int RegionId { get; set; }
+        public string RegionName { get; set; }
 
         public short SchoolTypeId { get; set; }
         public string SchoolTypeName { get; set; }
@@ -52,35 +52,15 @@ namespace Tcm.Application.Contract.SchoolTypes
         public string PhoneNumber1 { get; set; }
         public string PhoneNumber2 { get; set; }
 
-        public string ProvinceName { get; set; }
         public string SexName => Sex ? "خانم" : "آقا";
 
+        public int EducationLevelId { get; set; }
         public string EducationLevelName { get; set; }
 
-        public EducationSubCourse EducationSubCourse { get; set; }
-
-        public string EducationSubCourseName
-        {
-            get
-            {
-                if (EducationSubCourse != null)
-                    return EducationSubCourse.Name;
-
-                return "-";
-            }
-        }
-
-        public string EducationCourseName
-        {
-            get
-            {
-                return EducationSubCourse?.EducationCourse?.Name;
-
-            }
-        }
-
-
-
+        public short EducationCourseId { get; set; }
+        public string EducationCourseName { get; set; }
+        public List<SchoolEducationSubCourse> schoolEducationSubCourses { get; set; }
+       
     }
 
 }

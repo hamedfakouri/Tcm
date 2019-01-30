@@ -39,7 +39,7 @@ namespace Tcm.Application.SchoolTypes
             {
                 Id = x.Id,
                 Name = x.Name
-            }).ToList();
+            }).OrderBy(x => x.Name).ToList();
         }
 
         
@@ -49,7 +49,7 @@ namespace Tcm.Application.SchoolTypes
             var items = _cityRepository.GetAll(x => x.ProvinceId == id).Select(x=> new CityDto() {
                 Id = x.Id,
                 Name =x.Name
-            }).ToList();
+            }).OrderBy(x => x.Name).ToList();
             return items;
         }
 

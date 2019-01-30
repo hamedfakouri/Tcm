@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tcm.Persistence.Ef;
 
 namespace Tcm.Persistence.Ef.Migrations
 {
     [DbContext(typeof(TcmContext))]
-    partial class TcmContextModelSnapshot : ModelSnapshot
+    [Migration("20190129234003_add_regionId_To_School")]
+    partial class add_regionId_To_School
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
