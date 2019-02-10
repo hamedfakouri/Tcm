@@ -1,6 +1,6 @@
-export interface SchoolSubType {
-    Id: number,
-    Name: string,
-    SchoolTypeId: number,
-    SchoolTypeName: string,
+export class SchoolSubType {
+    Id: number;
+    Name: string;
+    SchoolTypeId: number;
+    SchoolTypeName: string;
 }

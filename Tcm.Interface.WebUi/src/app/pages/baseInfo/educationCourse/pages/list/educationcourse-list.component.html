@@ -7,14 +7,14 @@
 
         <div class="col-md-6 align-top d-inline-block">
 
-          <form #f="ngForm" (ngSubmit)="submitForm()" novalidate>
+          <form #f="ngForm" (ngSubmit)="add(item)" novalidate>
 
 
             <div class="form-group row">
               <label for="txtEmail" class="col-sm-3 col-form-label text-left">مقطع تحصیلی:</label>
               <div class="col-sm-9">
 
-                <select class="form-control" name="EducationLevelId" [(ngModel)]="educationCourseItem.EducationLevelId">
+                <select class="form-control" name="EducationLevelId" [(ngModel)]="item.EducationLevelId">
                   <option value="0">--- انتخاب کنید ---</option>
                   <option *ngFor="let item of educationLevelItems | async" [value]="item.Id">
                     {{item.Name}}
@@ -26,7 +26,7 @@
             <div class="form-group row">
               <label for="name" class="col-sm-3 col-form-label text-left">عنوان:</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="name" [(ngModel)]="educationCourseItem.Name" required>
+                <input type="text" class="form-control" name="name" [(ngModel)]="item.Name" required>
               </div>
             </div>
 
@@ -35,7 +35,7 @@
 
               <div class="col-sm-6">
 
-                <label><input type="checkbox" id='allow' name="allowAssignMajor" [value]="educationCourseItem.AllowAssignMajor" [(ngModel)]="educationCourseItem.AllowAssignMajor" />
+                <label><input type="checkbox" id='allow' name="allowAssignMajor" [value]="item.AllowAssignMajor" [(ngModel)]="item.AllowAssignMajor" />
                   اجازه ثبت رشته</label>
               </div>
 
@@ -50,7 +50,7 @@
         <div class="col-md-6  d-inline-block">
 
             <app-grid [items]="items" [editable]="true" [removable]="true" [dictionary]="dictionary" [subject]="subject"
-              [pagination]="pagination" (onSort)="sort($event)" (onRemove)="remove($event)" (onEdit)="edit($event)"
+              [pagination]="pagination" (onSort)="sort($event)" (onRemove)="remove($event)" (onEdit)="goToEdit($event)"
               (onPageChanged)="pageChanged($event)">
             </app-grid>
 

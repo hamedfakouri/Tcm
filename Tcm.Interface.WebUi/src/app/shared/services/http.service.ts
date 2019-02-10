@@ -13,6 +13,7 @@ export class HttpService<T> {
 
   public baseUrl = environment.baseUrl;
   public endpoint: string = "";
+  public url:string= "";
   readonly httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -29,30 +30,30 @@ export class HttpService<T> {
 
   getAll(): Observable<Array<T>> {
 
-    return this.http.get<Array<T>>(this.baseUrl + this.endpoint);
+    return this.http.get<Array<T>>(this.url);
   }
 
   get(id): Observable<T> {
-    return this.http.get<T>(this.baseUrl + this.endpoint + id);
+    return this.http.get<T>(this.url + id);
   }
 
   add(T): Observable<T> {
     console.log(T);
-    return this.http.post<T>(this.baseUrl + this.endpoint, JSON.stringify(T), this.httpOptions).pipe(
+    return this.http.post<T>(this.url, JSON.stringify(T), this.httpOptions).pipe(
       tap((T) => console.log(`added  w/ `)),
       catchError(this.handleError<any>('add'))
     );
   }
 
   update(id, T): Observable<T> {
-    return this.http.put(this.baseUrl + this.endpoint + id, JSON.stringify(T), this.httpOptions).pipe(
+    return this.http.put(this.url + id, JSON.stringify(T), this.httpOptions).pipe(
       tap(_ => console.log(`updated  id=${id}`)),
       catchError(this.handleError<any>('updateCar'))
     );
   }
 
   delete(id): Observable<T> {
-    return this.http.delete<any>(this.baseUrl + this.endpoint + id, this.httpOptions).pipe(
+    return this.http.delete<any>(this.url + id, this.httpOptions).pipe(
       tap(_ => console.log(`deleted  id=${id}`)),
       catchError(this.handleError<any>('deleteCar'))
     );
@@ -69,13 +70,14 @@ export class HttpService<T> {
     }
 
     if (pagination.orderBy) {
+      var orderByType: string = pagination.orderByType.toString();
       params = params.append('orderBy', pagination.orderBy);
-      params = params.append('orderByType', pagination.orderByType);
+      params = params.append('orderByType',orderByType);
 
     }
 
 
-    return this.http.get<Array<T>>(this.baseUrl + this.endpoint, { observe: 'response', params }).pipe(map(response => {
+    return this.http.get<Array<T>>(this.url, { observe: 'response', params }).pipe(map(response => {
       paginatedResult.result = response.body;
       if (response.headers.get('pagination')) {
         paginatedResult.pagination = JSON.parse(response.headers.get('pagination'));

@@ -10,9 +10,11 @@ import { SchoolType } from '../models/schooltype';
 export class SchoolTypeService extends HttpService<SchoolType> {
 
   constructor(private httpClient :HttpClient){
-       super(httpClient);
-       this.endpoint = "/api/schooltype/";
-  }
+    super(httpClient);
+    this.endpoint = "SchoolType";
+    this.url = this.baseUrl + "/api/" + this.endpoint+"/"
+
+}
 
   public GetDictionary():Array<Pair>{
 

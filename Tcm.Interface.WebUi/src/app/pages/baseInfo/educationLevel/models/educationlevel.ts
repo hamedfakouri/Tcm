@@ -1,4 +1,4 @@
-export interface EducationLevel {
-    Id: number,
-    Name: string
+export class EducationLevel {
+    Id: number;
+    Name: string;
 }

@@ -37,13 +37,13 @@
 
                                         <ng-container *ngIf="editable">
                                                 <td class="text-center">
-                                                        <button class="btn btn-sm btn-success" (click)="edit(item)">
+                                                        <button class="btn btn-sm btn-success" (click)="edit(item.Id)">
                                                                 <i class="fa fa-edit"></i></button>
                                                 </td>
                                         </ng-container>
                                         <ng-container *ngIf="removable">
                                                 <td class="text-center">
-                                                        <button class="btn btn-danger btn-sm" (click)="remove(item,confirmTemplate)">
+                                                        <button class="btn btn-danger btn-sm" (click)="remove(item.Id,confirmTemplate)">
                                                                 <i class="fa fa-times-circle"></i></button>
                                                 </td>
                                         </ng-container>

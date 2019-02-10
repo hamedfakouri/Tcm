@@ -3,7 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { MajorComponent } from './pages/list/major-list.component';
 
 const routes: Routes = [
-  {path:'',component:MajorComponent}
+  {path:'',component:MajorComponent},
+  {path:'edit/:id',component:MajorComponent}
+
 ];
 
 @NgModule({

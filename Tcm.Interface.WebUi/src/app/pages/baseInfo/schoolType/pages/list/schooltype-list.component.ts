@@ -9,6 +9,8 @@ import { Pagination, PaginationResult } from 'src/app/core/models/pagination';
 import { Pair } from 'src/app/core/models';
 import { SchoolType } from '../../models/schooltype';
 import { SchoolTypeService } from '../../services/schooltype.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CrudComponent } from 'src/app/shared/components/Crud/crud.component';
 
 
 @Component({
@@ -17,114 +19,26 @@ import { SchoolTypeService } from '../../services/schooltype.service';
   styleUrls: ['schooltype-list.component.css']
 })
 
-export class SchoolTypeComponent implements OnInit, OnDestroy {
+export class SchoolTypeComponent extends CrudComponent<SchoolType> implements OnInit, OnDestroy {
 
-  //subscriptions: Subscription[] = [];
 
-  schoolTypeItem: SchoolType = { Id: 0, Name: '' };
-  @ViewChild('f') form: any;
 
-  public pagination = new Pagination(1, 10);
-  public items: SchoolType[] = [];
   public subject: string = "schooltype";
-  public dictionary: Array<Pair>;
-  userParams: any = {};
-
-  constructor(private alertify: AlertifyService, private schoolTypeService: SchoolTypeService) { }
+  constructor(
+    private schoolTypeService: SchoolTypeService,route: ActivatedRoute,
+    router: Router) {
+      super(schoolTypeService,route,router);
+     }
 
   ngOnInit() {
 
+    this.item = new SchoolType();
+    this.items = new Array<SchoolType>();
     this.dictionary = this.schoolTypeService.GetDictionary();
-    this.get();
+    this.getَAll();
+    this.getQueryString();
   }
 
-  get() {
-
-    this.schoolTypeService.GetAllForGrid(this.pagination)
-      .subscribe((res: PaginationResult<SchoolType>) => {
-
-        if (res.result) {
-          this.items = res.result
-        }
-        else {
-          this.items = [];
-        }
-        this.pagination = res.pagination;
-      }, err => {
-        console.log(err);
-      });
-  }
-
-
-  submitForm(): void {
-
-    if (this.form.valid) {
-
-      if (this.schoolTypeItem.Id == 0) {
-        this.schoolTypeService.add(this.schoolTypeItem).subscribe(
-          () => {
-            this.get();
-            this.clearForm();
-            this.alertify.success(Message.saveSuccess);
-          }
-        );
-
-      }
-      else {
-        this.schoolTypeService.update(this.schoolTypeItem.Id, this.schoolTypeItem).subscribe(
-          () => {
-            this.get();
-            this.clearForm();
-            this.alertify.success(Message.saveSuccess);
-          }
-        );
-      }
-    }
-  }
-
-
-  pageChanged(event: any): void {
-    this.pagination.currentPage = event;
-    console.log(this.pagination.currentPage);
-    this.get();
-  }
-
-
-  edit(item: SchoolType) {
-
-    this.schoolTypeService.get(item.Id).subscribe(
-      (item: SchoolType) => {
-        this.schoolTypeItem = item;
-      }
-    );
-  }
-
-  remove(item: SchoolType) {
-
-    this.schoolTypeService.delete(item.Id).subscribe(
-      () => {
-        this.get();
-        this.clearForm();
-        this.alertify.success(Message.deleteSuccess);
-      },
-      err => {
-        this.alertify.error(err);
-      }
-    );
-  }
-  
-  sort(event: Pagination) {
-    let sort = event;
-    this.get();
-  }
-
-  clearForm() {
-    this.schoolTypeItem.Id = 0;
-    this.schoolTypeItem.Name = '';
-  }
-
-  ngOnDestroy(): void {
-    //this.subscriptions.forEach(s => s.unsubscribe());
-  }
+ 
 
 }

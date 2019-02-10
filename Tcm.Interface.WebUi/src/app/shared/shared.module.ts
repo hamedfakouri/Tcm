@@ -7,6 +7,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppGridComponent,BreadCrumbComponent } from './components';
 import { ThemeModule } from '../theme/theme.module';
 import { SharedServiceModule } from './services/shared-service.module';
+import { CrudComponent } from './components/Crud/crud.component';
 
 
 console.log("--------------------------------SharedModulebundled----------------")
@@ -25,7 +26,8 @@ console.log("--------------------------------SharedModulebundled----------------
     FormInputComponent,
     GetErrorPipe,
     AppGridComponent,
-    BreadCrumbComponent
+    BreadCrumbComponent,
+    CrudComponent
     ]
   ,
   exports:[
@@ -33,12 +35,12 @@ console.log("--------------------------------SharedModulebundled----------------
     PermissionDirective,
     FormInputComponent,
     BreadCrumbComponent,
-
+    CrudComponent,
     AppGridComponent,
     ThemeModule,
-    SharedServiceModule
+    
   ],
-  providers:[NgbModule]
+  providers:[NgbModule,SharedServiceModule]
 })
 
 

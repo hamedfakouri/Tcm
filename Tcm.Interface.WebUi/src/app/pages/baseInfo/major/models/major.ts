@@ -1,4 +1,4 @@
-export interface Major {
-    Id: number,
+export class Major {
+    Id: number;
     Name: string
 }

@@ -11,14 +11,16 @@ import { Pair } from 'src/app/core/models';
 export class EducationLevelService extends HttpService<EducationLevel> {
 
   constructor(private httpClient :HttpClient){
-       super(httpClient);
-       this.endpoint = "/api/educationlevel/";
-  }
+    super(httpClient);
+    this.endpoint = "educationLevel";
+    this.url = this.baseUrl + "/api/" + this.endpoint+"/"
+
+}
 
   public GetDictionary():Array<Pair>{
 
     let items = new Array<Pair>();
-    // items.push(new Pair("Id","شماره"));
+    items.push(new Pair("Id","شماره"));
     items.push(new Pair("Name","نام"));
   
 

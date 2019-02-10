@@ -3,7 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { SchoolTypeComponent } from './pages/list/schooltype-list.component';
 
 const routes: Routes = [
-  {path:'',component:SchoolTypeComponent}
+  {path:'',component:SchoolTypeComponent},
+  {path:'edit/:id',component:SchoolTypeComponent}
+
 ];
 
 @NgModule({

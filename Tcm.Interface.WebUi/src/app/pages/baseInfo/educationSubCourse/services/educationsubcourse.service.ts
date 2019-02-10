@@ -12,10 +12,11 @@ import { Observable } from 'rxjs';
 export class EducationSubCourseService extends HttpService<EducationSubCourse> {
 
   constructor(private httpClient :HttpClient){
-       super(httpClient);
-       this.endpoint = "/api/educationsubcourse/";
-  }
+    super(httpClient);
+    this.endpoint = "EducationSubCourse";
+    this.url = this.baseUrl + "/api/" + this.endpoint+"/"
 
+}
   public GetDictionary():Array<Pair>{
 
     let items = new Array<Pair>();
@@ -31,7 +32,7 @@ export class EducationSubCourseService extends HttpService<EducationSubCourse> {
 
   
   getByEducationCourse(Id: number): Observable<EducationSubCourse[]>{
-    return this.httpClient.get<EducationSubCourse[]>(this.baseUrl + this.endpoint + "educationCourse/"+ Id);
+    return this.httpClient.get<EducationSubCourse[]>(this.url+ "educationCourse/"+ Id);
   }
 
 }

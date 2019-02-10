@@ -12,10 +12,11 @@ import { Observable } from 'rxjs';
 export class SchoolSubTypeService extends HttpService<SchoolSubType> {
 
   constructor(private httpClient :HttpClient){
-       super(httpClient);
-       this.endpoint = "/api/schoolsubtype/";
-  }
+    super(httpClient);
+    this.endpoint = "SchoolSubType";
+    this.url = this.baseUrl + "/api/" + this.endpoint+"/"
 
+}
   public GetDictionary():Array<Pair>{
 
     let items = new Array<Pair>();
@@ -29,7 +30,7 @@ export class SchoolSubTypeService extends HttpService<SchoolSubType> {
   }
 
   getBySchoolType(Id: number): Observable<SchoolSubType[]>{
-    return this.httpClient.get<SchoolSubType[]>(this.baseUrl + this.endpoint + "schoolType/"+ Id);
+    return this.httpClient.get<SchoolSubType[]>(this.url + "schoolType/"+ Id);
 
   }
 

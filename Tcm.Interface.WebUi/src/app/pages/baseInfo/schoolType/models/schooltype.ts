@@ -1,4 +1,4 @@
-export interface SchoolType {
-    Id: number,
+export class SchoolType {
+    Id: number;
     Name: string
 }

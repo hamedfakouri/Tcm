@@ -23,7 +23,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'مقطع تحصیلی',
-        link: 'EducationLevel',
+        link: 'educationLevel',
       },
       {
         title: 'دوره تحصیلی',

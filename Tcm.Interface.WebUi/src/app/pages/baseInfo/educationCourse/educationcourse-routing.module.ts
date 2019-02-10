@@ -3,7 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { EducationCourseComponent } from './pages/list/educationcourse-list.component';
 
 const routes: Routes = [
-  {path:'',component:EducationCourseComponent}
+  {path:'',component:EducationCourseComponent},
+  {path:'edit/:id',component:EducationCourseComponent}
+
 ];
 
 @NgModule({

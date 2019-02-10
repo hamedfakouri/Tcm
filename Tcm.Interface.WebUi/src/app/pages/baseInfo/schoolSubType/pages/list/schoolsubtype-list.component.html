@@ -7,14 +7,14 @@
 
         <div class="col-md-6 align-top d-inline-block">
 
-          <form #f="ngForm" (ngSubmit)="submitForm()" novalidate>
+          <form #f="ngForm" (ngSubmit)="add(item)" novalidate>
 
 
             <div class="form-group row">
               <label for="txtEmail" class="col-sm-3 col-form-label text-left">نوع مدرسه:</label>
               <div class="col-sm-9">
 
-                <select class="form-control" name="EducationLevelId" [(ngModel)]="schoolSubTypeItem.SchoolTypeId">
+                <select class="form-control" name="EducationLevelId" [(ngModel)]="item.SchoolTypeId">
                   <option value="0">--- انتخاب کنید ---</option>
                   <option *ngFor="let item of schoolTypeItems | async" [value]="item.Id">
                     {{item.Name}}
@@ -26,7 +26,7 @@
             <div class="form-group row">
               <label for="name" class="col-sm-3 col-form-label text-left">عنوان:</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="name" [(ngModel)]="schoolSubTypeItem.Name" required>
+                <input type="text" class="form-control" name="name" [(ngModel)]="item.Name" required>
               </div>
             </div>
 
@@ -46,7 +46,7 @@
 
 
           <app-grid [items]="items" [editable]="true" [removable]="true" [dictionary]="dictionary" [subject]="subject"
-            [pagination]="pagination" (onSort)="sort($event)" (onRemove)="remove($event)" (onEdit)="edit($event)"
+            [pagination]="pagination" (onSort)="sort($event)" (onRemove)="remove($event)" (onEdit)="goToEdit($event)"
             (onPageChanged)="pageChanged($event)">
           </app-grid>
 

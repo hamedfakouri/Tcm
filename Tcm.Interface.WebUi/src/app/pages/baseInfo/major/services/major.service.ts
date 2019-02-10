@@ -9,16 +9,17 @@ import { Pair } from 'src/app/core/models';
 
 @Injectable()
 export class MajorService extends HttpService<Major> {
-
   constructor(private httpClient :HttpClient){
-       super(httpClient);
-       this.endpoint = "/api/major/";
-  }
+    super(httpClient);
+    this.endpoint = "Major";
+    this.url = this.baseUrl + "/api/" + this.endpoint+"/"
+
+}
 
   public GetDictionary():Array<Pair>{
 
     let items = new Array<Pair>();
-    // items.push(new Pair("Id","شماره"));
+    items.push(new Pair("Id","شماره"));
     items.push(new Pair("Name","نام"));
   
 
