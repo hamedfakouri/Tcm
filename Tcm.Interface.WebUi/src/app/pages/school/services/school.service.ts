@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class SchoolService extends HttpService<School> {
 
 
-  }
+  
   constructor(private httpClient :HttpClient,private route:Router){
     super(httpClient);
     this.endpoint = "school";
