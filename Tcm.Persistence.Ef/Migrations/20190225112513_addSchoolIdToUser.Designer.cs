@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tcm.Persistence.Ef;
 
 namespace Tcm.Persistence.Ef.Migrations
 {
     [DbContext(typeof(TcmContext))]
-    partial class TcmContextModelSnapshot : ModelSnapshot
+    [Migration("20190225112513_addSchoolIdToUser")]
+    partial class addSchoolIdToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -556,22 +558,6 @@ namespace Tcm.Persistence.Ef.Migrations
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole<int>");
 
                     b.HasDiscriminator().HasValue("Role");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ConcurrencyStamp = "fe9eb6ee-748a-4c57-bc17-a630c5e382eb",
-                            Name = "Manager",
-                            NormalizedName = "MANAGER"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ConcurrencyStamp = "fc779931-7d7e-4be1-9f1b-b734230e74ef",
-                            Name = "Student",
-                            NormalizedName = "STUDENT"
-                        });
                 });
 
             modelBuilder.Entity("Tcm.Domain.IdentityModel.RoleClaim", b =>

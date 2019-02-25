@@ -28,6 +28,11 @@ namespace Tcm.Domain.IdentityModel
         public string LastName { get; set; }
         public long NationalCode { get; set; }
 
+
+        public School School { get; set; }
+        public int SchooldId { get; set; }
+
+
         public Student Student { get; set; }
     }
     

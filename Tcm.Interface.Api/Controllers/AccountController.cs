@@ -377,8 +377,7 @@ namespace Tcm.Interface.Api.Controllers
 
             }
 
-            return Ok();
-
+            throw new Exception("نقش مورد نظر اضافه نشد");
         }
     }
 }
