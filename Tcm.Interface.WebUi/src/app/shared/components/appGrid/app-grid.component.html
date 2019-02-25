@@ -21,6 +21,18 @@
                                         </th>
                                 </ng-container>
 
+                                 <!-- <ng-container *ngFor="let task of customTasks">
+                                        <th>
+                                                {{task.TaskTitle}}
+                                        </th>
+                                </ng-container> -->
+
+    <ng-container >
+                                        <th>
+                                               عملیات
+                                        </th>
+                                </ng-container>
+
                         </tr>
                 </thead>
                 <tbody>
@@ -45,6 +57,13 @@
                                                 <td class="text-center">
                                                         <button class="btn btn-danger btn-sm" (click)="remove(item.Id,confirmTemplate)">
                                                                 <i class="fa fa-times-circle"></i></button>
+                                                </td>
+                                        </ng-container>
+
+                                        <ng-container *ngFor="let task of customTasks">
+                                                <td>
+                                                        <button class="btn btn-info btn-sm" (click)="doCustomTask(item,task.taskName)">
+                                                                {{task.TaskTitle}}</button>
                                                 </td>
                                         </ng-container>
 

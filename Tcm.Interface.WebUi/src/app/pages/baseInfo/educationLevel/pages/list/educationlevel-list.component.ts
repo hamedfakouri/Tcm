@@ -19,20 +19,19 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['educationlevel-list.component.css']
 })
 
-export class EducationLevelComponent extends CrudComponent<EducationLevel> implements OnInit, OnDestroy {
+export class EducationLevelComponent extends CrudComponent<EducationLevel> implements OnInit {
 
-  //subscriptions: Subscription[] = [];
 
-  @ViewChild('f') form: any;
  
   public subject: string = "educationlevel";
+ 
 
   constructor(private educationLevelService: EducationLevelService, route: ActivatedRoute,
     router: Router) { 
     super(educationLevelService,route,router);
     this.dictionary = this.educationLevelService.GetDictionary();
-
     this.items = new Array<EducationLevel>();
+    
 
   }
 
@@ -44,11 +43,6 @@ export class EducationLevelComponent extends CrudComponent<EducationLevel> imple
   
   }
 
-  
 
-
-  ngOnDestroy(): void {
-    //this.subscriptions.forEach(s => s.unsubscribe());
-  }
 
 }

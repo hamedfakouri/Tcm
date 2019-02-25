@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { PermissionService } from 'src/app/authentication/services/permission.service';
 import { Message } from 'src/app/core/models/message.enum';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { CustomTask } from 'src/app/core/models/custom-task';
 
 @Component({
   selector: 'app-grid',
@@ -22,11 +23,16 @@ export class AppGridComponent implements OnInit {
   @Input() pagination: Pagination;
   @Input() editable: boolean = false;
   @Input() removable: boolean = false;
+  @Input() customTasks:Array<CustomTask> = new Array<CustomTask>();
+
+
 
   @Output() onSort = new EventEmitter();
   @Output() onPageChanged = new EventEmitter();
   @Output() onEdit = new EventEmitter();
   @Output() onRemove = new EventEmitter();
+  @Output() onCustomTask = new EventEmitter();
+
 
   showGrid: boolean = false;
 
@@ -78,12 +84,7 @@ export class AppGridComponent implements OnInit {
     this.deletedItem = value;
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
 
-    // if (confirm(Message.actionConfirm)) {
-
-    //   this.onRemove.emit(value);
-    //   if ((this.pagination.currentPage - 1) * (this.pagination.itemsPerPage) == this.pagination.totalItems - 1)
-    //     this.pagination.currentPage--;
-    // }
+ 
 
   }
 
@@ -96,6 +97,15 @@ export class AppGridComponent implements OnInit {
     this.hideModal();
 
   }
+
+
+  doCustomTask(item:any,taskName:string){
+    let task = new CustomTask();
+    task.model = item;
+    task.taskName = taskName;
+    this.onCustomTask.emit(task);
+  }
+  
 
   hideModal(): void {
     this.deletedItem = null;

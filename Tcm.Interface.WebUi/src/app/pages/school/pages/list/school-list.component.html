@@ -9,8 +9,8 @@
           <button class="btn btn-primary" [routerLink]="['/School/Add' , 0]" >جدید</button>
         </div>
         
-        <app-grid [items]="items" [editable]="true" [removable]="true" [dictionary]="dictionary" [subject]="subject"
-          [pagination]="pagination" (onSort)="sort($event)" (onRemove)="remove($event)" (onEdit)="edit($event)"
+        <app-grid [items]="items" [customTasks]="customTasks" [editable]="true" [removable]="true" [dictionary]="dictionary" [subject]="subject"
+          [pagination]="pagination" (onSort)="sort($event)" (onRemove)="remove($event)" (onEdit)="edit($event)" (onCustomTask)="customTask($event)"
           (onPageChanged)="pageChanged($event)">
         </app-grid>
 

@@ -9,6 +9,7 @@ import { School } from '../../models/school';
 import { SchoolService } from '../../services/school.service';
 import { Message } from 'src/app/core/models/message.enum';
 import { Router } from '@angular/router';
+import { CustomTask } from 'src/app/core/models/custom-task';
 
 
 @Component({
@@ -19,25 +20,36 @@ import { Router } from '@angular/router';
 
 export class SchoolListComponent implements OnInit, OnDestroy {
 
-  //subscriptions: Subscription[] = [];
+ 
 
   public items: School[] = [];
-  @ViewChild('f') form: any;
-
   public pagination = new Pagination(1, 10);
   public subject: string = "schoollist";
   public dictionary: Array<Pair>;
-  userParams: any = {};
+  public customTasks: Array<CustomTask> = new Array<CustomTask>();
+  
 
   constructor(private alertify: AlertifyService, private schoolService: SchoolService, private router: Router) { }
 
   ngOnInit() {
 
+    
+
+
+    this.customTasks= this.schoolService.GetGridCustomTask();
     this.dictionary = this.schoolService.GetDictionary();
     this.get();
 
   }
 
+
+  customTask(task:CustomTask){
+
+    if(task.taskName=="AddNewManager"){
+      this.schoolService.AddNewManager(task);
+    }
+
+  }
   get() {
 
     this.schoolService.GetAllForGrid(this.pagination)
