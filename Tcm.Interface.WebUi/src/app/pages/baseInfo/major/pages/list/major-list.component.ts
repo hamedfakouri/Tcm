@@ -16,8 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-Major',
-  templateUrl: 'major-list.component.html',
-  styleUrls: ['major-list.component.css']
+  templateUrl: 'major-list.component.html'
 })
 
 export class MajorComponent extends CrudComponent<Major> implements  OnInit, OnDestroy {

@@ -1,12 +1,12 @@
 import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core';
-import{AuthService,AuthInterceptor,AuthInterceptorProviderService,AuthResolve,AuthGuardService} from './index'
+import{AuthService,AuthInterceptor,AuthInterceptorProviderService,AuthGuardService} from './index'
 import { PermissionService } from './permission.service';
 
 console.log("AuthServiceModule bundled------")
 
 
 @NgModule({
-  providers:[AuthService,AuthGuardService,AuthInterceptor,AuthInterceptorProviderService,AuthResolve,PermissionService]
+  providers:[AuthService,AuthGuardService,AuthInterceptor,AuthInterceptorProviderService,PermissionService]
 })
 export class AuthServiceModule {
   constructor (@Optional() @SkipSelf() parentModule: AuthServiceModule) {

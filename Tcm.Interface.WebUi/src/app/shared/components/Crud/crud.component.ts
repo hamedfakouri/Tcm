@@ -20,6 +20,7 @@ export class CrudComponent<T> {
   public pagination = new Pagination(1, 10);
   public dictionary: Array<Pair>;
   public Id:number;
+  public Name:string;
   public alertify: AlertifyService;
     
   constructor(  
@@ -116,12 +117,15 @@ export class CrudComponent<T> {
     this.route.params.subscribe(params => {
       if(params){
         this.Id = +params['id'];
+        this.Name = params['name'];
         if(this.Id>0){
           this.get(this.Id);
 
         }
       }});
   }
+
+  
   
 
 

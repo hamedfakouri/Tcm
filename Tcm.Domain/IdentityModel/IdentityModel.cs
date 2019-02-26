@@ -8,7 +8,9 @@ namespace Tcm.Domain.IdentityModel
 {
    
 
-        public class Role : IdentityRole<int> { }
+        public class Role : IdentityRole<int> {
+        public string Title { get; set; }
+    }
 
         public class UserRole : IdentityUserRole<int> { }
 
@@ -26,14 +28,16 @@ namespace Tcm.Domain.IdentityModel
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public long NationalCode { get; set; }
+        public string NationalCode { get; set; }
 
 
         public School School { get; set; }
-        public int SchooldId { get; set; }
+        public int? SchoolId { get; set; }
 
 
         public Student Student { get; set; }
+
+        
     }
     
 }

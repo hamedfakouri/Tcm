@@ -1,0 +1,131 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <nb-card>
+      <nb-card-header>ثبت کاربر</nb-card-header>
+      <nb-card-body>
+
+        <div class="col-md-6 align-top d-inline-block">
+
+          <form #f="ngForm" (ngSubmit)="add(item)" novalidate>
+
+
+<ng-container  *ngIf="!item.roleName">
+
+  <div class="form-group row">
+    <label for="txtEmail" class="col-sm-3 col-form-label text-left">نقش</label>
+    <div class="col-sm-9">
+
+      <select class="form-control" name="RoleName" [(ngModel)]="item.RoleName">
+        <option value="0">--- انتخاب کنید ---</option>
+        <option *ngFor="let item of roles" [value]="item.Name">
+          {{item.Title}}
+        </option>
+      </select>
+    </div>
+  </div>
+</ng-container>           
+
+            <div class="form-group row">
+              <label for="name" class="col-sm-3 col-form-label text-left">نام کاربری:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="UserName" [(ngModel)]="item.UserName" required>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="name" class="col-sm-3 col-form-label text-left">نام :</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="FirstName" [(ngModel)]="item.FirstName" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="name" class="col-sm-3 col-form-label text-left">نام خانوادگی:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="LastName" [(ngModel)]="item.LastName" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="name" class="col-sm-3 col-form-label text-left">کد ملی:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="NationalCode" [(ngModel)]="item.NationalCode" required>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="name" class="col-sm-3 col-form-label text-left">رمز عبور:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control"  name="Password" [(ngModel)]="item.Password" required>
+              </div>
+            </div>
+
+<!-- // دانش آموز -->
+<ng-container *ngIf="item.roleName =='Student'">
+
+  <div class="form-group row">
+    <label for="name" class="col-sm-3 col-form-label text-left">شماره دانش آموزی</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"  name="StudentNumber" [(ngModel)]="item.StudentNumber" required>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="name" class="col-sm-3 col-form-label text-left">شماره تلفن</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"  name="Phone" [(ngModel)]="item.Phone" required>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="name" class="col-sm-3 col-form-label text-left">TrackerPhone</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"  name="TrackerPhone" [(ngModel)]="item.TrackerPhone" required>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="name" class="col-sm-3 col-form-label text-left">نام پدر</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"  name="FatherName" [(ngModel)]="item.FatherName" required>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="name" class="col-sm-3 col-form-label text-left">شماره تماس پدر</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"  name="FatherPhone" [(ngModel)]="item.FatherPhone" required>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="name" class="col-sm-3 col-form-label text-left">آدرس</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"  name="HomeAddress" [(ngModel)]="item.HomeAddress" required>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="name" class="col-sm-3 col-form-label text-left">تلفن منزل</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"  name="HomePhone" [(ngModel)]="item.HomePhone" required>
+    </div>
+  </div>
+
+
+</ng-container>
+
+
+            <div class="form-group row">
+              <div class="col-sm-6 text-left">
+                <button type="submit" class="btn btn-primary" [disabled]='!f.valid'>ذخیره</button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+
+    
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

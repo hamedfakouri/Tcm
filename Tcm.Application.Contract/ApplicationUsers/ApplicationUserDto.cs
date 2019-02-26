@@ -14,7 +14,7 @@ namespace Tcm.Application.Contract.ApplicationUsers
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public long NationalCode { get; set; }
+        public string NationalCode { get; set; }
 
         public string StudentNumber { get; set; }
         public string Phone { get; set; }
@@ -25,6 +25,8 @@ namespace Tcm.Application.Contract.ApplicationUsers
         public string HomePhone { get; set; }
 
         public string RoleName { get; set; }
+
+        public string UserName { get; set; }
 
     }
 }

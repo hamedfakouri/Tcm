@@ -22,9 +22,16 @@ namespace Tcm.Application.Students
         public void Add(StudentDto studentDto)
         {
             var student = new Student() {
-             ApplicationUserId = studentDto.ApplicationUserId,
+           
 
-                 StudentNumber = studentDto.StudentNumber
+                ApplicationUserId = studentDto.ApplicationUserId,
+                StudentNumber = studentDto.StudentNumber,
+                FatherName = studentDto.FatherName,
+                FatherPhone = studentDto.FatherPhone,
+                HomeAddress = studentDto.HomeAddress,
+                HomePhone = studentDto.HomePhone,
+                Phone = studentDto.Phone,
+                TrackerPhone = studentDto.TrackerPhone
             };
 
             _studentRepository.Add(student);

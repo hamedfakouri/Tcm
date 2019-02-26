@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tcm.Persistence.Ef;
 
 namespace Tcm.Persistence.Ef.Migrations
 {
     [DbContext(typeof(TcmContext))]
-    partial class TcmContextModelSnapshot : ModelSnapshot
+    [Migration("20190226102344_verifystm")]
+    partial class verifystm
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -196,7 +198,7 @@ namespace Tcm.Persistence.Ef.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
-                    b.Property<string>("NationalCode");
+                    b.Property<long>("NationalCode");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
@@ -553,26 +555,22 @@ namespace Tcm.Persistence.Ef.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole<int>");
 
-                    b.Property<string>("Title");
-
                     b.HasDiscriminator().HasValue("Role");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "8ec51168-fc5d-4293-8a46-576a3d7a5506",
+                            ConcurrencyStamp = "bdaf63aa-fdd8-406b-8939-416b82121a2e",
                             Name = "Manager",
-                            NormalizedName = "MANAGER",
-                            Title = "مدیر"
+                            NormalizedName = "MANAGER"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "d0a60048-8e41-4ce3-9fcf-2d39e434a5c1",
+                            ConcurrencyStamp = "9d2f3701-5cdb-4467-9ca4-2ac6f788dd4d",
                             Name = "Student",
-                            NormalizedName = "STUDENT",
-                            Title = "دانش آموز"
+                            NormalizedName = "STUDENT"
                         });
                 });
 

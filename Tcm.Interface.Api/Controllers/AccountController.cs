@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -20,6 +21,7 @@ namespace Tcm.Interface.Api.Controllers
 {
     [Produces("application/json")]
     [Route("api/Account")]
+    [AllowAnonymous]
    
     public class AccountController : Controller
     {
@@ -101,8 +103,8 @@ namespace Tcm.Interface.Api.Controllers
         }
 
         [AllowAnonymous]
-        [Route("register")]
-        public async Task<IActionResult> CreateUser([FromBody]ApplicationUserDto createUserModel)
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody]ApplicationUserDto createUserModel)
         {
 
             if (!ModelState.IsValid)
@@ -112,8 +114,11 @@ namespace Tcm.Interface.Api.Controllers
 
             var user = new ApplicationUser()
             {
-                UserName = createUserModel.Email,
-                Email = createUserModel.Email,                              
+                UserName = createUserModel.UserName,
+                FirstName =createUserModel.FirstName,
+                LastName =createUserModel.LastName,
+                NationalCode =createUserModel.NationalCode
+                                           
             };
 
 
@@ -125,22 +130,32 @@ namespace Tcm.Interface.Api.Controllers
             }
             else
             {
-                var rolesToAssign = new List<string>() { createUserModel.RoleName };
-
-                IdentityResult addResult = await _userManager.AddToRolesAsync(user, rolesToAssign);
-
-                if (addResult.Succeeded && rolesToAssign.Contains("student"))
+                createUserModel.RoleName = "Student";
+                if (string.IsNullOrEmpty(createUserModel.RoleName) == false)
                 {
                    
+                    IdentityResult addResult = await _userManager.AddToRoleAsync(user, createUserModel.RoleName);
+
+                    if (addResult.Succeeded && createUserModel.RoleName=="Student")
+                    {
+
                         var student = new StudentDto
                         {
                             ApplicationUserId = user.Id,
-                            StudentNumber = createUserModel.StudentNumber
+                            StudentNumber = createUserModel.StudentNumber,
+                            FatherName = createUserModel.FatherName,
+                            FatherPhone = createUserModel.FatherPhone,
+                            HomeAddress = createUserModel.HomeAddress,
+                            HomePhone =createUserModel.HomePhone,
+                            Phone =createUserModel.Phone,
+                            TrackerPhone =createUserModel.TrackerPhone
                         };
 
                         _studentService.Add(student);
-                   
+
+                    }
                 }
+               
 
 
                
@@ -176,14 +191,18 @@ namespace Tcm.Interface.Api.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("login")]
-        public  IActionResult Login([FromBody]LoginDto model)
+        public async Task<IActionResult> Login([FromBody]LoginDto model)
         {
             var result =  _signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
 
             if (result.Result.Succeeded)
             {
-                var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.UserName);
-                return  Ok(GenerateJwtToken(model.UserName, appUser));
+                var appUser = _userManager.Users.SingleOrDefault(r => r.UserName == model.UserName);
+                if (appUser == null)
+                    return NotFound();
+
+                var userRole = await _userManager.GetRolesAsync(appUser);
+                return  Ok(GenerateJwtToken(model.UserName, appUser,userRole.FirstOrDefault()));
             }
 
             return NotFound();
@@ -338,13 +357,18 @@ namespace Tcm.Interface.Api.Controllers
             return Ok();
         }
 
-        private string GenerateJwtToken(string email, ApplicationUser user)
+        private string GenerateJwtToken(string email, ApplicationUser user,string role ="")
         {
+
+
+
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),             
                 new Claim(ClaimTypes.Surname , user.LastName??""),
                 new Claim(ClaimTypes.Name , user.FirstName??""),
+                new Claim(ClaimTypes.Role , role),
+
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtKey"]));
@@ -378,6 +402,15 @@ namespace Tcm.Interface.Api.Controllers
             }
 
             throw new Exception("نقش مورد نظر اضافه نشد");
+        }
+
+        [HttpGet("GetRoles")]
+        [AllowAnonymous]
+
+        public IActionResult GetRoles()
+        {
+
+            return Ok(roleManager.Roles);
         }
     }
 }

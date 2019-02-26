@@ -1,22 +1,28 @@
 import { Injectable } from '@angular/core';
-import { Login } from '../models/login';
+import { User } from '../models/login';
 import { HttpService } from 'src/app/shared/services';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Role } from 'src/app/core/models/role';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class AccountService extends HttpService<Login>  {
+export class AccountService extends HttpService<User>  {
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient :HttpClient){
     super(httpClient);
-    this.endpoint = "/api/account/";
+    this.endpoint = "Account";
+    this.url = this.baseUrl + "/api/" + this.endpoint+"/"
+
+}
+
+  login(user:User) : Observable<any>{
+    return this.httpClient.post(this.url+"login", user);
   }
 
-
-  login(user:Login) : Observable<any>{
-    return this.httpClient.post(this.baseUrl + this.endpoint + "login" , user);
+  getRoles():Observable<any>{
+    return this.httpClient.get(this.url+"GetRoles");
   }
 }

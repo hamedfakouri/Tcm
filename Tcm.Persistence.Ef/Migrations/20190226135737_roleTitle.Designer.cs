@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tcm.Persistence.Ef;
 
 namespace Tcm.Persistence.Ef.Migrations
 {
     [DbContext(typeof(TcmContext))]
-    partial class TcmContextModelSnapshot : ModelSnapshot
+    [Migration("20190226135737_roleTitle")]
+    partial class roleTitle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -196,7 +198,7 @@ namespace Tcm.Persistence.Ef.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
-                    b.Property<string>("NationalCode");
+                    b.Property<long>("NationalCode");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
@@ -561,7 +563,7 @@ namespace Tcm.Persistence.Ef.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "8ec51168-fc5d-4293-8a46-576a3d7a5506",
+                            ConcurrencyStamp = "af14ccec-0b1d-4f3d-bbf1-5d1cd0cad15a",
                             Name = "Manager",
                             NormalizedName = "MANAGER",
                             Title = "مدیر"
@@ -569,7 +571,7 @@ namespace Tcm.Persistence.Ef.Migrations
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "d0a60048-8e41-4ce3-9fcf-2d39e434a5c1",
+                            ConcurrencyStamp = "07f8eef8-67d5-41b3-8324-5d23e06fed67",
                             Name = "Student",
                             NormalizedName = "STUDENT",
                             Title = "دانش آموز"
