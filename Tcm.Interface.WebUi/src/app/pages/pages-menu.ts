@@ -53,15 +53,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'مدیر مدرسه',
-        link: '/account/register/Manager',
-      },
-      {
-        title: 'ایجاد دانش آموز',
         link: '/account/register',
       },
       {
+        title: 'ایجاد دانش آموز',
+        link: '/account/register/2',
+      },
+      {
         title: 'ایجاد پرسنل',
-        link: '/account/register/Personel'
+        link: '/account/register'
       }
     ],
   }
