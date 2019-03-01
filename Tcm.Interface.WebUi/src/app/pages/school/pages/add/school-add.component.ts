@@ -25,6 +25,8 @@ import { ProvinceService } from 'src/app/core/services/province.service';
 import { Province } from 'src/app/core/models/province';
 import { Region } from 'src/app/core/models/region';
 import { City } from 'src/app/core/models/city';
+import { SelectItems } from 'src/app/core/models/selectItems';
+import { SchoolEducationSubCourse } from '../../models/SchoolEducationSubCourse';
 
 @Component({
   selector: 'app-school-add',
@@ -35,21 +37,21 @@ import { City } from 'src/app/core/models/city';
 export class SchoolAddComponent implements OnInit, OnDestroy {
 
   //subscriptions: Subscription[] = [];
+  title = "CodeSandbox";
+  disabled = false;
+  ShowFilter = false;
+  limitSelection = false;
+  cities: Array<any> = []
+  dropdownSettings: any = {};
 
-  schoolItem: School = {
-    Id: 0, Name: '', EducationLevelId: 0, EducationLevelName: '', EducationCourseId: 0, EducationCourseName: '',
-    EducationSubCourseId: 0, EducationSubCourseName: '', ProvinceId: 0, ProvinceName: '', CityId: 0, CityName: '',
-    RegionId: 0, RegionName: '', SchoolTypeId: 0, SchoolTypeName: '', SchoolSubTypeId: 0, CreationDate: '',
-    SchoolSubTypeName: '', Sex: false, ShiftType: 0, TotalStudentCount: '', RegisterStudentCount: '', SchoolNumber: '',
-    FounderName: '', ManagerName: '', PostalAddress: '', PostalCode: '', WebUrl: '', PhoneNumber1: '', PhoneNumber2: '',SchoolEducationSubCourse: null
-  };
+
+  schoolItem: School = new School();
 
   public items: School[] = [];
   public schoolTypeItems: Observable<SchoolType[]>;
   public schoolSubTypeItems: Observable<SchoolSubType[]>;
   public educationLevelItems: Observable<EducationLevel[]>;
   public educationCourseItems: Observable<EducationCourse[]>;
-  public educationSubCourseItems: Observable<EducationSubCourse[]>;
   public provinceItems: Observable<Province[]>;
   public cityItems: Observable<City[]>;
   public regionItems: Observable<Region[]>;
@@ -60,6 +62,11 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
   public subject: string = "schooladd";
   userParams: any = {};
 
+  subCourseList: SelectItems[] = [];
+
+  selectedSchoolEducationSubCourse: SelectItems[] = [];
+  settings = {};
+
   constructor(private alertify: AlertifyService, private schoolService: SchoolService,
     private schoolTypeService: SchoolTypeService, private schoolSubTypeService: SchoolSubTypeService,
     private educationLevelService: EducationLevelService, private educationCourseService: EducationCourseService,
@@ -67,6 +74,19 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
     private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    //read school id from route params
+    this.schoolItem.Id = this.route.snapshot.params['id'];
+
+    this.settings = {
+      singleSelection: false,
+      text: "انتخاب شهر",
+      selectAllText: 'انتخاب همه',
+      unSelectAllText: 'حذف انتخاب',
+      enableSearchFilter: true,
+      badgeShowLimit: 2
+    };
+
 
     this.getschoolTypeItems();
     this.getEducationLeveltems();
@@ -112,12 +132,23 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
 
   getEducationSubCourse(educationCourseId: number) {
 
-    this.educationSubCourseItems = this.educationSubCourseService.getByEducationCourse(educationCourseId);
+    this.educationSubCourseService.getByEducationCourse(educationCourseId)
+      .subscribe((items) => {
+
+        items.forEach(item => {
+          this.subCourseList.push(new SelectItems(item.Id, item.Name));
+        });
+
+
+        this.schoolItem.SchoolEducationSubCourses.forEach(item => {
+          this.selectedSchoolEducationSubCourse.push(
+            new SelectItems(item.EducationSubCourseId, '')
+          );
+        });
+      });
   }
 
   getItem() {
-    //read school id from route params
-    this.schoolItem.Id = this.route.snapshot.params['id'];
 
     //insert new school
     if (this.schoolItem.Id == 0)
@@ -125,6 +156,7 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
 
     this.schoolService.get(this.schoolItem.Id).subscribe(
       (res: School) => {
+
         this.schoolItem = res;
 
         if (this.schoolItem.ProvinceId != 0) {
@@ -142,6 +174,11 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
         if (this.schoolItem.EducationLevelId != 0) {
           this.getEducationCourse(this.schoolItem.EducationLevelId);
         }
+
+        if (this.schoolItem.EducationCourseId != 0) {
+          this.getEducationSubCourse(this.schoolItem.EducationCourseId);
+        }
+
       }
     );
   }
@@ -155,6 +192,18 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
 
     if (this.form.valid) {
       this.schoolItem.CityId = 1;
+
+      if (this.selectedSchoolEducationSubCourse.length > 0) {
+
+        this.schoolItem.SchoolEducationSubCourses = [];
+
+        this.selectedSchoolEducationSubCourse.forEach(item => {
+          this.schoolItem.SchoolEducationSubCourses.push(new SchoolEducationSubCourse(item.id, this.schoolItem.Id, 1));
+        })
+
+      }
+
+
       if (this.schoolItem.Id == 0) {
         this.schoolService.add(this.schoolItem).subscribe(
           () => { this.navigateToSchoolList(); }

@@ -5,7 +5,6 @@
     <nb-card-header>مدرسه {{ schoolItem.Name }}</nb-card-header>
     <nb-card-body>
 
-
       <form #f="ngForm" (ngSubmit)="submitForm()" novalidate>
 
         <div class="form-row">
@@ -14,7 +13,7 @@
           </form-input>
 
           <form-input label="تاریخ تاسیس" class="col-6 ">
-            <input InputError class="form-control" name="creationDate" ngModel [(ngModel)]="schoolItem.CreationDate"
+            <input InputError class="form-control" name="creationDate" ngModel [(ngModel)]="schoolItem.CreationDate" name='CreationDate'
               required>
           </form-input>
         </div>
@@ -78,14 +77,13 @@
 
         </div>
 
-        
+
         <div class="form-row">
 
           <div class="form-group col-4">
             <label>استان:</label>
 
-            <select class="form-control col-7" name="ProvinceId" [(ngModel)]="schoolItem.ProvinceId"
-              (change)="getCity($event.currentTarget.value)">
+            <select class="form-control col-7" name="ProvinceId" [(ngModel)]="schoolItem.ProvinceId" (change)="getCity($event.currentTarget.value)">
               <option value="0">--- انتخاب کنید ---</option>
               <option *ngFor="let item of provinceItems | async" [value]="item.Id">
                 {{item.Name}}
@@ -97,8 +95,7 @@
           <div class="form-group col-4">
             <label>شهر:</label>
 
-            <select class="form-control col-7" name="CityId" [(ngModel)]="schoolItem.CityId"
-              (change)="getRegion($event.currentTarget.value)">
+            <select class="form-control col-7" name="CityId" [(ngModel)]="schoolItem.CityId" (change)="getRegion($event.currentTarget.value)">
               <option *ngFor="let item of cityItems | async" [value]="item.Id">
                 {{item.Name}}
               </option>
@@ -148,11 +145,11 @@
           <div class="form-group col-4">
             <label>پایه تحصیلی:</label>
 
-            <select class="form-control col-7" name="EducationSubCourseId" [(ngModel)]="schoolItem.EducationSubCourseId">
-              <option *ngFor="let item of educationSubCourseItems | async" [value]="item.Id">
-                {{item.Name}}
-              </option>
-            </select>
+            <angular4-multiselect [data]="subCourseList" 
+                      [(ngModel)]="selectedSchoolEducationSubCourse" 
+                      [settings]="settings" 
+                      name='ss'  class="col-7">
+          </angular4-multiselect>
 
           </div>
         </div>
@@ -195,7 +192,7 @@
             </label>
 
             <label class="form-check-inline" for="b">
-              <input type="radio" id="b" name="mode" [(ngModel)]="schoolItem.Sex" [value]="true">
+              <input type="radio" id="b" name="modes" [(ngModel)]="schoolItem.Sex" [value]="true">
               دخترانه
             </label>
 
@@ -220,7 +217,7 @@
 
 
         <div class="container row mt-2">
-            <!-- [disabled]='!f.valid' -->
+          <!-- [disabled]='!f.valid' -->
           <button type="submit" class="btn btn-primary">ذخیره</button>
         </div>
       </form>

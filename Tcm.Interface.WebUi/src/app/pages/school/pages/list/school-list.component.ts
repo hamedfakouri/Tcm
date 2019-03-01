@@ -67,8 +67,9 @@ export class SchoolListComponent implements OnInit, OnDestroy {
       });
   }
 
-  edit(item: School) {
-    this.router.navigate(['School/Add' , item.Id ]);
+  edit(id: School) {
+    
+    this.router.navigate(['School/Add' , id ]);
   }
 
   remove(item: School) {

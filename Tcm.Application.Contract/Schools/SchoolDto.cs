@@ -59,7 +59,7 @@ namespace Tcm.Application.Contract.SchoolTypes
 
         public short EducationCourseId { get; set; }
         public string EducationCourseName { get; set; }
-        public List<SchoolEducationSubCourse> schoolEducationSubCourses { get; set; }
+        public List<SchoolEducationSubCourse> SchoolEducationSubCourses { get; set; }
        
     }
 

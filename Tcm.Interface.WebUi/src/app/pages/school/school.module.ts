@@ -5,6 +5,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { SchoolListComponent } from './pages/list/school-list.component';
 import { SchoolRoutingModule } from './school-routing.module';
 import { SchoolAddComponent } from './pages/add/school-add.component';
+import { AngularMultiSelectModule } from 'src/app/shared/directive/angular4-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { SchoolAddComponent } from './pages/add/school-add.component';
     ThemeModule,
     SharedModule,
     SchoolRoutingModule,
-    
+    AngularMultiSelectModule
   ],
   providers: []
 })

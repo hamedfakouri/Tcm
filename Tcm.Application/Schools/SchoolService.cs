@@ -65,7 +65,8 @@ namespace Tcm.Application.Schools
 
         public SchoolDto Get(int id)
         {
-            return _schoolRepository.GetAll(x=> x.Id == id).Include(x=> x.City).Include(x=> x.EducationCourse).FirstOrDefault().Mapper();
+            return _schoolRepository.GetAll(x=> x.Id == id).Include(x=> x.City).Include(x=> x.EducationCourse)
+                .Include(x => x.SchoolEducationSubCourses).FirstOrDefault().Mapper();
         }
 
         public List<SchoolDto> GetAll(UserParams userParams)
@@ -109,7 +110,7 @@ namespace Tcm.Application.Schools
                 school.TotalStudentCount = model.TotalStudentCount;
                 school.WebUrl = model.WebUrl;
                 school.EducationCourseId = model.EducationCourseId;
-
+                school.SchoolEducationSubCourses = model.SchoolEducationSubCourses;
 
                 _schoolRepository.Update(school);
             }
@@ -181,7 +182,7 @@ namespace Tcm.Application.Schools
                     SchoolNumber = school.SchoolNumber,
                     Sex = school.Sex,
                     ShiftType = school.ShiftType,
-                    schoolEducationSubCourses = school.SchoolEducationSubCourses?.ToList(),
+                    SchoolEducationSubCourses = school.SchoolEducationSubCourses?.ToList(),
                     WebUrl = school.WebUrl,
                     EducationCourseId = school.EducationCourseId,
                     EducationLevelId = school.EducationCourse.EducationLevelId,
