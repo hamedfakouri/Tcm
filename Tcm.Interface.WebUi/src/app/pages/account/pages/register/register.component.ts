@@ -36,6 +36,10 @@ export class RegisterComponent extends CrudComponent<User> implements  OnInit {
       this.item.roleName ="Student";
       this.Id=0;
     }
+    if(this.Id==1){
+      this.item.roleName ="Manager";
+      this.Id=0;
+    }
   }
 
   getRoles(){
