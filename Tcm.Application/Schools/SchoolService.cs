@@ -28,7 +28,7 @@ namespace Tcm.Application.Schools
             {
                 Name = School.Name,
                 CityId = School.CityId,
-                RegionId = School.RegionId,
+                RegionId = (School.RegionId == 0 ? null : School.RegionId),
                 CreationDate = School.CreationDate,
                 FounderName = School.FounderName,
                 ManagerName = School.ManagerName,
@@ -38,13 +38,14 @@ namespace Tcm.Application.Schools
                 PostalCode = School.PostalCode,
                 RegisterStudentCount = School.RegisterStudentCount,
                 SchoolNumber = School.SchoolNumber,
-                SchoolSubTypeId = School.SchoolSubTypeId,
+                SchoolSubTypeId = (School.SchoolSubTypeId == 0 ? null : School.SchoolSubTypeId),
                 SchoolTypeId = School.SchoolTypeId,
                 Sex = School.Sex,
                 ShiftType = School.ShiftType,
                 TotalStudentCount = School.TotalStudentCount,
                 WebUrl = School.WebUrl,
                 EducationCourseId = School.EducationCourseId,
+                SchoolEducationSubCourses = School.SchoolEducationSubCourses
             };
             _schoolRepository.Add(school);
 
@@ -93,7 +94,7 @@ namespace Tcm.Application.Schools
             {
                 school.Name = model.Name;
                 school.CityId = model.CityId;
-                school.RegionId = model.RegionId;
+                school.RegionId = (model.RegionId == 0 ? null: model.RegionId);
                 school.CreationDate = model.CreationDate;
                 school.FounderName = model.FounderName;
                 school.ManagerName = model.ManagerName;
@@ -104,7 +105,7 @@ namespace Tcm.Application.Schools
                 school.RegisterStudentCount = model.RegisterStudentCount;
                 school.SchoolNumber = model.SchoolNumber;
                 school.SchoolTypeId = model.SchoolTypeId;
-                school.SchoolSubTypeId = model.SchoolSubTypeId;
+                school.SchoolSubTypeId = (model.SchoolSubTypeId == 0 ? null : model.SchoolSubTypeId);
                 school.Sex = model.Sex;
                 school.ShiftType = model.ShiftType;
                 school.TotalStudentCount = model.TotalStudentCount;

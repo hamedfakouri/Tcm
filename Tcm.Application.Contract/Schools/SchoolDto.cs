@@ -15,13 +15,13 @@ namespace Tcm.Application.Contract.SchoolTypes
         public string CityName { get; set; }
         public short? ProvinceId { get; set; }
         public string ProvinceName { get; set; }
-        public int RegionId { get; set; }
+        public int? RegionId { get; set; }
         public string RegionName { get; set; }
 
         public short SchoolTypeId { get; set; }
         public string SchoolTypeName { get; set; }
 
-        public short SchoolSubTypeId { get; set; }
+        public short? SchoolSubTypeId { get; set; }
         public string SchoolSubTypeName { get; set; }
 
 

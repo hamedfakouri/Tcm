@@ -42,7 +42,6 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
   ShowFilter = false;
   limitSelection = false;
   cities: Array<any> = []
-  dropdownSettings: any = {};
 
 
   schoolItem: School = new School();
@@ -80,10 +79,10 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
 
     this.settings = {
       singleSelection: false,
-      text: "انتخاب شهر",
+      text: " ",
       selectAllText: 'انتخاب همه',
       unSelectAllText: 'حذف انتخاب',
-      enableSearchFilter: true,
+      //enableSearchFilter: true,
       badgeShowLimit: 2
     };
 
@@ -140,11 +139,14 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
         });
 
 
-        this.schoolItem.SchoolEducationSubCourses.forEach(item => {
-          this.selectedSchoolEducationSubCourse.push(
-            new SelectItems(item.EducationSubCourseId, '')
-          );
-        });
+        if (this.schoolItem.SchoolEducationSubCourses) {
+
+          this.schoolItem.SchoolEducationSubCourses.forEach(item => {
+            this.selectedSchoolEducationSubCourse.push(
+              new SelectItems(item.EducationSubCourseId, this.subCourseList.find(x => x.id == item.EducationSubCourseId).itemName)
+            );
+          });
+        }
       });
   }
 
@@ -206,21 +208,25 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
 
       if (this.schoolItem.Id == 0) {
         this.schoolService.add(this.schoolItem).subscribe(
-          () => { this.navigateToSchoolList(); }
+          () => {
+            this.navigateToSchoolList();
+          }
         );
 
       }
       else {
         this.schoolService.update(this.schoolItem.Id, this.schoolItem).subscribe(
-          () => { this.navigateToSchoolList(); }
+          () => { 
+            this.navigateToSchoolList(); 
+          }
         );
       }
     }
   }
 
   navigateToSchoolList() {
-    // this.router.navigate(['School']);
-    // this.alertify.success(Message.saveSuccess);
+    this.router.navigate(['School']);
+    this.alertify.success(Message.saveSuccess);
   }
 
   clearForm() {

@@ -9,13 +9,13 @@ namespace Tcm.Domain.Model
         public int CityId { get; set; }
         public City City { get; set; }
 
-        public int RegionId { get; set; }
+        public int? RegionId { get; set; }
         public Region Region { get; set; }
 
         public short SchoolTypeId { get; set; }
         public SchoolType SchoolType { get; set; }
 
-        public short SchoolSubTypeId { get; set; }
+        public short? SchoolSubTypeId { get; set; }
         public SchoolSubType SchoolSubType { get; set; }
 
         public short EducationCourseId { get; set; }
@@ -45,7 +45,10 @@ namespace Tcm.Domain.Model
         public string PhoneNumber1 { get; set; }
         public string PhoneNumber2 { get; set; }
 
-
+        public School()
+        {
+            this.SchoolEducationSubCourses = new List<SchoolEducationSubCourse>();
+        }
     }
     
 }

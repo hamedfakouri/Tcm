@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tcm.Persistence.Ef;
 
 namespace Tcm.Persistence.Ef.Migrations
 {
     [DbContext(typeof(TcmContext))]
-    partial class TcmContextModelSnapshot : ModelSnapshot
+    [Migration("20190302180452_school_regionId_allownull")]
+    partial class school_regionId_allownull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -424,7 +426,7 @@ namespace Tcm.Persistence.Ef.Migrations
 
                     b.Property<string>("SchoolNumber");
 
-                    b.Property<short?>("SchoolSubTypeId");
+                    b.Property<short>("SchoolSubTypeId");
 
                     b.Property<short>("SchoolTypeId");
 
@@ -561,7 +563,7 @@ namespace Tcm.Persistence.Ef.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "41910df6-e5d2-4c72-a250-77243d8420b3",
+                            ConcurrencyStamp = "525302e0-62c4-4272-b8ac-9295b24b686f",
                             Name = "Manager",
                             NormalizedName = "MANAGER",
                             Title = "مدیر"
@@ -569,7 +571,7 @@ namespace Tcm.Persistence.Ef.Migrations
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "7e0c01e1-a261-4a16-b7a2-d47e49c268e3",
+                            ConcurrencyStamp = "aeb3ee56-ba1b-46fd-bbf0-b0ebe5aee426",
                             Name = "Student",
                             NormalizedName = "STUDENT",
                             Title = "دانش آموز"
@@ -734,7 +736,8 @@ namespace Tcm.Persistence.Ef.Migrations
 
                     b.HasOne("Tcm.Domain.Model.SchoolSubType", "SchoolSubType")
                         .WithMany("Schools")
-                        .HasForeignKey("SchoolSubTypeId");
+                        .HasForeignKey("SchoolSubTypeId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Tcm.Domain.Model.SchoolType", "SchoolType")
                         .WithMany("Schools")
