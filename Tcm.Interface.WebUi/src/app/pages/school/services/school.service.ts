@@ -43,7 +43,7 @@ export class SchoolService extends HttpService<School> {
 
   public AddNewManager(task:CustomTask){
    
-     this.route.navigate(['School/Add/1'])
+     this.route.navigate(['account/register/1'])
   }
 
 

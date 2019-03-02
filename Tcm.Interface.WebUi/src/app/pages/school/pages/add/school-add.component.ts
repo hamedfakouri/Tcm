@@ -5,8 +5,7 @@ import { Message } from 'src/app/core/models/message.enum';
 
 import { AlertifyService } from 'src/app/shared/services';
 
-import { Pagination, PaginationResult } from 'src/app/core/models/pagination';
-import { Pair } from 'src/app/core/models';
+import { Pagination } from 'src/app/core/models/pagination';
 import { School } from '../../models/school';
 import { SchoolType } from 'src/app/pages/baseInfo/schoolType/models/schooltype';
 import { SchoolService } from '../../services/school.service';
@@ -14,8 +13,6 @@ import { SchoolTypeService } from 'src/app/pages/baseInfo/schoolType/services/sc
 import { Router, ActivatedRoute } from '@angular/router';
 import { SchoolSubType } from 'src/app/pages/baseInfo/schoolSubType/models/schoolsubtype';
 import { SchoolSubTypeService } from 'src/app/pages/baseInfo/schoolSubType/services/schoolsubtype.service';
-import { map } from 'rxjs/operators';
-import { EducationSubCourse } from 'src/app/pages/baseInfo/educationSubCourse/models/educationsubcourse';
 import { EducationCourse } from 'src/app/pages/baseInfo/educationCourse/models/educationcourse';
 import { EducationLevel } from 'src/app/pages/baseInfo/educationLevel/models';
 import { EducationLevelService } from 'src/app/pages/baseInfo/educationLevel/services/educationlevel.service';
