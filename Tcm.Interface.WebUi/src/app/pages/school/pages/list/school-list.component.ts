@@ -72,9 +72,9 @@ export class SchoolListComponent implements OnInit, OnDestroy {
     this.router.navigate(['School/Add' , id ]);
   }
 
-  remove(item: School) {
+  remove(id: number) {
 
-    this.schoolService.delete(item.Id).subscribe(
+    this.schoolService.delete(id).subscribe(
       () => {
         this.get();
         this.alertify.success(Message.deleteSuccess);

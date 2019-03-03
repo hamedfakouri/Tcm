@@ -59,9 +59,9 @@ namespace Tcm.Application.Schools
 
         public void Delete(int Id)
         {
-            var school = Get(Id);
+            var school = _schoolRepository.GetById(Id);
             if (school != null)
-                _schoolRepository.Delete(school.Mapper());
+                _schoolRepository.Delete(school);
         }
 
         public SchoolDto Get(int id)
