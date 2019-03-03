@@ -115,44 +115,7 @@
           </div>
         </div>
 
-        <div class="form-row">
-
-          <div class="form-group col-4">
-            <label>مقطع آموزشی:</label>
-
-            <select class="form-control col-7" name="EducationLevelId" [(ngModel)]="schoolItem.EducationLevelId"
-              (change)="getEducationCourse($event.currentTarget.value)">
-              <option value="0">--- انتخاب کنید ---</option>
-              <option *ngFor="let item of educationLevelItems | async" [value]="item.Id">
-                {{item.Name}}
-              </option>
-            </select>
-
-          </div>
-
-          <div class="form-group col-4">
-            <label>دوره آموزشی:</label>
-
-            <select class="form-control col-7" name="EducationCourseId" [(ngModel)]="schoolItem.EducationCourseId"
-              (change)="getEducationSubCourse($event.currentTarget.value)">
-              <option *ngFor="let item of educationCourseItems | async" [value]="item.Id">
-                {{item.Name}}
-              </option>
-            </select>
-
-          </div>
-
-          <div class="form-group col-4">
-            <label>پایه تحصیلی:</label>
-
-            <angular4-multiselect [data]="subCourseList" 
-                      [(ngModel)]="selectedSchoolEducationSubCourse" 
-                      [settings]="settings" 
-                      name='ss'  class="col-7">
-          </angular4-multiselect>
-
-          </div>
-        </div>
+        <app-education-level-course-subcourse [schoolItem]='schoolItem' #educationLevelCourseSubcourse></app-education-level-course-subcourse>
 
         <div class="form-row">
 

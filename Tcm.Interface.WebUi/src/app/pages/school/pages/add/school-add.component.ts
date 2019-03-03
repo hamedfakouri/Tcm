@@ -24,6 +24,7 @@ import { Region } from 'src/app/core/models/region';
 import { City } from 'src/app/core/models/city';
 import { SelectItems } from 'src/app/core/models/selectItems';
 import { SchoolEducationSubCourse } from '../../models/SchoolEducationSubCourse';
+import { EducationLevelCourseSubcourseComponent } from '../../components/education-level-course-subcourse/education-level-course-subcourse.component';
 
 @Component({
   selector: 'app-school-add',
@@ -46,22 +47,17 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
   public items: School[] = [];
   public schoolTypeItems: Observable<SchoolType[]>;
   public schoolSubTypeItems: Observable<SchoolSubType[]>;
-  public educationLevelItems: Observable<EducationLevel[]>;
-  public educationCourseItems: Observable<EducationCourse[]>;
   public provinceItems: Observable<Province[]>;
   public cityItems: Observable<City[]>;
   public regionItems: Observable<Region[]>;
 
   @ViewChild('f') form: any;
+  @ViewChild('educationLevelCourseSubcourse') educationLevelCourseSubcourse : EducationLevelCourseSubcourseComponent;
 
   public pagination = new Pagination(1, 10);
   public subject: string = "schooladd";
   userParams: any = {};
-
-  subCourseList: SelectItems[] = [];
-
-  selectedSchoolEducationSubCourse: SelectItems[] = [];
-  settings = {};
+  
 
   constructor(private alertify: AlertifyService, private schoolService: SchoolService,
     private schoolTypeService: SchoolTypeService, private schoolSubTypeService: SchoolSubTypeService,
@@ -74,18 +70,10 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
     //read school id from route params
     this.schoolItem.Id = this.route.snapshot.params['id'];
 
-    this.settings = {
-      singleSelection: false,
-      text: " ",
-      selectAllText: 'انتخاب همه',
-      unSelectAllText: 'حذف انتخاب',
-      //enableSearchFilter: true,
-      badgeShowLimit: 2
-    };
-
-
     this.getschoolTypeItems();
-    this.getEducationLeveltems();
+
+    this.educationLevelCourseSubcourse.getEducationLeveltems();
+
     this.getProvinceItems();
 
     this.getItem();
@@ -98,10 +86,6 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
 
   getschoolTypeItems() {
     this.schoolTypeItems = this.schoolTypeService.getAll();
-  }
-
-  getEducationLeveltems() {
-    this.educationLevelItems = this.educationLevelService.getAll();
   }
 
   getCity(ProvinceId: number) {
@@ -120,32 +104,6 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
   }
 
 
-  getEducationCourse(educationLevelId: number) {
-
-    this.educationCourseItems = this.educationCourseService.getByEducationLevel(educationLevelId);
-  }
-
-
-  getEducationSubCourse(educationCourseId: number) {
-
-    this.educationSubCourseService.getByEducationCourse(educationCourseId)
-      .subscribe((items) => {
-
-        items.forEach(item => {
-          this.subCourseList.push(new SelectItems(item.Id, item.Name));
-        });
-
-
-        if (this.schoolItem.SchoolEducationSubCourses) {
-
-          this.schoolItem.SchoolEducationSubCourses.forEach(item => {
-            this.selectedSchoolEducationSubCourse.push(
-              new SelectItems(item.EducationSubCourseId, this.subCourseList.find(x => x.id == item.EducationSubCourseId).itemName)
-            );
-          });
-        }
-      });
-  }
 
   getItem() {
 
@@ -171,11 +129,11 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
         }
 
         if (this.schoolItem.EducationLevelId != 0) {
-          this.getEducationCourse(this.schoolItem.EducationLevelId);
-        }
+          this.educationLevelCourseSubcourse.getEducationCourse(this.schoolItem.EducationLevelId);
 
-        if (this.schoolItem.EducationCourseId != 0) {
-          this.getEducationSubCourse(this.schoolItem.EducationCourseId);
+          if (this.schoolItem.EducationCourseId != 0) {
+            this.educationLevelCourseSubcourse.getEducationSubCourse(this.schoolItem.EducationCourseId);
+          }
         }
 
       }
@@ -190,18 +148,8 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
     }
 
     if (this.form.valid) {
-      this.schoolItem.CityId = 1;
-
-      if (this.selectedSchoolEducationSubCourse.length > 0) {
-
-        this.schoolItem.SchoolEducationSubCourses = [];
-
-        this.selectedSchoolEducationSubCourse.forEach(item => {
-          this.schoolItem.SchoolEducationSubCourses.push(new SchoolEducationSubCourse(item.id, this.schoolItem.Id, 1));
-        })
-
-      }
-
+     console.log(this.schoolItem);
+      this.schoolItem.SchoolEducationSubCourses = this.educationLevelCourseSubcourse.getSelectedSubCourse();
 
       if (this.schoolItem.Id == 0) {
         this.schoolService.add(this.schoolItem).subscribe(
@@ -213,8 +161,8 @@ export class SchoolAddComponent implements OnInit, OnDestroy {
       }
       else {
         this.schoolService.update(this.schoolItem.Id, this.schoolItem).subscribe(
-          () => { 
-            this.navigateToSchoolList(); 
+          () => {
+            this.navigateToSchoolList();
           }
         );
       }
