@@ -79,6 +79,11 @@ namespace Tcm.Application.Schools
 
         }
 
+        public School GetById(int id)
+        {
+            return _schoolRepository.GetAll().Include(x => x.SchoolEducationSubCourses).FirstOrDefault(x => x.Id == id);
+        }
+
         public List<SchoolDto> GetAll(Expression<Func<School, bool>> expression)
         {
             return _schoolRepository.GetAll(expression).Include(x=> x.City).Include(x => x.EducationCourse).ToList().Mapper();
@@ -88,7 +93,7 @@ namespace Tcm.Application.Schools
 
         public void Update(int Id, SchoolDto model)
         {
-            var school = _schoolRepository.GetById(Id);
+            var school = GetById(Id);
 
             if (school != null)
             {
