@@ -55,7 +55,10 @@ namespace Tcm.Interface.Api
 
             services.AddIdentity<ApplicationUser, Role>(identityOptions =>
             {
-
+                identityOptions.Password.RequireDigit = false;
+                identityOptions.Password.RequireLowercase = false;
+                identityOptions.Password.RequireNonAlphanumeric = false;
+                identityOptions.Password.RequireUppercase = false;
 
             }).AddUserStore<ApplicationUserStore>()
               .AddUserManager<ApplicationUserManager>()
