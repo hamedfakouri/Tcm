@@ -32,9 +32,7 @@ export class HeaderComponent implements OnInit {
     else{
       this.decodedToken = this.authService.decodedToken;
     }
-
-    this.fullName = this.decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"] + " " +
-          this.decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname"];
+    this.fullName = this.decodedToken.FullName;
   }
 
   toggleSidebar(): boolean {
