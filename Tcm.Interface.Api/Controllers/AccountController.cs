@@ -365,9 +365,9 @@ namespace Tcm.Interface.Api.Controllers
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),             
-                new Claim(ClaimTypes.Surname , user.LastName??""),
-                new Claim(ClaimTypes.Name , user.FirstName??""),
-                new Claim(ClaimTypes.Role , role),
+                new Claim("FullName" , user.FirstName + " " + user.LastName),
+                new Claim("Role" , role),
+                new Claim("SchoolId" , user?.SchoolId.ToString()),
 
             };
 
