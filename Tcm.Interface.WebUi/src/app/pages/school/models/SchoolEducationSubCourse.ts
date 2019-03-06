@@ -3,6 +3,7 @@ export class SchoolEducationSubCourse {
     SchoolId: Number;
     EducationSubCourseId: Number;
     MajorId: number;
+    EducationSubCourseName?: string;
 
     constructor(educationSubCourseId, schoolId,majorId){
         this.EducationSubCourseId = educationSubCourseId;

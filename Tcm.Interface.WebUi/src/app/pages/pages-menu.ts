@@ -9,17 +9,22 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'شناسنامه مدارس',
-    icon: 'nb-home',
+    icon: 'nb-layout-sidebar-right',
     link: 'School',
-    home: true,
   },
   {
-    title: 'FEATURES',
-    group: true,
+    title: 'مدیریت کلاس',
+    icon: 'nb-compose',
+    children: [
+      {
+        title: 'کلاس آموزشی',
+        link: 'ClassRoom',
+      },
+    ]
   },
   {
     title: 'اطلاعات پایه',
-    icon: 'nb-star',
+    icon: 'nb-edit',
     children: [
       {
         title: 'مقطع تحصیلی',
@@ -49,7 +54,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'کاربر',
-    icon: 'nb-keypad',
+    icon: 'nb-person',
     children: [
       {
         title: 'مدیر مدرسه',

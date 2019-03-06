@@ -105,7 +105,7 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
         disabled: false,
         searchPlaceholderText: 'Search',
         showCheckbox: true,
-        noDataLabel: 'No Data Available',
+        noDataLabel: 'داده ای یافت نشد',
         searchAutofocus: true,
         lazyLoading: false,
         labelKey: 'itemName',

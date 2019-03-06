@@ -16,57 +16,52 @@ namespace Tcm.Interface.Api.Controllers
     public class SchoolController : Controller
     {
 
-            private ISchoolService _schoolService;
-            public SchoolController(ISchoolService schoolService)
-            {
-                _schoolService = schoolService;
-            }
+        private ISchoolService _schoolService;
+        public SchoolController(ISchoolService schoolService)
+        {
+            _schoolService = schoolService;
+        }
 
-            [HttpPost]
-            public IActionResult Post([FromBody]SchoolDto value)
-            {
+        [HttpPost]
+        public IActionResult Post([FromBody]SchoolDto value)
+        {
+            _schoolService.Add(value);
 
-                _schoolService.Add(value);
+            return Ok();
+        }
 
-                return Ok();
-            }
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody]SchoolDto value)
+        {
 
-            [HttpPut("{id}")]
-            public IActionResult Put(int id, [FromBody]SchoolDto value)
-            {
+            _schoolService.Update(id, value);
 
-                _schoolService.Update(id, value);
+            return Ok();
+        }
 
-                return Ok();
-            }
+        [HttpGet]
+        public IActionResult Get(UserParams userParams)
+        {
+            var items = _schoolService.GetAll(userParams);
+            Response.AddPagination(userParams);
 
-            [HttpGet]
-            public IActionResult Get(UserParams userParams)
-            {
-                var items = _schoolService.GetAll(userParams);
-                Response.AddPagination(userParams);
-
-                return Ok(items);
-            }
-
-       
+            return Ok(items);
+        }
 
         [HttpGet("{id}")]
-            public IActionResult Get(int id)
-            {
+        public IActionResult Get(int id)
+        {
+            var School = _schoolService.Get(id);
 
-                var School = _schoolService.Get(id);
+            return Ok(School);
+        }
 
-                return Ok(School);
-            }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _schoolService.Delete(id);
 
-            [HttpDelete("{id}")]
-            public IActionResult Delete(int id)
-            {
-
-                _schoolService.Delete(id);
-
-                return Ok();
-            }
+            return Ok();
         }
     }
+}
