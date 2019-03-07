@@ -42,9 +42,9 @@ namespace Tcm.Interface.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get(UserParams userParams)
+        public IActionResult Get(UserParams userParams, int schoolId)
         {
-            var items = _classRoomService.GetAll(userParams);
+            var items = _classRoomService.GetAll(userParams, schoolId);
             Response.AddPagination(userParams);
 
             return Ok(items);

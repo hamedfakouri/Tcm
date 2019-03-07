@@ -38,7 +38,7 @@ export class HttpService<T> {
   }
 
   add(T): Observable<T> {
-    console.log(T);
+    
     return this.http.post<T>(this.url, JSON.stringify(T), this.httpOptions).pipe(
       tap((T) => console.log(`added  w/ `)),
       catchError(this.handleError<any>('add'))

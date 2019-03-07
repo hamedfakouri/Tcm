@@ -18,6 +18,7 @@ export class ClassRoomAddComponent extends CrudComponent<ClassRoom> implements O
 
   schoolId: number;
   schoolEducationSubCourseList: SchoolEducationSubCourse[] = [];
+  
   constructor(private classRoomService: ClassRoomService, private schoolEducationSubCourseService: SchoolEducationSubCourseService,
     private authService: AuthService, route: ActivatedRoute, router: Router) {
 

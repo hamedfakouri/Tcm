@@ -45,11 +45,12 @@ namespace Tcm.Application.ClassRooms
 
         }
 
-        public List<ClassRoomDto> GetAll(UserParams userParams)
+        public List<ClassRoomDto> GetAll(UserParams userParams, int schoolId)
         {
             return _classRoomRepository.GetAll()
                 .Include(x => x.SchoolEducationSubCourse.EducationSubCourse)
                 .Include(x => x.SchoolEducationSubCourse.EducationSubCourse.EducationCourse)
+                .Where(x => x.SchoolEducationSubCourse.SchoolId == schoolId)
                 .Pager(userParams).ToList().Mapper();
         }
 

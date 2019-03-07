@@ -29,6 +29,12 @@ export class ClassRoomService extends HttpService<ClassRoom> {
     return items;
 
   }
+   
+  public GetAllBySchoolId(schoolId: number){
+
+    return this.httpClient.get<Array<ClassRoom>>(this.url + "?schoolId=" + schoolId );
+
+  }
 
   public GetGridCustomTask(): Array<CustomTask> {
 

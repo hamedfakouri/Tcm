@@ -15,7 +15,7 @@ namespace Tcm.Application.Contract.ClassRooms
 
         ClassRoom Get(short Id);
 
-        List<ClassRoomDto> GetAll(UserParams userParams);
+        List<ClassRoomDto> GetAll(UserParams userParams, int schoolId);
 
         List<ClassRoom> GetAll(Expression<Func<ClassRoom, bool>> expression);
 

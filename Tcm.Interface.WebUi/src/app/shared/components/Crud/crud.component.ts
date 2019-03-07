@@ -69,8 +69,8 @@ export class CrudComponent<T> {
   }
 
   add(item: T) {
-
-    if (this.Id > 0) {
+   
+    if (this.Id && this.Id > 0) {
       this.edit(this.Id, item);
     }
     else {
@@ -83,7 +83,7 @@ export class CrudComponent<T> {
   }
 
   goToList() {
-    this.alertify.success(Message.editSuccess);
+    this.alertify.success(Message.saveSuccess);
     this.router.navigate([this.httpService.endpoint]);
   }
 
