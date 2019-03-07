@@ -1,12 +1,5 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 
-import { Message } from 'src/app/core/models/message.enum';
-
-import { AlertifyService } from 'src/app/shared/services';
-
-import { Pagination, PaginationResult } from 'src/app/core/models/pagination';
-import { Pair } from 'src/app/core/models';
 import { SchoolType } from '../../models/schooltype';
 import { SchoolTypeService } from '../../services/schooltype.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,7 +12,7 @@ import { CrudComponent } from 'src/app/shared/components/Crud/crud.component';
   styleUrls: ['schooltype-list.component.css']
 })
 
-export class SchoolTypeComponent extends CrudComponent<SchoolType> implements OnInit, OnDestroy {
+export class SchoolTypeComponent extends CrudComponent<SchoolType> implements OnInit {
 
 
 

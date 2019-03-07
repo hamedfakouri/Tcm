@@ -1,25 +1,16 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 
-import { Message } from 'src/app/core/models/message.enum';
-
-import { AlertifyService } from 'src/app/shared/services';
-
-import { Pagination, PaginationResult } from 'src/app/core/models/pagination';
-import { Pair } from 'src/app/core/models';
 import { Major } from '../../models/major';
 import { MajorService } from '../../services/major.service';
 import { CrudComponent } from 'src/app/shared/components/Crud/crud.component';
 import { ActivatedRoute, Router } from '@angular/router';
-
-
 
 @Component({
   selector: 'app-Major',
   templateUrl: 'major-list.component.html'
 })
 
-export class MajorComponent extends CrudComponent<Major> implements  OnInit, OnDestroy {
+export class MajorComponent extends CrudComponent<Major> implements  OnInit {
 
 
   public subject: string = "major";

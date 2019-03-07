@@ -1,12 +1,6 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { Subscription, Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { Message } from 'src/app/core/models/message.enum';
-
-import { AlertifyService } from 'src/app/shared/services';
-
-import { Pagination, PaginationResult } from 'src/app/core/models/pagination';
-import { Pair } from 'src/app/core/models';
 import { SchoolSubType } from '../../models/schoolsubtype';
 import { SchoolType } from '../../../schoolType/models/schooltype';
 import { SchoolTypeService } from '../../../schoolType/services/schooltype.service';
@@ -21,24 +15,23 @@ import { CrudComponent } from 'src/app/shared/components/Crud/crud.component';
   styleUrls: ['schoolsubtype-list.component.css']
 })
 
-export class SchoolSubTypeComponent extends CrudComponent<SchoolSubType> implements OnInit, OnDestroy {
+export class SchoolSubTypeComponent extends CrudComponent<SchoolSubType> implements OnInit {
 
 
   public subject: string = "schoolsubtype";
   schoolTypeItems: Observable<SchoolType[]>;
 
-
-  constructor( private schoolSubTypeService: SchoolSubTypeService, 
-    private schoolTypeService: SchoolTypeService,route: ActivatedRoute,
+  constructor(private schoolSubTypeService: SchoolSubTypeService,
+    private schoolTypeService: SchoolTypeService, route: ActivatedRoute,
     router: Router) {
-      super(schoolSubTypeService,route,router);
-     }
+    super(schoolSubTypeService, route, router);
+  }
 
   ngOnInit() {
 
     this.dictionary = this.schoolSubTypeService.GetDictionary();
-    this.items = new  Array<SchoolSubType>();
-    this.item =new SchoolSubType();
+    this.items = new Array<SchoolSubType>();
+    this.item = new SchoolSubType();
     this.getschoolTypeItems();
     this.getَAll();
     this.getQueryString();
@@ -46,11 +39,11 @@ export class SchoolSubTypeComponent extends CrudComponent<SchoolSubType> impleme
   }
 
   getschoolTypeItems() {
-    
+
     this.schoolTypeItems = this.schoolTypeService.getAll();
 
   }
 
- 
+
 
 }
