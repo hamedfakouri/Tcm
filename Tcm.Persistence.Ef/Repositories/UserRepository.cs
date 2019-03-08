@@ -46,6 +46,12 @@ namespace Tcm.Persistence.Ef.Repositories
         {
         }
     }
+    public class EducationYearRepository : BaseRepository<EducationYear, int>, IEducationYearRepository
+    {
+        public EducationYearRepository(TcmContext tcmContext) : base(tcmContext)
+        {
+        }
+    }
     public class EducationSubCourseRepository : BaseRepository<EducationSubCourse,short>, IEducationSubCourseRepository
     {
         public EducationSubCourseRepository(TcmContext tcmContext) : base(tcmContext)

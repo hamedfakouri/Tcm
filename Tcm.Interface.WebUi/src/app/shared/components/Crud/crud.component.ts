@@ -85,6 +85,9 @@ export class CrudComponent<T> {
   goToList() {
     this.alertify.success(Message.saveSuccess);
     this.router.navigate([this.httpService.endpoint]);
+
+    if(!this.router.url.includes('edit'))
+    this.getَAll();
   }
 
   goToEdit(id: number) {

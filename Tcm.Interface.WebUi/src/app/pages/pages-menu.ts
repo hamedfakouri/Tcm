@@ -27,6 +27,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'nb-edit',
     children: [
       {
+        title: 'سال تحصیلی',
+        link: 'educationYear',
+      },
+      {
         title: 'مقطع تحصیلی',
         link: 'educationLevel',
       },

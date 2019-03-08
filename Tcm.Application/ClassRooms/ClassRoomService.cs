@@ -26,7 +26,7 @@ namespace Tcm.Application.ClassRooms
             {
                 Name = classRoomAddDto.Name,
                 SchoolEducationSubCourseId = classRoomAddDto.SchoolEducationSubCourseId,
-                Year = classRoomAddDto.Year
+                EducationYearId = classRoomAddDto.EducationYearId
             };
 
             _classRoomRepository.Add(classRoom);
@@ -67,7 +67,7 @@ namespace Tcm.Application.ClassRooms
             {
                 classRoom.Name = model.Name;
                 classRoom.SchoolEducationSubCourseId = model.SchoolEducationSubCourseId;
-                classRoom.Year = model.Year;
+                classRoom.EducationYearId = model.EducationYearId;
 
                 _classRoomRepository.Update(classRoom);
             }

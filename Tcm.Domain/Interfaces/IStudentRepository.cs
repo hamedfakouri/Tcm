@@ -26,6 +26,9 @@ namespace Tcm.Domain.Interfaces
     public interface  IEducationLevelRepository: IRepository<EducationLevel,short>
     {
     }
+    public interface IEducationYearRepository : IRepository<EducationYear, int>
+    {
+    }
     public interface  IEducationSubCourseRepository: IRepository<EducationSubCourse,short>
     {
     }

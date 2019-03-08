@@ -19,10 +19,13 @@ export class PermissionService {
    GetPermissions(value:string){
 
     this.role = RoleType[value];
+    this.userPermissions.push(new Permission(SubjectType.educationyear, TaskType.add));
+    this.userPermissions.push(new Permission(SubjectType.educationyear, TaskType.delete));
+    this.userPermissions.push(new Permission(SubjectType.educationyear, TaskType.edit));
+
     this.userPermissions.push(new Permission(SubjectType.educationlevel, TaskType.add));
     this.userPermissions.push(new Permission(SubjectType.educationlevel, TaskType.delete));
     this.userPermissions.push(new Permission(SubjectType.educationlevel, TaskType.edit));
-
 
     this.userPermissions.push(new Permission(SubjectType.educationcourse, TaskType.add));
     this.userPermissions.push(new Permission(SubjectType.educationcourse, TaskType.delete));

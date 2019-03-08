@@ -1,0 +1,1 @@
+export {EducationYear} from './educationyear';

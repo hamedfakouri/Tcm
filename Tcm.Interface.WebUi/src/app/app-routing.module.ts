@@ -7,6 +7,7 @@ export const routes: Routes = [
   { path: 'account', loadChildren: './pages/account/account.module#AccountModule' },
 
   { path: '', loadChildren: './pages/dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuardService] },
+  { path: 'educationYear', loadChildren: './pages/baseInfo/educationYear/educationyear.module#EducationYearModule', canActivate: [AuthGuardService] },
   { path: 'educationLevel', loadChildren: './pages/baseInfo/educationLevel/educationlevel.module#EducationLevelModule', canActivate: [AuthGuardService] },
   { path: 'EducationCourse', loadChildren: './pages/baseInfo/educationCourse/educationcourse.module#EducationCourseModule', canActivate: [AuthGuardService] },
   { path: 'EducationSubCourse', loadChildren: './pages/baseInfo/educationSubCourse/educationsubcourse.module#EducationSubCourseModule', canActivate: [AuthGuardService] },

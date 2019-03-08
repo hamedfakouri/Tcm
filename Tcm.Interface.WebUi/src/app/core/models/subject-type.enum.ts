@@ -3,6 +3,7 @@ export enum SubjectType {
     branch,
     agent,
     dashboard,
+    educationyear,
     educationlevel,
     educationcourse,
     educationsubcourse,

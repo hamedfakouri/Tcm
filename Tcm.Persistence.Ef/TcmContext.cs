@@ -38,7 +38,7 @@ namespace Tcm.Persistence.Ef
         public DbSet<SchoolSubType> SchoolSubTypes { get; set; }
         public DbSet<SchoolType> SchoolTypes { get; set; }
         public DbSet<Student> Students { get; set; }
-
+        public DbSet<EducationYear> EducationYears { get; set; }
 
         public TcmContext(DbContextOptions<TcmContext> dbContextOptions) : base(dbContextOptions)
         {
