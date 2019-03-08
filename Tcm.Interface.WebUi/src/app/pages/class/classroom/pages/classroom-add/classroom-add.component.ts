@@ -8,6 +8,8 @@ import { SchoolEducationSubCourseService } from 'src/app/pages/school/services/s
 import { CrudComponent } from 'src/app/shared/components/Crud/crud.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClassRoomService } from '../../services/classroom.service';
+import { EducationYear } from 'src/app/pages/baseInfo/educationYear/models';
+import { EducationYearService } from 'src/app/pages/baseInfo/educationYear/services/educationYear.service';
 
 @Component({
   selector: 'app-classroom-add',
@@ -18,8 +20,11 @@ export class ClassRoomAddComponent extends CrudComponent<ClassRoom> implements O
 
   schoolId: number;
   schoolEducationSubCourseList: SchoolEducationSubCourse[] = [];
+  educationYearList: EducationYear[] = [];
   
-  constructor(private classRoomService: ClassRoomService, private schoolEducationSubCourseService: SchoolEducationSubCourseService,
+  constructor(private classRoomService: ClassRoomService, 
+    private schoolEducationSubCourseService: SchoolEducationSubCourseService,
+    private educationYearService: EducationYearService,
     private authService: AuthService, route: ActivatedRoute, router: Router) {
 
     super(classRoomService, route, router);
@@ -31,6 +36,7 @@ export class ClassRoomAddComponent extends CrudComponent<ClassRoom> implements O
     this.item = new ClassRoom();
     this.schoolId = this.authService.decodedToken().SchoolId;
     this.getSchoolEducationSubCourses();
+    this.getEducationYears();
 
     if(this.Id){
       this.get(this.Id);
@@ -42,6 +48,15 @@ export class ClassRoomAddComponent extends CrudComponent<ClassRoom> implements O
     this.schoolEducationSubCourseService.getBySchoolId(this.schoolId).subscribe((res: SchoolEducationSubCourse[]) => {
       
       this.schoolEducationSubCourseList = res;
+    });
+  }
+
+  
+  getEducationYears() {
+
+    this.educationYearService.getAll().subscribe((res: EducationYear[]) => {
+      
+      this.educationYearList = res;
     });
   }
 

@@ -23,6 +23,7 @@ export class ClassRoomService extends HttpService<ClassRoom> {
     let items = new Array<Pair>();
 
     items.push(new Pair("Name", "عنوان کلاس"));
+    items.push(new Pair("EducationYear", "سال تحصیلی"));
     items.push(new Pair("EducationCourseName", "دوره آموزشی"));
     items.push(new Pair("EducationSubCourseName", "پایه تحصیلی"));
 

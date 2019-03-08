@@ -48,6 +48,7 @@ namespace Tcm.Application.ClassRooms
         public List<ClassRoomDto> GetAll(UserParams userParams, int schoolId)
         {
             return _classRoomRepository.GetAll()
+                .Include(x => x.EducationYear)
                 .Include(x => x.SchoolEducationSubCourse.EducationSubCourse)
                 .Include(x => x.SchoolEducationSubCourse.EducationSubCourse.EducationCourse)
                 .Where(x => x.SchoolEducationSubCourse.SchoolId == schoolId)
@@ -94,6 +95,8 @@ namespace Tcm.Application.ClassRooms
                 dto.SchoolEducationSubCourseId = classRoom.SchoolEducationSubCourseId;
                 dto.EducationSubCourseName = classRoom.SchoolEducationSubCourse.EducationSubCourse.Name;
                 dto.EducationCourseName = classRoom.SchoolEducationSubCourse.EducationSubCourse.EducationCourse.Name;
+                dto.EducationYear = classRoom.EducationYear.StartDate + " - " + classRoom.EducationYear.EndDate;
+                dto.EducationYearId = classRoom.EducationYearId;
             }
 
             return dto;

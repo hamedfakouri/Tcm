@@ -17,7 +17,6 @@ import { EducationYearService } from './services/educationYear.service';
     
   ],
   providers: [
-    EducationYearService
   ]
 })
 export class EducationYearModule {
