@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 // import { UserManager, UserManagerSettings, User } from 'oidc-client';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Subject } from 'rxjs';

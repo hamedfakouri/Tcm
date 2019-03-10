@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 
 import { HttpService } from 'src/app/shared/services/http.service';
 import { Pair } from 'src/app/core/models';
-import { Subject } from 'rxjs';
 import { EducationYear } from '../models';
 
 

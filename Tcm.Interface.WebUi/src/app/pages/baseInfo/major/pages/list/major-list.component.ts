@@ -28,7 +28,4 @@ export class MajorComponent extends CrudComponent<Major> implements  OnInit {
     this.getQueryString();
     
   }
-
- 
-
 }

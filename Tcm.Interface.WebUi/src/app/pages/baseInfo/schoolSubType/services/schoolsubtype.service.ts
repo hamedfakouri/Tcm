@@ -11,26 +11,25 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class SchoolSubTypeService extends HttpService<SchoolSubType> {
 
-  constructor(private httpClient :HttpClient){
+  constructor(private httpClient: HttpClient) {
     super(httpClient);
     this.endpoint = "SchoolSubType";
-    this.url = this.baseUrl + "/api/" + this.endpoint+"/"
-
-}
-  public GetDictionary():Array<Pair>{
-
-    let items = new Array<Pair>();
-    
-    items.push(new Pair("Name","عنوان"));
-    items.push(new Pair("SchoolTypeName","نوع مدرسه"));
-  
-
-   return items;
+    this.url = this.baseUrl + "/api/" + this.endpoint + "/"
 
   }
+  public GetDictionary(): Array<Pair> {
 
-  getBySchoolType(Id: number): Observable<SchoolSubType[]>{
-    return this.httpClient.get<SchoolSubType[]>(this.url + "schoolType/"+ Id);
+    let items = new Array<Pair>();
+
+    items.push(new Pair("Name", "عنوان"));
+    items.push(new Pair("SchoolTypeName", "نوع مدرسه"));
+
+
+    return items;
+  }
+
+  getBySchoolType(Id: number): Observable<SchoolSubType[]> {
+    return this.httpClient.get<SchoolSubType[]>(this.url + "schoolType/" + Id);
 
   }
 

@@ -43,7 +43,4 @@ export class SchoolSubTypeComponent extends CrudComponent<SchoolSubType> impleme
     this.schoolTypeItems = this.schoolTypeService.getAll();
 
   }
-
-
-
 }

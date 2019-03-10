@@ -1,12 +1,6 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { Subscription, Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { Message } from 'src/app/core/models/message.enum';
-
-import { AlertifyService } from 'src/app/shared/services';
-
-import { Pagination, PaginationResult } from 'src/app/core/models/pagination';
-import { Pair } from 'src/app/core/models';
 import { EducationSubCourse } from '../../models/educationsubcourse';
 import { EducationSubCourseService } from '../../services/educationsubcourse.service';
 import { EducationCourse } from '../../../educationCourse/models/educationcourse';
@@ -22,9 +16,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class EducationSubCourseComponent extends CrudComponent<EducationSubCourse> implements OnInit {
-
-
- 
 
   public educationCourseItems: Observable<EducationCourse[]>;
 
@@ -52,7 +43,4 @@ export class EducationSubCourseComponent extends CrudComponent<EducationSubCours
      this.educationCourseItems = this.educationCourseService.getAll();
 
   }
-
- 
-
 }

@@ -1,12 +1,4 @@
-import {Component, OnDestroy} from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { takeWhile } from 'rxjs/operators' ;
-
-interface CardSettings {
-  title: string;
-  iconClass: string;
-  type: string;
-}
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'ngx-dashboard',

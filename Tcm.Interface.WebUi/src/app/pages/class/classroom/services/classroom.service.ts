@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-
 import { HttpService } from 'src/app/shared/services/http.service';
 import { Pair } from 'src/app/core/models';
 import { ClassRoom } from '../models/classroom';
 import { CustomTask } from 'src/app/core/models/custom-task';
 import { Router } from '@angular/router';
-
 
 @Injectable()
 export class ClassRoomService extends HttpService<ClassRoom> {
@@ -30,10 +28,10 @@ export class ClassRoomService extends HttpService<ClassRoom> {
     return items;
 
   }
-   
-  public GetAllBySchoolId(schoolId: number){
 
-    return this.httpClient.get<Array<ClassRoom>>(this.url + "?schoolId=" + schoolId );
+  public GetAllBySchoolId(schoolId: number) {
+
+    return this.httpClient.get<Array<ClassRoom>>(this.url + "?schoolId=" + schoolId);
 
   }
 
@@ -48,7 +46,4 @@ export class ClassRoomService extends HttpService<ClassRoom> {
 
     this.route.navigate(['account/register/1'])
   }
-
-
-
 }

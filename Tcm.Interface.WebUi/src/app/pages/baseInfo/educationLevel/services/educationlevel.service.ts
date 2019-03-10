@@ -5,8 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { EducationLevel } from '../models/educationlevel';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { Pair } from 'src/app/core/models';
-import { Subject } from 'rxjs';
-
 
 @Injectable()
 export class EducationLevelService extends HttpService<EducationLevel> {
@@ -24,9 +22,6 @@ export class EducationLevelService extends HttpService<EducationLevel> {
     items.push(new Pair("Id", "شماره"));
     items.push(new Pair("Name", "نام"));
 
-
     return items;
-
   }
-
 }

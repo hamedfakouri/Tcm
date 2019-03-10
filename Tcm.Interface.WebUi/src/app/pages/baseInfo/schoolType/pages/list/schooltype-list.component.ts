@@ -5,7 +5,6 @@ import { SchoolTypeService } from '../../services/schooltype.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrudComponent } from 'src/app/shared/components/Crud/crud.component';
 
-
 @Component({
   selector: 'app-schoolType',
   templateUrl: 'schoolType-list.component.html',
@@ -13,8 +12,6 @@ import { CrudComponent } from 'src/app/shared/components/Crud/crud.component';
 })
 
 export class SchoolTypeComponent extends CrudComponent<SchoolType> implements OnInit {
-
-
 
   public subject: string = "schooltype";
   constructor(
@@ -31,7 +28,4 @@ export class SchoolTypeComponent extends CrudComponent<SchoolType> implements On
     this.getَAll();
     this.getQueryString();
   }
-
- 
-
 }

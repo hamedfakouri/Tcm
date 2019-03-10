@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { EducationYear } from '../../models/educationYear';
 import { EducationYearService } from '../../services/educationYear.service';
@@ -13,7 +13,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class EducationYearComponent extends CrudComponent<EducationYear> implements OnInit {
-
  
   public subject: string = "educationyear";
 
@@ -22,7 +21,6 @@ export class EducationYearComponent extends CrudComponent<EducationYear> impleme
     super(educationYearService,route,router);
     this.dictionary = this.educationYearService.GetDictionary();
     this.items = new Array<EducationYear>();
-    
 
   }
 

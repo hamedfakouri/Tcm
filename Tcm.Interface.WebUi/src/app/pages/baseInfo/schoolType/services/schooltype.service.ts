@@ -9,20 +9,19 @@ import { SchoolType } from '../models/schooltype';
 @Injectable()
 export class SchoolTypeService extends HttpService<SchoolType> {
 
-  constructor(private httpClient :HttpClient){
+  constructor(private httpClient: HttpClient) {
     super(httpClient);
     this.endpoint = "SchoolType";
-    this.url = this.baseUrl + "/api/" + this.endpoint+"/"
+    this.url = this.baseUrl + "/api/" + this.endpoint + "/"
 
-}
+  }
 
-  public GetDictionary():Array<Pair>{
+  public GetDictionary(): Array<Pair> {
 
     let items = new Array<Pair>();
-    items.push(new Pair("Name","نام"));
-  
+    items.push(new Pair("Name", "نام"));
 
-   return items;
+    return items;
 
   }
 
